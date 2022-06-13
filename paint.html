@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="paint.css">
+</head>
+
+<body>
+    <div class="tools">
+        <button id="undo">undo</button>
+        <button id="clear">clear</button>
+        <button id="pencil">pencil</button>
+        <button id="line">line</button>
+        <button id="shape">shape</button>
+    </div>
+
+    <div id="q" style="display: flex; ">
+        <div id="options">
+
+            <div id="pencilOptions" class='Options' style="display: flex; flex-direction: column">
+
+                <input type="range" id="lineWidthPencil" value="5" maxvalue="50">
+                <input type="color" id="colorPencil">
+
+                <div id="radiosPencil">
+                    <label>butt
+                        <input type="radio" class="lineCapPencil" name="lineCapPencil" value="butt" checked></label>
+                    <label>round
+                        <input type="radio" class="lineCapPencil" name="lineCapPencil" value="round"></label>
+                    <label>square
+                        <input type="radio" class="lineCapPencil" name="lineCapPencil" value="square"></label>
+                </div>
+            </div>
+
+            <div id="lineOptions" class='Options' style="display: none; flex-direction: column">
+
+                <input type="range" id="lineWidthLine" value="5" maxvalue="50">
+                <input type="color" id="colorLine">
+
+                <div id="radiosLine">
+                    <label>butt
+                        <input type="radio" class="lineCap" name="lineCap" value="butt" checked></label>
+                    <label>round
+                        <input type="radio" class="lineCap" name="lineCap" value="round"></label>
+                    <label>square
+                        <input type="radio" class="lineCap" name="lineCap" value="square"></label>
+                </div>
+            </div>
+
+
+
+
+
+            <div id="shapeOptions" class='Options' style="display: none; flex-direction: column">
+                <div class="shape">
+                    <label>square
+                        <input type="radio" name="shape" id="square" value="square" checked></label>
+                    <label>circle
+                        <input type="radio" name="shape" id="circle" value="circle"></label>
+                </div>
+                <div class="style">
+
+                    <div style="background-color: red;">
+                        <div style="margin: auto; background: blue; width: 50%">Width: <input type="number"
+                                id="lineWidthShapeInput"
+                                style="width: 50px; display: inline-block; margin-bottom: 20px"> </div>
+
+                        <input type="range" id="lineWidthShape" value="5" maxvalue="50"
+                            style="width: 90%; display: inline-block; margin-left: auto">
+                    </div>
+
+                    <label>stroke
+                        <input type="checkbox" name="style" id="stroke" value="square"></label>
+
+                    <input type="color" id="colorStroke">
+
+                    <label>fill
+                        <input type="checkbox" name="style" id="fill" value="circle" checked></label>
+                    <input type="color" id="colorFill">
+                </div>
+                <!-- <div class="radiosShape">
+                    <label>butt
+                        <input type="radio" class="lineCap" name="linecap" value="butt" checked></label>
+                    <label>round
+                        <input type="radio" class="lineCap" name="linecap" value="round"></label>
+                    <label>square
+                        <input type="radio" class="lineCap" name="linecap" value="square"></label>
+                </div> -->
+            </div>
+
+
+        </div>
+        <canvas></canvas>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-1.12.3.js"
+        integrity="sha256-1XMpEtA4eKXNNpXcJ1pmMPs8JV+nwLdEqwiJeCQEkyc=" crossorigin="anonymous"></script>
+    <script src="paint.js"></script>
+</body>
+
+</html>
