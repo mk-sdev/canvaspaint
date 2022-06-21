@@ -11,77 +11,129 @@
 
 <body>
     <div class="tools">
-        <button id="undo">undo</button>
-        <button id="clear">clear</button>
-        <button id="pencil">pencil</button>
-        <button id="line">line</button>
-        <button id="shape">shape</button>
+
+
+        <button id="save" class="btn">save</button>
+        <button id="undo" class="btn">undo</button>
+
+
+        <button id="pencil" class="btn">pencil</button>
+        <button id="line" class="btn">line</button>
+        <button id="shape" class="btn">shape</button>
+        <button id="text" class="btn">text</button>
+        <!-- <button id="modify" clas="btn">modify</button> -->
+        <button id="images" class="btn">images</button>
+
+        <button id="clear" class="btn">clear</button>
+        <button id="download2" class="btn">download</button>
+        <!--  -->
     </div>
 
-    <div id="q" style="display: flex; ">
+    <div id="q">
         <div id="options">
 
-            <div id="pencilOptions" class='Options' style="display: flex; flex-direction: column">
+            <div id="pencilOptions" class='Options' style="display: flex">
+                <div>
+                    <span><b>Width</b></span>
+                    <input type="range" id="lineWidthPencil" value="5" maxvalue="50"></div>
 
-                <input type="range" id="lineWidthPencil" value="5" maxvalue="50">
-                <input type="color" id="colorPencil">
+                <div>
 
-                <div id="radiosPencil">
-                    <label>butt
-                        <input type="radio" class="lineCapPencil" name="lineCapPencil" value="butt" checked></label>
-                    <label>round
-                        <input type="radio" class="lineCapPencil" name="lineCapPencil" value="round"></label>
-                    <label>square
-                        <input type="radio" class="lineCapPencil" name="lineCapPencil" value="square"></label>
-                </div>
-            </div>
-
-            <div id="lineOptions" class='Options' style="display: none; flex-direction: column">
-
-                <input type="range" id="lineWidthLine" value="5" maxvalue="50">
-                <input type="color" id="colorLine">
-
-                <div id="radiosLine">
-                    <label>butt
-                        <input type="radio" class="lineCap" name="lineCap" value="butt" checked></label>
-                    <label>round
-                        <input type="radio" class="lineCap" name="lineCap" value="round"></label>
-                    <label>square
-                        <input type="radio" class="lineCap" name="lineCap" value="square"></label>
-                </div>
-            </div>
-
-
-
-
-
-            <div id="shapeOptions" class='Options' style="display: none; flex-direction: column">
-                <div class="shape">
-                    <label>square
-                        <input type="radio" name="shape" id="square" value="square" checked></label>
-                    <label>circle
-                        <input type="radio" name="shape" id="circle" value="circle"></label>
-                </div>
-                <div class="style">
-
-                    <div style="background-color: red;">
-                        <div style="margin: auto; background: blue; width: 50%">Width: <input type="number"
-                                id="lineWidthShapeInput"
-                                style="width: 50px; display: inline-block; margin-bottom: 20px"> </div>
-
-                        <input type="range" id="lineWidthShape" value="5" maxvalue="50"
-                            style="width: 90%; display: inline-block; margin-left: auto">
+                    <div style="width: 100%; height: fit-content">
+                        <hr>
                     </div>
-
-                    <label>stroke
-                        <input type="checkbox" name="style" id="stroke" value="square"></label>
-
-                    <input type="color" id="colorStroke">
-
-                    <label>fill
-                        <input type="checkbox" name="style" id="fill" value="circle" checked></label>
-                    <input type="color" id="colorFill">
+                    <span><b>Color</b></span>
+                    <div><input type="color" id="colorPencil"></div>
                 </div>
+                <hr>
+                <div>
+                    <span><b>Line cap</b></span>
+                    <div id="radiosPencil">
+
+                        <label id="labelPencilRound" class="labelPencil">round
+                            <input type="radio" class="radioPencil" name="lineCapPencil" value="round" checked></label>
+                        <label id="labelPencilSquare" class="labelPencil">&nbsp;square&nbsp;
+                            <input type="radio" class="radioPencil" name="lineCapPencil" value="square"></label>
+                        <label id="labelPencilButt" class="labelPencil">butt
+                            <input type="radio" class="radioPencil" name="lineCapPencil" value="butt"></label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="lineOptions" class='Options'>
+                <div>
+                    <span><b>Width</b></span>
+                    <input type="range" id="lineWidthLine" value="5" maxvalue="50"></div>
+                <hr>
+                <div>
+                    <span><b>Color</b></span>
+                    <div><input type="color" id="colorLine"></div>
+                </div>
+                <hr>
+                <div>
+                    <span><b>Line cap</b></span>
+                    <div id="radiosLine">
+
+                        <label id="labelLineRound" class="labelLine">round&nbsp;
+                            <input checked type="radio" class="radioLine" name="lineCap" value="round"></label>
+
+
+                        <!-- <label id="labelLineSquare" class="labelLine">square
+                            <input type="radio" claradioioLine" name="lineCap" value="square"></label> -->
+                        <label id="labelLineButt" class="labelLine">&nbsp;square
+                            <input type="radio" class="radioLine" name="lineCap" value="butt"></label>
+                    </div>
+                </div>
+                <!-- <hr> -->
+                <!-- <label id="ljoin"><span><b>Join lines</b></span><input type="checkbox" id="join" name="join"></label> -->
+            </div>
+
+
+
+
+
+            <div id="shapeOptions" class='Options'>
+
+                <div class="shape">
+                    <span><b>Shape</b></span>
+
+                    <div id="radiosShape">
+                        <label id="labelShapeSquare" class="labelShape">square&nbsp;
+                            <input type="radio" name="shape" id="square" class="radioShape" value="square"
+                                checked></label>
+                        <label id="labelShapeCircle" class="labelShape">&nbsp;circle
+                            <input type="radio" name="shape" id="circle" class="radioShape" value="circle"></label>
+                    </div>
+                </div>
+                <hr>
+                <div id="styleShape">
+
+                    <div>
+                        <label><span><b>Fill</b></span>
+                            <input type="checkbox" name="style" id="fill" value="circle" checked></label></div>
+                    <div>
+                        <label><span><b>Stroke</b></span>
+                            <input type="checkbox" name="style" id="stroke" value="square"></label></div>
+
+                </div>
+                <hr>
+                <div>
+                    <span><b>Fill color</b></span>
+                    <div><input type="color" id="colorFill"></div>
+                </div>
+                <hr>
+
+                <div>
+                    <span><b>Stroke color</b></span>
+                    <div><input type="color" id="colorStroke"></div>
+                </div>
+                <hr>
+                <div>
+                    <span><b>Stroke width</b></span>
+
+                    <input type="range" id="lineWidthShape" value="5" maxvalue="50">
+                </div>
+
                 <!-- <div class="radiosShape">
                     <label>butt
                         <input type="radio" class="lineCap" name="linecap" value="butt" checked></label>
@@ -93,13 +145,136 @@
             </div>
 
 
+
+            <div id="textOptions" class='Options'>
+                <div>
+                    <span><b>Text content</b></span>
+                    <textarea id="textContent"></textarea>
+                </div>
+                <hr>
+
+                <div id="fontFamily">
+                    <span><b>Font family</b></span>
+                    <select name="fontSelect" id="fontSelect">
+                        <option value="Arial" style="font-family: Arial">Arial</option>
+                        <option value="Courier New" style="font-family: Courier New">Courier New</option>
+                        <option value="Lucida Console" style="font-family: Lucida Console">Lucida Console</option>
+
+                        <option value="Georgia" style="font-family: Georgia">Georgia</option>
+                        <!-- <option value="Times New Roman">Times New Roman</option> -->
+                        <option value="Verdana" style="font-family: Verdana">Verdana</option>
+                    </select>
+                </div>
+
+                <hr>
+                <div><span><b>Font size</b></span>
+                    <input type="range" id="textSize" value="50" min='1' max="200"></div>
+                <hr>
+                <div id="styleText">
+
+                    <div><label><span><b>Fill</b></span>
+                            <input type="checkbox" id='fillText' class="textStyle" name="textStyle" value="fill"
+                                checked></label></div>
+                    <div> <label><span><b>Stroke</b></span>
+                            <input type="checkbox" id='strokeText' class="textStyle" name="textStyle"
+                                value="stroke"></label></div>
+
+                </div>
+
+
+
+
+
+
+                <hr>
+                <!-- <input type="range" id="lineWidthLine" value="5" maxvalue="50"> -->
+                <div><span><b>Color fill</b></span>
+                    <div><input type="color" id="colorFillText"></div>
+                </div>
+                <hr>
+                <div><span><b>Color stroke</b></span>
+                    <div> <input type="color" id="colorStrokeText"></div>
+                </div>
+                <hr>
+                <div><span><b>Width of stroke</b></span>
+                    <input type="range" id="textStrokeWidth" value="1" maxvalue="10"></div>
+                <hr>
+                <div><span><b>Style</b></span>
+                    <div id="radiosText">
+
+                        <label id="labelTextNormal" class="labelText">normal
+                            <input type="radio" id='normalText' class='radioText' name="radiosText" value="normal"
+                                checked></label>
+
+                        <label id="labelTextBold" class="labelText">&nbsp;bold&nbsp;
+                            <input type="radio" id='boldText' class='radioText' name="radiosText" value="bold"></label>
+
+                        <label id="labelTextItalic" class="labelText">italic
+                            <input type="radio" id='italicxt' class='radioText' name="radiosText"
+                                value="italic"></label>
+
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+
+            <!-- <div id="modifyOptions" class="Options">
+                <input type="color" id="colorCanvas">
+                scale
+                <input type="range" id="scaleCanvas" value="0" maxvalue="10">
+                <input type="range" id="rotateCanvas" value="0" maxvalue="360">
+
+            </div> -->
+
+            <div id="imagesOptions" class='Options' style="overflow-y: hidden; height: 111%;">
+                <!-- <label id="uploader"><input type="file" id="uploaderbtn" style="height: 10px !important" accept="image/*">upload</label> -->
+
+
+                <!-- <label id="uploader1"><input type="text" id="uploaderbtn1" style="color: black;">upload</label> -->
+                <!-- <hr> -->
+                <div><span><b>Image size</b></span>
+                    <input type="range" id="imageSize" val="6" max="10" min="2"></div>
+                <hr>
+                <div id="imagesDiv" style="overflow-y: auto; overflow-x: visible; height: 100%; width: 100%">
+
+                    <img crossorigin="anonymous" src="./images/doggo.png" alt="doggo" id="img1" class="img">
+
+                    <img crossorigin="anonymous" src="./images/programming.png" alt="programming" id="img2" class="img">
+                    <img crossorigin="anonymous" src="./images/stockGuy.png" alt='stock guy' id="img3" class="img">
+
+                </div>
+
+
+            </div>
+            <button id="download1">download</button>
         </div>
-        <canvas></canvas>
+
+        <div id="middle">
+            <canvas></canvas>
+            <span style="display: table; margin: 0 auto; font-size: 15px;">&nbsp;</span>
+        </div>
+        <div id="right">
+            <div id="savedImages">
+                <!-- <img src="" id="imageConverted" -->
+                <!-- style="width: 100%; height: 30%"></div> -->
+                <span
+                    style="color: grey; font-size: 20px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%; text-align:center">No
+                    drafts yet. Click the save button to create one</span>
+            </div>
+            <button id="download">download</button>
+        </div>
     </div>
+
+    aab
+    <!-- <img  id="output"/> -->
 
     <script src="https://code.jquery.com/jquery-1.12.3.js"
         integrity="sha256-1XMpEtA4eKXNNpXcJ1pmMPs8JV+nwLdEqwiJeCQEkyc=" crossorigin="anonymous"></script>
-    <script src="paint.js"></script>
+    <script src="paint.js" crossorigin="use-credentials"></script>
 </body>
 
 </html>
