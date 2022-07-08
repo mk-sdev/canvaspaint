@@ -1,10 +1,7 @@
-///stylowanie: długość rendżów, jak się najedzie na rendże to widać wartość, własne kursory, efekty przycisków, jakaś szerokość poszczególnych opcji, textarea. brak scrolla na ekranach, checkboxy
+//buttony, dodawanie zdjeć, color picker i tooltip dla range'y, poprawić colors,  poprawić gallery, komunikaty na dole, wysokość canvasa a wysokoś urządzenia, tablinks, 
 
-//js:   images, modify, lineJoin, kolor szary jeśli fill lub strok enie są zaznaczone, nawigacja klawiszami, message jeśli ani fill ani stroke nie są zaznaczone, text;  wysokość canvasa a wysokoś urządzenia, rozszerzyć textarea przy pisaniu na mobilnych, kursor na środku image, jak jest duża textarea to nie da sę sktolować w textOptions n największym ekranie
 
-//html: więcej opcji jak czcionki i gradienty
 
-//border w savedImages, jakieś info na dole, kursory, range min max, 
 
 let c = document.querySelector('CANVAS');
 let ctx = c.getContext('2d')
@@ -14,13 +11,13 @@ ctx.siteRoot = $('.site-root').val();
 if (window.innerWidth <= 1200 && window.innerWidth > 1000)
     c.width = window.innerWidth * .65
 else
-if (window.innerWidth <= 1000)
-    c.width = window.innerWidth * .9
+if (window.innerWidth <= 1100)
+    c.width = window.innerWidth * .95
 else
     c.width = window.innerWidth * .6
 
 if (window.innerWidth <= 555)
-    c.height = window.innerHeight * .7
+    c.height = window.innerHeight * .6
 else
     c.height = window.innerHeight * .75
 document.querySelector('#middle').style.width = `${c.width+10}px`
@@ -40,7 +37,7 @@ $(document).ready(function () {
     $ctx.fillStyle = 'white'
     $ctx.fillRect(0, 0, $c.width(), $c.height())
     let whichBtn = 'pencil'
-    console.log($(window).width());
+    // console.log($(window).width());
 
 
 
@@ -65,6 +62,22 @@ $(document).ready(function () {
     // }
 
     //     $('#uploaderbtn').on('click', uploadImage)
+    let j = 0;
+    let savedimg = []
+    $('#uploadImage').on('input', (e) => {
+
+
+        savedimg[j] = $(`<image src="${$('#uploadImage').val()}"  id="imageUploaded${j}" class="img imgUploaded" crossorigin='anonymous' onerror="$('#imageUploaded${j}').remove()" />`)
+
+        $('#middle span').html('If the address is proper, you should see your image in images > gallery > uploaded')
+        $('#uploadedImagesDiv').prepend(savedimg[j])
+        j++
+
+    })
+
+ 
+
+
 
     $('#undo').on('click', () => {
         if (index <= 0) {
@@ -79,7 +92,7 @@ $(document).ready(function () {
             $ctx.putImageData(restore_array[index], 0, 0)
         }
 
-        console.log(index, restore_array)
+        //console.log(index, restore_array)
 
     })
 
@@ -90,8 +103,17 @@ $(document).ready(function () {
         undofn(e)
         // console.log('czyszczę', $c.width());
         isLine = false
+        $('#middle span').html('You cleared the canvas. You can undo it by clicking the undo button.')
 
     })
+//cleaning the span below the canvas
+    $c.on('click', ()=>{
+        if(!$('#middle span').text().length == 0 && whichBtn!=='text' && whichBtn!=='select'){
+        $('#middle span').html('')
+        }
+    })
+
+
     let dataURI = []
     let savedimage = []
     let i = 0
@@ -100,15 +122,18 @@ $(document).ready(function () {
     $('#save').on('click', () => {
         dataURI[i] = $c[0].toDataURL()
         // dataURI[i].slice(5, 13)
-        console.log('data', dataURI[i].slice(5, 14));
+        // console.log('data', dataURI[i].slice(5, 14));
 
         if (i == 0)
             $('#savedImages').html('')
 
+
+
+
         savedimage[i] = $(`<image src="${dataURI[i]}" class="savedImage" id="imageConverted${i}" style="border: 1px solid black" 
         />`)
 
-        overlay[i] = $(`<div id='overlay' class='overlays' style="height: 100%; width: 100%; background: black; opacity: 0" onclick="undofn(e)"></div>`)
+        overlay[i] = $(`<div id='overlay' class='overlays' style="height: 100%; width: 100%; background: black; opacity: 0" ></div>`)
         // console.log(dataURI);
         // console.log('save');
         //const imag = $('<image/>')
@@ -118,27 +143,54 @@ $(document).ready(function () {
         savedimage[i].prepend(overlay[i])
         // savedimage[i].attr('src', dataURI[i])
         $('#savedImages').prepend(savedimage[i])
-        console.log('saveImage', savedimage[0]);
+        //  console.log('saveImage', savedimage[0]);
 
 
 
         i++
 
-        $('#middle > span').html("You created a new draft! Click on it in order to display it again on the canvas.")
+        $('#middle > span').html("You created a new draft! Click on it any time you want in order to display it again on the canvas.")
     })
 
     //let elemnt = window.dzieci
+  
 
     $(document).on('click', (e) => {
+        //clear the input
+        //alert('edede', e.target.id.slice(0,3))
+        $('#uploadImage').val('')
+
+        if ($('input[name=radioCopy]').is(':checked')) {
+            console.log('copy');
+        }
+        if ($('input[name=radioDelete]').is(':checked')) {
+            console.log('Delete');
+        }
+        if ($('input[name=radioCut]').is(':checked')) {
+            console.log('Cut');
+        }
+
+
+
+        console.log('wwwwww',e.target.id);
         //console.log('ss', e.target.id.slice(0, 14));
+        if (e.target.id.slice(0, 7) == 'tablink') {
+            for (let i = 1; i <= $(".tablink").length; i++) {
+                $(`#tabCon${i}`).css('display', 'none')
+            }
+        }
+        $(`#tabCon${e.target.id.slice(7,8)}`).slideDown(200)
+        $(`#tabCon${e.target.id.slice(7,8)}`).css('display', 'block')
+
 
 
         if (e.target.id.slice(0, 14) == 'imageConverted') {
             const image = e.target
             //console.log('over', e.target.src);
             $ctx.drawImage(image, 0, 0)
+            undofn(e)
         }
-        if (e.target.id == 'download' || e.target.id == 'download1' || e.target.id == 'download2') {
+        if (e.target.id == 'download' || e.target.id == 'download1' || e.target.id == 'download2' || e.target.id=='ds' || e.target.id=='ds1' || e.target.id=='di2') {
             const a = document.createElement('a')
 
             a.href = $c[0].toDataURL()
@@ -163,15 +215,157 @@ $(document).ready(function () {
                 $('.labelText').eq(i).css('color', 'white')
             } else $('.labelText').eq(i).css('color', 'grey')
 
+            if ($('.radioColors').eq(i).is(':checked')) {
+                $('.labelColors').eq(i).css('color', 'white')
+            } else $('.labelColors').eq(i).css('color', 'grey')
 
         }
+
+
         //imagessss
-        if (e.target.id.slice(0, 3) == 'img') {
+        if (e.target.id.slice(0, 3) == 'img' || e.target.id.slice(0, 13) == 'imageUploaded' || e.target.id.slice(0, 3) == 'obj' || e.target.id.slice(0, 13) == 'imageSelected') {
             window.imagee = e.target
-            console.log('a', e.target.width)
+            // console.log('a', e.target.width)
 
 
         }
+    })
+
+    $('#showImgBtn').on('click', (e) => {
+        $('#id01').css('display', 'block');
+        $("#tablink1").click();
+    })
+
+    const modal = $('#id01')
+    const modalC = $('.modal-content')
+    const closebtn = $('#close')
+
+    $(window).click((event) => {
+        console.log(event.target.id)
+        if (event.target.id == 'id01' || event.target.id == 'close' || event.target.id.slice(0, 3) == 'img' || event.target.id.slice(0, 13) == 'imageUploaded' || event.target.id.slice(0, 3) == 'obj' || event.target.id.slice(0, 13) == 'imageSelected') {
+            modal.css('background-color', 'rgb(0,0,0,0)');
+            closebtn.css('display', 'none');
+            modalC.addClass('closeanim')
+            setTimeout(() => {
+                modal.css('display', 'none');
+                modal.css('background-color', 'rgb(0,0,0,0.4)')
+                modalC.removeClass('closeanim')
+                closebtn.css('display', 'block');
+
+            }, 400)
+        }
+    })
+
+    // Get the element with id="tablink1" and click on it by default
+
+    // chuj nie działa
+
+
+
+
+    $('#labelInverted').on('mousedown touch', (e) => {
+        let a = $ctx.getImageData(0, 0, $c.width(), $c.height())
+        const data = a.data;
+        for (let i = 0; i < data.length; i += 4) {
+            data[i] = 255 - data[i]; // red
+            data[i + 1] = 255 - data[i + 1]; // green
+            data[i + 2] = 255 - data[i + 2]; // blue
+        }
+        $ctx.putImageData(a, 0, 0)
+        undofn(e)
+    })
+
+    $('#labelGrayScale').on('mousedown touch', (e) => {
+        let a = $ctx.getImageData(0, 0, $c.width(), $c.height())
+        const data = a.data;
+        for (let i = 0; i < data.length; i += 4) {
+            const avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
+            data[i] = avg; // red
+            data[i + 1] = avg; // green
+            data[i + 2] = avg; // blue
+        }
+        $ctx.putImageData(a, 0, 0)
+        undofn(e)
+    })
+
+    $('#labelSepia').on('mousedown touch', (e) => {
+        let a = $ctx.getImageData(0, 0, $c.width(), $c.height())
+        const dataArray = a.data;
+        for (var i = 0; i < dataArray.length; i += 4) {
+            var red = dataArray[i];
+            var green = dataArray[i + 1];
+            var blue = dataArray[i + 2];
+            var alpha = dataArray[i + 3];
+
+            var outRed = (red * .393) + (green * .769) + (blue * .189); // calculate value for red channel in pixel
+            var outGreen = (red * .349) + (green * .686) + (blue * .168);
+            var outBlue = (red * .272) + (green * .534) + (blue * .131);
+
+            dataArray[i] = outRed < 255 ? outRed : 255; // check if the value is less than 255, if more set it to 255
+            dataArray[i + 1] = outGreen < 255 ? outGreen : 255;
+            dataArray[i + 2] = outBlue < 255 ? outBlue : 255
+            dataArray[i + 3] = alpha;
+        }
+
+        $ctx.putImageData(a, 0, 0)
+        undofn(e)
+    })
+
+
+    $('#red').on('mousedown', (e) => {
+        $(this).data('prevValue', $('#red').val())
+
+    }).on('mouseup', (e) => {
+        let prevValue = $(this).data('prevValue')
+        let difference = $('#red').val() - prevValue
+        let a = $ctx.getImageData(0, 0, $c.width(), $c.height())
+        const data = a.data;
+        //let val = $('#red').val()
+        for (let i = 0; i < data.length; i += 4) {
+            data[i] = data[i] + difference; // red
+            data[i + 1] = data[i + 1]; // green
+            data[i + 2] = data[i + 2]; // blue
+        }
+        $ctx.putImageData(a, 0, 0)
+        undofn(e)
+    })
+
+    $('#green').on('mousedown', (e) => {
+        $(this).data('prevValue', $('#green').val())
+
+    }).on('mouseup', (e) => {
+        let prevValue = $(this).data('prevValue')
+        let difference = $('#green').val() - prevValue
+
+        let a = $ctx.getImageData(0, 0, $c.width(), $c.height())
+        const data = a.data;
+        // let val = $('#green').val()
+        for (let i = 0; i < data.length; i += 4) {
+            data[i] = data[i]; // red
+            data[i + 1] = data[i + 1] + difference; // green
+            data[i + 2] = data[i + 2]; // blue
+        }
+        $ctx.putImageData(a, 0, 0)
+        undofn(e)
+    })
+
+    $('#blue').on('mousedown', (e) => {
+        $(this).data('prevValue', $('#blue').val())
+
+    }).on('mouseup', (e) => {
+        let prevValue = $(this).data('prevValue')
+        let difference = $('#blue').val() - prevValue
+
+        let a = $ctx.getImageData(0, 0, $c.width(), $c.height())
+        const data = a.data;
+        //let val = $('#blue').val()
+        for (let i = 0; i < data.length; i += 4) {
+            data[i] = data[i]; // red
+            data[i + 1] = data[i + 1]; // green
+            data[i + 2] = data[i + 2] + difference; // blue
+        }
+        $ctx.putImageData(a, 0, 0)
+        undofn(e)
     })
 
 
@@ -180,19 +374,96 @@ $(document).ready(function () {
 
 
 
+    $('#lightness').on('mousedown', (e) => {
+        $(this).data('prevValue', $('#lightness').val())
+    }).on('mouseup', (e) => {
+        let prevValue = $(this).data('prevValue')
+        let difference = $('#lightness').val() - prevValue
+        let a = $ctx.getImageData(0, 0, $c.width(), $c.height())
+        const data = a.data;
+        for (let i = 0; i < data.length; i += 4) {
+            data[i] = data[i] + difference; // red
+            data[i + 1] = data[i + 1] + difference; // green
+            data[i + 2] = data[i + 2] + difference; // blue
+        }
+        $ctx.putImageData(a, 0, 0)
+        undofn(e)
+    })
+
+
+    $('#contrast').on('mousedown', (e) => {
+        $(this).data('prevValue', $('#contrast').val())
+    }).on('mouseup', (e) => {
+        let prevValue = $(this).data('prevValue')
+        let difference = $('#contrast').val() - prevValue
+        let a = $ctx.getImageData(0, 0, $c.width(), $c.height())
+        const data = a.data;
+        for (let i = 0; i < data.length; i += 4) {
+            if (data[i] + data[i + 1] + data[i + 2] > 383) {
+                data[i] = data[i] - difference
+                data[i + 1 + 2] = data[i + 1 + 2] - difference
+                data[i + 2] = data[i + 2] - difference
+            } else {
+                data[i] = data[i] + difference
+                data[i + 1 + 2] = data[i + 1 + 2] + difference
+                data[i + 2] = data[i + 2] + difference
+            }
+        }
+        $ctx.putImageData(a, 0, 0)
+        undofn(e)
+    })
+    // $('#sat').on('mousedown', (e)=>{
+    //     console.log('setttttt');
+    //     src = $c[0].toDataURL()
+
+    //     $ctx.globalCompositeOperation='source-atop';
+    //     const image = new Image($c.width(), $c.height())
+    //     image.src= `"${src}"`
+    // $ctx.drawImage(image, 0, 0);
+
+    // // set the composite operation
+    // $ctx.globalCompositeOperation ='saturation';
+    // $ctx.fillStyle = "red";
+    // $ctx.globalAlpha = .5;  // alpha 0 = no effect 1 = full effect
+    // $ctx.fillRect(0, 0, image.width, image.height);
+    // })
+
+    // $c.on('mouseup', (e)=>{
+    // $ctx.globalCompositeOperation ='destination-over';
+
+    // })
 
 
     function imageFn(e) {
         e.preventDefault()
 
         let ratio = $('#imageSize').val()
+        let size = (1 / ratio)
+        $ctx.save();
+        // $ctx.translate(e.clientX - $c.offset().left, e.clientY - $c.offset().top)
 
-        if ($('#imageSize').val() > 6 && window.imagee !== undefined) {
-            $ctx.drawImage(window.imagee, e.clientX - $c.offset().left, e.clientY - $c.offset().top, window.imagee.width * (ratio - 5), window.imagee.height * (ratio - 5))
-        } else if ($('#imageSize').val() < 6 && window.imagee !== undefined) {
-            size = (1 / $('#imageSize').val())
-            $ctx.drawImage(window.imagee, e.clientX - $c.offset().left, e.clientY - $c.offset().top, window.imagee.width * (1 - 1.5 * size), window.imagee.height * (1 - 1.5 * size))
-        } else if ($('#imageSize').val() == 6 && window.imagee !== undefined) $ctx.drawImage(window.imagee, e.clientX - $c.offset().left - window.imagee.width / 2, e.clientY - $c.offset().top - window.imagee.height / 2, window.imagee.width, window.imagee.height)
+        // $ctx.rotate(45 * Math.PI / 180);
+        //$ctx.translate(-(e.clientX - $c.offset().left) - window.imagee.width / 2, -(e.clientY - $c.offset().to) - window.imagee.height / 2);
+
+        //$ctx.transform(1, -0.01, 0, 1, 0, 0);
+        // 
+
+
+        let x = e.clientX - $c.offset().left
+        let y = e.clientY - $c.offset().top
+        let width = window.imagee.width
+        let height = window.imagee.height
+
+
+
+        if (ratio > 0 && window.imagee !== undefined) {
+            $ctx.drawImage(window.imagee, x - width * ratio / 2, y - height * ratio / 2, width * ratio, height * ratio)
+        } else if (ratio < 0 && window.imagee !== undefined) {
+
+            $ctx.drawImage(window.imagee, x - width * size / 2, y - height * size / 2, width * size, height * size)
+
+
+        } else if (ratio == 0 && window.imagee !== undefined) $ctx.drawImage(window.imagee, x - width / 2, y - height / 2, width, height)
 
 
 
@@ -200,12 +471,13 @@ $(document).ready(function () {
         //console.log($('#imageSize').val(), "aa", ratio)
 
         //console.log($ctx.getImageData(0, 0, $c.width(), $c.height()));
-
+        $ctx.restore()
 
     }
 
     $c.on('mousemove', (e) => {
         // let before = $ctx.getImageData(0, 0, $c.width(), $c.height())
+
 
         if (whichBtn == 'images' && document.body.scrollTop == 0 && document.documentElement.scrollTop == 0) {
 
@@ -214,7 +486,9 @@ $(document).ready(function () {
 
             isImage = true
             $ctx.putImageData(restore_array[index], 0, 0);
-            imageFn(e)
+
+            if (window.imagee !== undefined)
+                imageFn(e)
             // undofn(e)
             e.preventDefault()
         }
@@ -339,14 +613,30 @@ $(document).ready(function () {
     })
 
 
-    $('#modify').on('click', () => {
-        whichBtn = 'modify'
+    $('#colors').on('click', () => {
+        whichBtn = 'colors'
         for (let i = 0; i < $('.Options').length; i++) {
             $('.Options').css('display', 'none')
         }
-        $('#modifyOptions').css('display', 'flex')
+        $('#colorsOptions').slideDown(200)
+        $('#colorsOptions').css('display', 'flex')
 
     })
+    $('#select').on('click', () => {
+        whichBtn = 'select'
+        for (let i = 0; i < $('.Options').length; i++) {
+            $('.Options').css('display', 'none')
+        }
+        $('#selectOptions').slideDown(200)
+        $('#selectOptions').css('display', 'flex')
+
+    })
+    $('#backColor').on('change', (e) => {
+        $ctx.fillStyle = $('#backColor').val()
+        $ctx.fillRect(0, 0, $c.width(), $c.height())
+        undofn(e)
+    })
+
     $('#images').on('click', () => {
         whichBtn = 'images'
         for (let i = 0; i < $('.Options').length; i++) {
@@ -411,103 +701,7 @@ $(document).ready(function () {
         // console.log(index, restore_array)
     }
 
-    let isPencil
-    $c.on('mousedown touchstart', (e) => {
-        //tyuf
-        console.log(e.type)
 
-
-        if (whichBtn == 'pencil' && document.documentElement.scrollTop == 0 && document.body.scrollTop == 0) {
-            isPencil = true
-
-
-            $ctx.beginPath();
-
-
-            if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua) ||
-                /Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
-                let touch = e.originalEvent.touches[0]
-
-                var x = touch.pageX;
-                var y = touch.pageY;
-
-                $ctx.moveTo(x - $c.offset().left, y - $c.offset().top);
-
-            } else {
-                $ctx.moveTo(e.clientX - $c.offset().left, e.clientY - $c.offset().top);
-            }
-
-            e.preventDefault()
-        }
-    })
-
-    $c.on('mouseup touchend', (e) => {
-        if (document.documentElement.scrollTop > 0 || document.body.scrollTop > 0)
-            document.documentElement.scrollTop = 0
-        document.body.scrollTop = 0
-    })
-
-    $c.on('mousemove touchmove', (e) => {
-
-        //  $('body').css('cursor', `url('ja.jpg')`)
-
-
-        if (isPencil && whichBtn == 'pencil' && document.documentElement.scrollTop == 0 && document.body.scrollTop == 0) {
-            console.log(e.type)
-
-
-
-            if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua) ||
-                /Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
-                let touch = e.originalEvent.touches[0]
-                var x = touch.pageX;
-                var y = touch.pageY;
-
-                $ctx.lineTo(x - $c.offset().left, y - $c.offset().top);
-
-
-
-            } else {
-                $ctx.lineTo(e.clientX - $c.offset().left, e.clientY - $c.offset().top);
-            }
-
-            //$ctx.stroke(); // Draw it
-
-            $ctx.lineJoin = 'round'
-            $ctx.lineCap = $('[name=lineCapPencil]:checked').val()
-
-            $ctx.lineWidth = $('#lineWidthPencil').val()
-
-            $ctx.strokeStyle = $('#colorPencil').val()
-
-            // console.log(e.clientX - $c.offset().left);
-            $ctx.stroke()
-            //console.log(e.offsetX, e.clientX - $c.offset().left);
-            // if(e.clientX - $c.offset().left == 0)
-            // isPencil=false
-
-        }
-    }).on('mouseleave touchcancel', (e) => {
-        isPencil = false
-
-        // if(whichBtn == 'pencil')
-        // undofn(e)
-        //$ctx.closePath()
-    })
-    // .on('mouseenter', ()=>{
-    //     if(isPencil==true)
-    //     $ctx.beginPath()
-    // })
-
-    $c.on('mouseup touchend', (e) => {
-        isPencil = false
-        $ctx.closePath()
-
-        if (whichBtn == 'pencil')
-            undofn(e)
-        // $ctx.save()
-
-    })
 
 
 
@@ -542,9 +736,9 @@ $(document).ready(function () {
     //     console.log($('[name=lineCap]:checked').val());
     //     //$('#pencilOptions > .lineWidth').val() = lineWidth
     // })
-    $('#join').on('click', () => {
-        console.log('JOIN', $('#join').is(':checked'));
-    })
+    // $('#join').on('click', () => {
+    //     console.log('JOIN', $('#join').is(':checked'));
+    // })
 
 
     function drawLine($ctx, line) {
@@ -560,15 +754,20 @@ $(document).ready(function () {
         //     throw new Error('Start or end of line not defined.')
         // }
         // console.log('DRAWLINE', $ctx, line);
-        if (whichBtn == 'line') {
+        if (whichBtn == 'line' && line.start.x - line.end.x !== 0 || line.start.y - line.end.y !== 0) {
+
             $ctx.beginPath()
+
             $ctx.moveTo(start.x, start.y)
             $ctx.lineTo(end.x, end.y)
             $ctx.lineWidth = lineWidth
             $ctx.lineCap = lineCap
+
             $ctx.strokeStyle = strokeStyle
             $ctx.stroke()
         }
+
+
     }
 
 
@@ -612,16 +811,19 @@ $(document).ready(function () {
             // let imgData = $ctx.getImageData(0, 0, $c.width(), $c.height());
             $(this).data('imgData', $ctx.getImageData(0, 0, $c.width(), $c.height()))
         }
-    }).on('mousemove touchmove', (e) => {
+    })
+    $c.on('mousemove touchmove', (e) => {
 
         //console.log('MOVE');
 
         if (isLine && whichBtn == 'line') {
             let imgData = $(this).data('imgData')
-            console.log('imgdata', imgData);
+            //console.log('imgdata', imgData);
 
             if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua) ||
                 /Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
+
+
                 let touch = e.originalEvent.touches[0]
                 var x = touch.pageX;
                 var y = touch.pageY;
@@ -643,7 +845,7 @@ $(document).ready(function () {
             }
             $ctx.clearRect(0, 0, $c.width(), $c.height())
             $ctx.putImageData(imgData, 0, 0);
-            //console.log(imgData);
+
 
             drawLine($ctx, line)
 
@@ -651,42 +853,342 @@ $(document).ready(function () {
         e.preventDefault()
     })
     $c.on('mouseup touchend', (e) => {
-        //console.log('UP');
+
         if (whichBtn == 'line')
             undofn(e)
         isLine = false
+        if (!$('#join').is(':checked'))
+            mouseDownPos = null
+
+
     })
 
 
-    ////////titaj chciałem zrobić łączone linie ale nie wyszło/////////////
-    // $c.on('mousemove', (e) => {
+
+
+ 
+    $(document).on('mouseup', (e) => {
+        if (whichBtn == 'line' && e.target.id !== 'canvas') {
+            //undofn(e)
+            $ctx.putImageData(restore_array[index], 0, 0)
+            mouseDownPos = null
+        }
+
+        if (whichBtn == 'shape' && e.target.id !== 'canvas') {
+            //undofn(e)
+            $ctx.putImageData(restore_array[index], 0, 0)
+            mouseDownPosS = null
+        }
+
+        if (whichBtn == 'select' && e.target.id !== 'canvas') {
+            //undofn(e)
+            $ctx.putImageData(restore_array[index], 0, 0)
+            mouseDownPosSel = null
+        }
+
+    })
+
+    $c.on('mousemove', (e) => {
+        if (whichBtn == 'line' && $('#join').is(':checked')) {
+            //let imgData = $(this).data('imgData')
+            $ctx.putImageData(restore_array[index], 0, 0)
+
+
+            let currentPos = {
+                x: e.clientX - $c.offset().left,
+                y: e.clientY - $c.offset().top
+            }
+
+            // let mouseDownPos = {
+            //     x: e.clientX - $c.offset().left+1,
+            //     y: e.clientY - $c.offset().top+1
+            // }
+
+            let line = {
+                start: mouseDownPos,
+                end: currentPos
+            }
+            //$ctx.clearRect(0, 0, $c.width(), $c.height())
+            // $ctx.putImageData(imgData, 0, 0);
+
+            drawLine($ctx, line)
+
+        }
+    })
 
 
 
-    //     if ( whichBtn == 'line' ) {
-    //         //let imgData = $(this).data('imgData')
-
-    //         let currentPos = {
-    //             x: e.clientX - $c.offset().left,
-    //             y: e.clientY - $c.offset().top
-    //         }
-
-    //         let line = {
-    //             start: mouseDownPos,
-    //             end: currentPos
-    //         }
-    //         //$ctx.clearRect(0, 0, $c.width(), $c.height())
-    //        // $ctx.putImageData(imgData, 0, 0);
-
-
-    //         drawLine($ctx, line)
-
-    //     }
-
-    // })
 
 
 
+
+
+
+
+    function drawShapeS($ctx, shapeS) {
+        const {
+            start,
+            end,
+            // fillStyle = $('#colorFill').val(),
+            //colorStroke = "blue",
+            strokeWidth = '1',
+            whichShape = 'squareS'
+            // isChecked1 = $('#stroke').is(':checked'),
+            // isChecked2 = $('#fill').is(':checked'),
+        } = shapeS
+
+
+        // if (!start || !end) {
+        //     throw new Error('Start or end of line not defined.')
+        // }
+
+
+        //the condition below is to not to draw a dot in the middle while stroking a circle
+        if (start.x - start.y !== 0 || end.x && end.y !== 0) {
+            $ctx.beginPath()
+            $ctx.setLineDash([10, 15]);
+            var gradient = $ctx.createLinearGradient(0, 0, $c.width(), $c.height());
+
+            for (let i = 0; i < 100; i += 4) {
+                gradient.addColorStop(`0.${i}`, "blue");
+                gradient.addColorStop(`0.${i+1}`, "silver");
+                gradient.addColorStop(`0.${i+2}`, "red");
+            }
+
+
+            // if (isChecked1) {
+            $ctx.lineWidth = strokeWidth;
+            $ctx.strokeStyle = gradient;
+            // }
+            // if (isChecked2) {
+            //     $ctx.fillStyle = fillStyle;
+            // }
+
+            // $ctx.globalCompositeOperation = "darker";
+            //tutaj poprawić parametry, jakoś oblczyć długość i wysokoś 
+            if (whichShape == 'squareS') {
+                $ctx.rect(start.x, start.y, end.x - start.x, end.y - start.y);
+            } else
+                $ctx.arc(start.x, start.y, Math.sqrt((start.x - end.x) * (start.x - end.x) + (start.y - end.y) * (start.y - end.y)), 0, 2 * Math.PI);
+
+            // if (isChecked1) {
+
+            $ctx.stroke()
+            // }
+            // if (isChecked2) {
+            //     $ctx.fill()
+            // }
+            $ctx.closePath()
+
+
+
+
+        }
+        $ctx.setLineDash([0, 0]);
+        window.start = shapeS.start
+        window.end = shapeS.end
+
+    }
+
+
+
+    let isSelect
+    let mouseDownPosSel = null
+    $c.on('mousedown touchstart', (e) => {
+        // console.log('down');
+
+
+        if (whichBtn == 'select' && document.body.scrollTop == 0 && document.documentElement.scrollTop == 0) {
+            isSelect = true
+
+
+
+            if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua) ||
+                /Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
+                let touch = e.originalEvent.touches[0]
+                var x = touch.pageX;
+                var y = touch.pageY;
+                mouseDownPosSel = {
+                    x: x - $c.offset().left,
+                    y: y - $c.offset().top
+                }
+
+
+            } else {
+                mouseDownPosSel = {
+                    x: e.clientX - $c.offset().left,
+                    y: e.clientY - $c.offset().top
+                }
+            }
+            //console.log('mousedownpos', mouseDownPos);
+
+            const shapeS = {
+                start: mouseDownPosSel,
+                end: mouseDownPosSel,
+            }
+
+            drawShapeS($ctx, shapeS)
+            // console.log('qw', $ctx, shape);
+
+            // let imgData = $ctx.getImageData(0, 0, $c.width(), $c.height());
+            $(this).data('imgData', $ctx.getImageData(0, 0, $c.width(), $c.height()))
+        }
+    }).on('mousemove touchmove', (e) => {
+
+        //console.log('MOVE');
+
+        if (isSelect && whichBtn == 'select') {
+            let imgData = $(this).data('imgData')
+
+            if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua) ||
+                /Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
+                let touch = e.originalEvent.touches[0]
+                var x = touch.pageX;
+                var y = touch.pageY;
+                currentPosSel = {
+                    x: x - $c.offset().left,
+                    y: y - $c.offset().top
+                }
+
+            } else {
+                currentPosSel = {
+                    x: e.clientX - $c.offset().left,
+                    y: e.clientY - $c.offset().top
+                }
+            }
+
+            let shapeS = {
+                start: mouseDownPosSel,
+                end: currentPosSel
+            }
+            $ctx.clearRect(0, 0, $c.width(), $c.height())
+            $ctx.putImageData(imgData, 0, 0);
+            //console.log(imgData);
+
+            drawShapeS($ctx, shapeS)
+
+        }
+
+    })
+
+
+    $('.labelSelect').on('click', (e) => {
+        let id = e.target.id
+
+        if (id == 'labelCopy') {
+            $("#radioCopy").prop("checked", true);
+            $("#labelCopy").css('color', 'white')
+
+            $("#radioCut").prop("checked", false);
+            $("#labelCut").css('color', 'grey')
+
+            $("#radioDelete").prop("checked", false);
+            $("#labelDelete").css('color', 'grey')
+
+            //alert('copy')
+        }
+        if (id == 'labelCut') {
+            $("#radioCopy").prop("checked", false);
+            $("#labelCopy").css('color', 'grey')
+
+            $("#radioCut").prop("checked", true);
+            $("#labelCut").css('color', 'white')
+
+            $("#radioDelete").prop("checked", false);
+            $("#labelDelete").css('color', 'grey')
+
+            //alert('cut')
+
+        }
+        if (id == 'labelDelete') {
+            $("#radioDelete").prop("checked", true);
+            $("#labelCopy").css('color', 'grey')
+
+            $("#radioCut").prop("checked", false);
+            $("#labelCut").css('color', 'grey')
+
+            $("#radioCopy").prop("checked", false);
+            $("#labelDelete").css('color', 'white')
+
+            // alert('delete')
+
+        }
+    })
+    $("#labelCut").css('color', 'white')
+    let k = 0;
+    let clippedimg = []
+    $c.on('mouseup touchend', (e) => {
+        //console.log('UP');
+        if (whichBtn == 'select') {
+            $ctx.putImageData(restore_array[index], 0, 0)
+            // if (whichBtn == 'select')
+            //     undofn(e)
+            $('#imageSize').val('0')
+
+            let x = Math.min(window.start.x, window.end.x)
+            let y = Math.min(window.start.y, window.end.y)
+            let width = Math.abs(window.end.x - window.start.x)
+            let height = Math.abs(window.end.y - window.start.y)
+
+            if ($('input[name=whole]').is(':checked')) {
+                var clippedArea = $ctx.getImageData(0, 0, $c.width(), $c.height())
+            } else {
+                var clippedArea = $ctx.getImageData(x, y, width, height)
+            }
+
+            //$ctx.putImageData(clippedArea, 0, 0)
+
+            //creating reserve canvas
+            // const canvas2 = $(`<canvas style='width: ${Math.abs(window.end.x - window.start.x)}px; height: ${Math.abs(window.end.y - window.start.y)}px'></canvas>`)
+            if ($('#radioDelete').is(':checked')) {
+                $ctx.beginPath()
+                $ctx.fillStyle = 'white'
+                $ctx.fillRect(x, y, width, height)
+                $ctx.closePath()
+                //console.log('delete');
+
+            } else if ($('#radioCut').is(':checked') || $('#radioCopy').is(':checked')) {
+                if ($('#radioCut').is(':checked')) {
+                    $ctx.beginPath()
+                $ctx.fillStyle = 'white'
+                $ctx.fillRect(x, y, width, height)
+                $ctx.closePath()
+                    //console.log('cut');
+                    //alert('cut')
+                }
+
+                const canvas2 = $(`<canvas width="${$c.width()}" height="${$c.height()}"></canvas>`)
+
+
+                const ctx2 = canvas2[0].getContext('2d');
+                ctx2.translate($c.width() / 2, 0)
+                ctx2.putImageData(clippedArea, $c.width() / 2 - width / 2, $c.height() / 2 - height / 2)
+                let src = canvas2[0].toDataURL()
+
+                // alert(window.imagee.width)
+                // console.log('width', Math.min(window.start.x, window.end.x), Math.min(window.start.y, window.end.y), Math.abs(window.end.x - window.start.x), Math.abs(window.end.y - window.start.y));
+                // console.log(src);
+
+                clippedimg[k] = $(`<image src="${src}"  id="imageSelected${k}" class="img imgSelected" crossorigin='anonymous' onerror="$('#imageUploaded${k}').remove()" />`)
+
+                if (k == 0) {
+                    $('#selspan').css('display', 'none')
+                    // $('#selected').css('display', 'grid')
+                }
+                // $('body').append(canvas2)
+                $('#selected').prepend(clippedimg[k])
+                // window.imagee=clippedimg[k]
+                $('#middle span').html('Visit images > gallery > selected to use the selected area')
+                k++
+                // $('#images').click()
+            }
+
+
+            undofn(e)
+        }
+
+        isSelect = false
+    })
 
 
 
@@ -757,33 +1259,35 @@ $(document).ready(function () {
         //     throw new Error('Start or end of line not defined.')
         // }
         //console.log('DRAWSHAPE', $ctx, shape);
-        $ctx.beginPath()
 
-        if (isChecked1) {
-            $ctx.lineWidth = strokeWidth;
-            $ctx.strokeStyle = colorStroke;
+        //the condition below is to not to draw a dot in the middle while stroking a circle
+        if (start.x - end.x !== 0 || start.y - end.y !== 0) {
+            $ctx.beginPath()
+
+            if (isChecked1) {
+                $ctx.lineWidth = strokeWidth;
+                $ctx.strokeStyle = colorStroke;
+            }
+            if (isChecked2) {
+                $ctx.fillStyle = fillStyle;
+            }
+
+            //tutaj poprawić parametry, jakoś oblczyć długość i wysokoś 
+            if (whichShape == 'square')
+                $ctx.rect(start.x, start.y, end.x - start.x, end.y - start.y);
+            else
+                $ctx.arc(start.x, start.y, Math.sqrt((start.x - end.x) * (start.x - end.x) + (start.y - end.y) * (start.y - end.y)), 0, 2 * Math.PI);
+
+            if (isChecked1) {
+                $ctx.stroke()
+            }
+            if (isChecked2) {
+                $ctx.fill()
+            }
+            $ctx.closePath()
+
+
         }
-        if (isChecked2) {
-            $ctx.fillStyle = fillStyle;
-        }
-
-
-        //tutaj poprawić parametry, jakoś oblczyć długość i wysokoś 
-        if (whichShape == 'square')
-            $ctx.rect(start.x, start.y, end.x - start.x, end.y - start.y);
-        else
-            $ctx.arc(start.x, start.y, Math.sqrt((start.x - end.x) * (start.x - end.x) + (start.y - end.y) * (start.y - end.y)), 0, 2 * Math.PI);
-
-        if (isChecked1) {
-            $ctx.stroke()
-        }
-        if (isChecked2) {
-            $ctx.fill()
-        }
-        $ctx.closePath()
-
-
-
 
     }
 
@@ -888,7 +1392,7 @@ $(document).ready(function () {
     //texttt
     function textFn(e) {
         e.preventDefault()
-        console.log('value', $('#textContent').val())
+
         if ($('#textContent').val() == '') {
 
             if (e.type !== 'mousemove') {
@@ -999,6 +1503,126 @@ $(document).ready(function () {
     $('input[type=range]').on('touchstart', (e) => {
         $("body").css("overflow", "hidden")
     })
+
+
+
+
+
+
+
+
+    // When the user clicks anywhere outside of the modal, close it
+    // $(window).click(function(e) {
+    //     alert(e.target.id); // gives the element's ID 
+    //     alert(e.target.className); // gives the elements class(es)
+
+
+
+    // });
+
+
+    let isPencil
+    $c.on('mousedown touchstart', (e) => {
+        //tyuf
+        // console.log(e.type)
+
+
+        if (whichBtn == 'pencil' && document.documentElement.scrollTop == 0 && document.body.scrollTop == 0) {
+            isPencil = true
+
+            $ctx.beginPath();
+
+
+            if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua) ||
+                /Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
+                let touch = e.originalEvent.touches[0]
+
+                var x = touch.pageX;
+                var y = touch.pageY;
+
+                $ctx.moveTo(x - $c.offset().left, y - $c.offset().top);
+
+            } else {
+                $ctx.moveTo(e.clientX - $c.offset().left, e.clientY - $c.offset().top);
+            }
+
+            e.preventDefault()
+        }
+    })
+
+    $c.on('mouseup touchend', (e) => {
+        if (document.documentElement.scrollTop > 0 || document.body.scrollTop > 0)
+            document.documentElement.scrollTop = 0
+        document.body.scrollTop = 0
+
+    })
+
+    $c.on('mousemove touchmove', (e) => {
+
+        //  $('body').css('cursor', `url('ja.jpg')`)
+
+
+        if (isPencil && whichBtn == 'pencil' && document.documentElement.scrollTop == 0 && document.body.scrollTop == 0) {
+            // console.log(e.type)
+
+
+
+            if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua) ||
+                /Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
+                let touch = e.originalEvent.touches[0]
+                var x = touch.pageX;
+                var y = touch.pageY;
+
+                $ctx.lineTo(x - $c.offset().left, y - $c.offset().top);
+
+
+
+            } else {
+                $ctx.lineTo(e.clientX - $c.offset().left, e.clientY - $c.offset().top);
+            }
+
+            //$ctx.stroke(); // Draw it
+
+            $ctx.lineJoin = 'round'
+            $ctx.lineCap = $('[name=lineCapPencil]:checked').val()
+
+            $ctx.lineWidth = $('#lineWidthPencil').val()
+
+
+            $ctx.strokeStyle = $('#colorPencil').val()
+
+            // console.log(e.clientX - $c.offset().left);
+            $ctx.stroke()
+            //console.log(e.offsetX, e.clientX - $c.offset().left);
+            // if(e.clientX - $c.offset().left == 0)
+            // isPencil=false
+
+        }
+    }).on('mouseleave touchcancel', (e) => {
+        isPencil = false
+
+        // if(whichBtn == 'pencil')
+        // undofn(e)
+        //$ctx.closePath()
+    })
+    // .on('mouseenter', ()=>{
+    //     if(isPencil==true)
+    //     $ctx.beginPath()
+    // })
+
+    $c.on('mouseup touchend', (e) => {
+
+
+        if (whichBtn == 'pencil') {
+            undofn(e)
+            isPencil = false
+            $ctx.closePath()
+        }
+        // $ctx.save()
+
+    })
+
+
 
 
 });

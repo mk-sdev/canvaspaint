@@ -1,0 +1,318 @@
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 100;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+    padding-top: 60px;
+}
+
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: transparent;
+    margin: 5px auto;
+    /* 15% from the top and centered */
+
+    border-radius: 7px;
+    width: 80%;
+
+    /* Could be more or less, depending on screen size */
+}
+
+
+
+.tabcontent {
+    border-radius: 7px;
+
+}
+
+.tablink {
+    height: 60px;
+    font-size: 150%;
+    line-height: 15px;
+    overflow: hidden;
+    /* z-index: 9999999; */
+    background-color: rgba(65, 65, 65, 1);
+    font-weight: 300;
+    color: ivory;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: auto;
+    font-size: 2vw;
+    width: 20%;
+
+    -webkit-box-shadow: 0px 0px 46px 9px rgba(32, 32, 32, 1);
+    -moz-box-shadow: 0px 0px 46px 9px rgba(32, 32, 32, 1);
+    box-shadow: 0px 0px 46px 9px rgba(32, 32, 32, 1);
+
+    font-family: 'Verdana', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bolder;
+
+
+    transition: transform .1s;
+    transform: rotate(2deg);
+    position: relative;
+    bottom: 10px !important
+}
+
+.tablink:hover {
+    color: white;
+    transform: rotate(0deg);
+    /* font-weight: 500 !important; */
+    font-weight: bolder;
+    background-color: ivory;
+    -webkit-box-shadow: inset 0px 0px 46px 9px rgba(32, 32, 32, 1);
+    -moz-box-shadow: inset 0px 0px 46px 9px rgba(32, 32, 32, 1);
+    box-shadow: inset 0px 0px 46px 9px rgba(32, 32, 32, 1);
+
+
+}
+
+.tablink:nth-child(1) {
+    border-radius: 7px 0 0 0;
+    /* background-color: brown; */
+}
+
+.tablink:nth-child(5) {
+    border-radius: 0 7px 0 0;
+    /* background-color: brown; */
+}
+
+/* The Close Button */
+#close {
+    /* Position it in the top right corner outside of the modal */
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: red;
+    font-size: 35px;
+    font-weight: bold;
+    transition: transform .1s ease-in-out
+}
+
+/* Close button on hover */
+#close:hover,
+#close:focus {
+    /* color: red; */
+    transform: rotate(90deg);
+    cursor: pointer;
+}
+
+
+
+/* Add Zoom Animation */
+.animate {
+    -webkit-animation: animatezoom 0.4s;
+    animation: animatezoom 0.4s
+}
+
+@-webkit-keyframes animatezoom {
+    from {
+        -webkit-transform: scale(0);
+        opacity: 0.1;
+    }
+
+    to {
+        opacity: 1;
+        -webkit-transform: scale(1)
+    }
+}
+
+@keyframes animatezoom {
+    from {
+        opacity: 0.1;
+        transform: scale(0)
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1)
+    }
+}
+
+.closeanim {
+    -webkit-animation: animateclose 0.4s;
+    animation: animateclose 0.4s
+}
+
+@-webkit-keyframes animateclose {
+    from {
+        -webkit-transform: scale(1);
+        opacity: 1
+    }
+
+    to {
+        -webkit-transform: scale(0);
+        opacity: .1;
+    }
+}
+
+@keyframes animateclose {
+    from {
+        transform: scale(1);
+        opacity: 1
+    }
+
+    to {
+        transform: scale(0);
+        opacity: 0.1;
+    }
+}
+
+
+
+/* Style the tab buttons */
+
+
+
+/* Set default styles for tab content */
+.tabcontent {
+    background-color: rgba(100, 100, 100, .8);
+    display: none;
+    padding: 10px;
+    text-align: center;
+    -webkit-box-shadow: inset 0px 0px 46px 9px rgba(32, 32, 32, 1);
+    -moz-box-shadow: inset 0px 0px 46px 9px rgba(32, 32, 32, 1);
+    box-shadow: inset 0px 0px 46px 9px rgba(32, 32, 32, 1);
+}
+
+.galleryDiv::-webkit-scrollbar,
+.galleryDiv_::-webkit-scrollbar {
+    width: 10px;
+    height: 0
+}
+
+.galleryDiv {
+    -ms-overflow-style: 10px;
+    /* IE and Edge */
+    scrollbar-width: 10px;
+    /* scrollbar-height: 0; */
+    /* Firefox */
+    margin-top: 5px;
+    /* background-color: brown; */
+    overflow-x: hidden !important;
+    /* background-color: red; */
+    display: grid;
+    justify-content: space-evenly;
+    grid-template-columns: 30% 30% 30%;
+    /* align-content: space-evenly; */
+    row-gap: 20px;
+    padding-top: 20px;
+    overflow-y: auto;
+    overflow-x: visible;
+    height: 70vh;
+    width: 100%;
+    z-index: -1
+}
+
+.galleryDiv_ {
+    -ms-overflow-style: 10px;
+    /* IE and Edge */
+    scrollbar-width: 10px;
+    /* scrollbar-height: 0; */
+    /* Firefox */
+    margin-top: 5px;
+    /* background-color: brown; */
+    overflow-x: hidden !important;
+    /* background-color: red; */
+    display: grid;
+    justify-content: space-evenly;
+    grid-template-columns: 50%;
+    /* align-content: space-evenly; */
+    row-gap: 20px;
+    padding-top: 20px;
+    overflow-y: auto;
+    overflow-x: visible;
+    height: 70vh;
+    width: 100%
+}
+
+.img {
+    margin: auto;
+    width: 90%;
+    /* margin-left: 10px; */
+    transition: transform .25s;
+    /* position: relative; */
+
+}
+
+
+.img:hover {
+    transform: rotate(3deg);
+    /* z-index: 99999; */
+    cursor: pointer;
+}
+
+
+
+@media only screen and (max-width: 1200px) {
+
+    .img {
+        /* height: 100%; */
+        width: 100%;
+        /* margin-top: 5px; */
+        margin: auto;
+        /* bottom: 5%; */
+        /* padding-right: 10px; */
+
+        /* margin-right: auto !important; */
+        /* margin-left: 10px */
+    }
+}
+
+@media only screen and (max-width: 1100px) {
+
+    .galleryDiv {
+        grid-template-columns: 50% 50%;
+        /* align-content: space-evenly; */
+        row-gap: 20px;
+        padding-top: 20px
+    }
+
+    .img {
+        width: 90%
+    }
+
+    .tablink {
+        font-size: 2.5vw;
+        /* font-weight: normal; */
+    }
+}
+
+@media only screen and (max-width: 555px) {
+    .modal-content {
+        width: 90%
+    }
+
+    .galleryDiv {
+        grid-template-columns: 90%;
+        /* align-content: space-evenly; */
+        row-gap: 10px;
+        padding-top: 10px
+    }
+
+    .img {
+        width: 100%
+    }
+
+    .tablink {
+        height: 40px;
+        font-size: 3.5vw;
+    }
+}
