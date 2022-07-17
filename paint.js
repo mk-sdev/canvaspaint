@@ -1,8 +1,15 @@
 //buttony, dodawanie zdjeć, color picker i tooltip dla range'y, poprawić colors,  poprawić gallery, komunikaty na dole, wysokość canvasa a wysokoś urządzenia, tablinks, 
 
+const faviconTag = document.getElementById("faviconTag");
+const isDark = window.matchMedia("(prefers-color-scheme: dark)");
 
+const changeFavicon = () => {
+    if (isDark.matches) faviconTag.setAttribute("href", "./images/pencil-white.png")
+    else faviconTag.setAttribute("./images/pencil-white.png")
+  };
+changeFavicon()
 
-
+  
 let c = document.querySelector('CANVAS');
 let ctx = c.getContext('2d')
 c.siteRoot = $('.site-root').val();
