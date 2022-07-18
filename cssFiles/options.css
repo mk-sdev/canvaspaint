@@ -19,9 +19,9 @@
         height: 10%;
         width: 150px;
         font-size: 150%;
-        border: 2px solid silver;
+        border: 1.5px solid silver;
         border-radius: 5px;
-        color: white;
+        /* color: red !important; */
         font-family: arial;
         text-align: center;
         background-color: rgb(31, 31, 31);
