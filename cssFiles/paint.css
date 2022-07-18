@@ -189,12 +189,14 @@ input[type=checkbox] {
 #radiosText,
 #radiosColors,
 #modeDiv,
-#radiosShapeSel {
+#radiosShapeSel
+ {
     width: 70%;
     display: flex;
     justify-content: space-around;
     font-family: 'Verdana', 'Arial Narrow', Arial, sans-serif;
     font-weight: bold;
+    /* background-color: blueviolet; */
 }
 
 /* #uploader {
@@ -525,6 +527,8 @@ hr {
         /* justify-content: center; */
     }
 
+
+
     #download {
         display: none;
     }
@@ -561,6 +565,19 @@ hr {
         display: none;
     }
 
+    #rpdiv{
+        width: 200px
+    }
+#pencilOptions, #lineOptions, #shapeOptions, #textOptions, #selectOptions, #imagesOptions, #colorsOptions{
+    width: calc(80vw + 80px);
+    /* height: 50px; */
+    /* background-color: blue; */
+    /* margin-left: auto; */
+}
+#joinDiv{
+    background-color: red;
+    width: 50px;
+}
     canvas {
         margin-top: 7px;
     }
@@ -588,14 +605,14 @@ hr {
     /* #ljoin {
         margin-top: -7%
     } */
-
-}
-
-@media only screen and (max-width: 555px) {
     body {
         background-image: linear-gradient(rgb(0, 0, 0) 0%, rgb(49, 49, 49) 20%);
 
     }
+}
+
+@media only screen and (max-width: 555px) {
+   
 
    
 
