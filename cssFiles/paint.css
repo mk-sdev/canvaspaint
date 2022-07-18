@@ -230,6 +230,7 @@ input[type=checkbox] {
     position: relative;
     transition: all 0.5s;
     font-family: 'Verdana', 'Arial Narrow', Arial, sans-serif;
+   
 	
 }
 #download{
@@ -275,12 +276,16 @@ input[type=checkbox] {
     width: 100px;
     font-size: 150%;
     border: 1.5px solid silver;
-    color: white;
-    font-family: arial;
+    color: silver;
+    /* font-weight:bold; */
+    /* font-family: arial; */
+    font-family: 'Verdana', 'Arial Narrow', Arial, sans-serif;
+
     text-align: center;
-    background-color: black;
-    border-radius: 3px;
+    background-color: rgb(33, 33, 33);
+    border-radius: 5px;
     margin-left: 7.5px;
+    /* margin-top: 25px !important; */
     flex-shrink: 1;
 
 }
@@ -296,7 +301,8 @@ input[type=checkbox] {
 
 #download1 {
     display: none;
-    border-radius: 3px
+    border-radius: 3px;
+    color: red !important
 }
 
 

@@ -1,3 +1,4 @@
+//changing the tabicon depending on the browser theme
 const faviconTag = document.getElementById("faviconTag");
 const isDark = window.matchMedia("(prefers-color-scheme: dark)");
 console.log(isDark);
@@ -8,7 +9,7 @@ const changeFavicon = () => {
   };
 changeFavicon()
 
-  
+//setting the canvas size
 let c = document.querySelector('CANVAS');
 let ctx = c.getContext('2d')
 c.siteRoot = $('.site-root').val();
@@ -27,3 +28,10 @@ if (window.innerWidth <= 555)
 else
     c.height = window.innerHeight * .75
 document.querySelector('#middle').style.width = `${c.width+10}px`
+
+//message before closing the tab
+addEventListener('beforeunload', function(event) {
+
+  event.returnValue = 'You have unsaved changes.';
+ 
+});
