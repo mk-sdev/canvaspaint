@@ -1,6 +1,6 @@
-//buttony, dodawanie zdjeć, color picker i tooltip dla range'y, poprawić colors,  poprawić gallery, komunikaty na dole, wysokość canvasa a wysokoś urządzenia, tablinks, 
+// dodawanie zdjeć, color picker i tooltip dla range'y, poprawić colors,  poprawić gallery, wysokość canvasa a wysokoś urządzenia, tablinks, responsywne options poniżej 1100px, może poprawić download, join lines, tools width after zooming in refreshing and zooming out, background toolsów na 1100px
 
-
+//=== zamiast ==, usunąć zbędne komentarze
 
 
 $(document).ready(function () {

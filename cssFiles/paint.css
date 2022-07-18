@@ -362,7 +362,7 @@ canvas {
     overflow: hidden;
     cursor: crosshair;
     /* box-sizing: border-box; */
-
+    margin-top: 0 !important
 
 }
 
@@ -517,7 +517,7 @@ hr {
 }
 
 #middle {
-    margin: auto
+    margin: 0
 }
 
 @media only screen and (max-width: 1200px) {
@@ -526,8 +526,9 @@ hr {
         margin-bottom: 15px;
         /* justify-content: center; */
     }
-
-
+#middle{
+    margin: auto
+}
 
     #download {
         display: none;

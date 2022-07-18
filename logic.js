@@ -35,3 +35,7 @@ addEventListener('beforeunload', function(event) {
   event.returnValue = 'You have unsaved changes.';
  
 });
+
+//maxwidth of content
+document.querySelector('#wholecontainer').style.maxWidth=`${screen.width}px`
+console.log(window.innerWidth);
