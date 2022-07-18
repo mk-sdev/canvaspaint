@@ -580,7 +580,7 @@ hr {
     width: 50px;
 }
     canvas {
-        margin-top: 7px;
+        margin-top: 7px !important;
     }
 
     #download {
