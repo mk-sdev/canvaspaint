@@ -195,9 +195,9 @@ $(document).ready(function () {
                 $('.labelText').eq(i).css('color', 'white')
             } else $('.labelText').eq(i).css('color', 'grey')
 
-            if ($('.radioColors').eq(i).is(':checked')) {
-                $('.labelColors').eq(i).css('color', 'white')
-            } else $('.labelColors').eq(i).css('color', 'grey')
+            // if ($('.radioColors').eq(i).is(':checked')) {
+            //     $('.labelColors').eq(i).css('color', 'white')
+            // } else $('.labelColors').eq(i).css('color', 'grey')
 
         }
 
