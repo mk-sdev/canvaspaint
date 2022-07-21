@@ -1,7 +1,11 @@
-// dodawanie zdjeć, color picker i tooltip dla range'y, poprawić colors,  poprawić gallery, wysokość canvasa a wysokoś urządzenia, tablinks, responsywne options poniżej 1100px, może poprawić download, join lines, tools width after zooming in refreshing and zooming out, background toolsów na 1100px
+// dodawanie zdjeć, color picker i tooltip dla range'y, poprawić colors, wysokość canvasa a wysokoś urządzenia, tablinks, responsywne options poniżej 1100px, może poprawić download, join lines, tools width after zooming in refreshing and zooming out, background toolsów na 1100px, na mobilnych brak Join, wysokość #options i #download na szerszych ekranach, poprawić download na moblinych (jest nierówno), disable landscape mode, plugin loading spinner, tools cień
 
 //=== zamiast ==, usunąć zbędne komentarze
-
+$(window).load(function () {
+    // PAGE IS FULLY LOADED  
+    // FADE OUT YOUR OVERLAYING DIV
+    $('#beforeload').fadeOut();
+});
 
 $(document).ready(function () {
 
@@ -55,7 +59,7 @@ $(document).ready(function () {
 
     })
 
- 
+
 
 
 
@@ -86,10 +90,10 @@ $(document).ready(function () {
         $('#middle span').html('You cleared the canvas. You can undo it by clicking the undo button.')
 
     })
-//cleaning the span below the canvas
-    $c.on('click', ()=>{
-        if(!$('#middle span').text().length == 0 && whichBtn!=='text' && whichBtn!=='select'){
-        $('#middle span').html('')
+    //cleaning the span below the canvas
+    $c.on('click', () => {
+        if (!$('#middle span').text().length == 0 && whichBtn !== 'text' && whichBtn !== 'select') {
+            $('#middle span').html('')
         }
     })
 
@@ -133,7 +137,7 @@ $(document).ready(function () {
     })
 
     //let elemnt = window.dzieci
-  
+
 
     $(document).on('click', (e) => {
         //clear the input
@@ -152,7 +156,7 @@ $(document).ready(function () {
 
 
 
-        console.log('wwwwww',e.target.id);
+        console.log('wwwwww', e.target.id);
         //console.log('ss', e.target.id.slice(0, 14));
         if (e.target.id.slice(0, 7) == 'tablink') {
             for (let i = 1; i <= $(".tablink").length; i++) {
@@ -170,7 +174,7 @@ $(document).ready(function () {
             $ctx.drawImage(image, 0, 0)
             undofn(e)
         }
-        if (e.target.id == 'download' || e.target.id == 'download1' || e.target.id == 'download2' || e.target.id=='ds' || e.target.id=='ds1' || e.target.id=='di2') {
+        if (e.target.id == 'download' || e.target.id == 'download1' || e.target.id == 'download2' || e.target.id == 'ds' || e.target.id == 'ds1' || e.target.id == 'di2') {
             const a = document.createElement('a')
 
             a.href = $c[0].toDataURL()
@@ -649,6 +653,11 @@ $(document).ready(function () {
     //////////////////////////////////////////////////////////////
 
     const ua = navigator.userAgent;
+    
+    if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua) ||
+    /Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)){
+        document.querySelector('#joinDiv').style.display="none"
+    } //nowe
 
     // let lineWidthPencil;
     // $('#lineWidthPencil').on('change', (e) => {
@@ -846,7 +855,7 @@ $(document).ready(function () {
 
 
 
- 
+
     $(document).on('mouseup', (e) => {
         if (whichBtn == 'line' && e.target.id !== 'canvas') {
             //undofn(e)
@@ -1130,9 +1139,9 @@ $(document).ready(function () {
             } else if ($('#radioCut').is(':checked') || $('#radioCopy').is(':checked')) {
                 if ($('#radioCut').is(':checked')) {
                     $ctx.beginPath()
-                $ctx.fillStyle = 'white'
-                $ctx.fillRect(x, y, width, height)
-                $ctx.closePath()
+                    $ctx.fillStyle = 'white'
+                    $ctx.fillRect(x, y, width, height)
+                    $ctx.closePath()
                     //console.log('cut');
                     //alert('cut')
                 }

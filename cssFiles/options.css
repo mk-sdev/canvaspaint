@@ -1,42 +1,41 @@
 /* the rest is in the main css file */
-@media only screen and (max-width: 1200px) {
 
-    #options {
-        /* background-color: brown; */
-        margin: auto;
-        overflow-y: hidden;
-        /* margin-top: 30px; */
-        /* background-color: brown; */
-    }
 
-    #imagesOptions {
-        height: 320px !important;
-        /* background-color: blue; */
-    }
+.brp1 #options {
+    /* background-color: brown; */
+    margin: auto;
+    overflow-y: hidden;
+    /* margin-top: 30px; */
+    /* background-color: brown; */
+}
 
-    #download1 {
-        display: block;
-        position: absolute;
-        height: 10%;
-        width: 150px;
-        font-size: 150%;
-        border: 1.5px solid silver;
-        border-radius: 5px;
-        /* color: red !important; */
-        font-family: arial;
-        text-align: center;
-        background-color: rgb(31, 31, 31);
-        left: 50%;
-        transform: translate(-50%);
-        bottom: 5px;
-    }
+.brp1 #imagesOptions {
+    height: 320px !important;
+    /* background-color: blue; */
+}
 
-    .Options {
-        overflow-y: auto;
-        /* background-color: aquamarine; */
-        height: 320px;
-        padding-right: 3px;
-    }
+.brp1 #download1 {
+    display: block;
+    position: absolute;
+    height: 10%;
+    width: 150px;
+    font-size: 150%;
+    border: 1.5px solid silver;
+    border-radius: 5px;
+    /* color: red !important; */
+    font-family: arial;
+    text-align: center;
+    background-color: rgb(31, 31, 31);
+    left: 50%;
+    transform: translate(-50%);
+    bottom: 5px;
+}
+
+.brp1 .Options {
+    overflow-y: auto;
+    /* background-color: aquamarine; */
+    height: 320px;
+    padding-right: 3px;
 }
 
 
@@ -51,137 +50,145 @@
 
 
 
+.brp2 #options {
+    width: 75% !important
+}
+.brp3 #options {
+    width: auto !important;
+    /* background: red; */
+    height: 65px !important
+}
+/* ^ nowe */
+/* | */
 
 
 
+.brp2 #pencilWidth {
+    width: fit-content
+}
 
-@media only screen and (max-width: 1100px) {
-    #pencilWidth{
-        width: fit-content
-    }
-    #options {
-        /* background-color: brown; */
-        display: flex;
-        width: 100%;
-        height: 90px;
-        justify-content: center;
-        align-items: center;
-    }
+.brp2 #options {
+    /* background-color: brown; */
+    display: flex;
+    width: 100%;
+    height: 90px;
+    justify-content: center;
+    align-items: center;
+}
 
-    #options::-webkit-scrollbar {
-        display: none;
-    }
+.brp2 #options::-webkit-scrollbar {
+    display: none;
+}
 
-    #options {
-        -ms-overflow-style: none;
-        /* IE and Edge */
-        scrollbar-width: none;
-        /* Firefox */
-        overflow-x: auto;
-        width: 100%;
-        /* background-color: brown; */
-    }
+.brp2 #options {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+    overflow-x: auto;
+    width: 100%;
+    /* background-color: brown; */
+}
 
-    .Options {
-        width: 100%;
-        height: 100%;
-        flex-direction: row;
-        margin: 0;
-        overflow-x: auto;
-        overflow-y: hidden;
-        white-space: nowrap;
-        align-items: center;
-        /* flex-basis: 100% */
-        /* background-color: blueviolet; */
-    }
+.brp2 .Options {
+    width: 100%;
+    height: 100%;
+    flex-direction: row;
+    margin: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    align-items: center;
+    /* flex-basis: 100% */
+    /* background-color: blueviolet; */
+}
 
 
-    .Options>div {
-        margin-left: 45px;
-        /* width: 25vw; */
-        display: flex;
-        /* width: fit-content !important; */
-        justify-content: center;
-        flex-direction: column;
-    }
+.brp2 .Options>div {
+    margin-left: 45px;
+    /* width: 25vw; */
+    display: flex;
+    /* width: fit-content !important; */
+    justify-content: center;
+    flex-direction: column;
+}
 
-    .Options>div:last-of-type {
-        margin-right: 0%
-    }
+.brp2 .Options>div:last-of-type {
+    margin-right: 0%
+}
 
-    .Options>div:first-of-type {
-        margin-left: 0%
-    }
+.brp2 .Options>div:first-of-type {
+    margin-left: 0%
+}
 
-    #download1 {
-        display: none;
-    }
+.brp2 #download1 {
+    display: none;
+}
 
-    #textOptions {
-        height: 100%;
-        overflow-y: hidden
-    }
+.brp2 #textOptions {
+    height: 100%;
+    overflow-y: hidden
+}
 
-    #showImgBtn {
-        width: fit-content;
-        background-color: black !important;
-        margin: auto;
-        display: block;
-    }
-  
+.brp2 #showImgBtn {
+    width: fit-content;
+    background-color: black !important;
+    margin: auto;
+    display: block;
+}
 
-    input[type=range] {
-        width: 200px
-    }
 
-    span,
-    #shapeOptions>#styleShape,
-    #styleText {
-        /* margin-top: -7%; */
-        font-size: 20px;
-        font-family: arial
-    }
+.brp2 input[type=range] {
+    width: 200px
+}
 
-    #styleShape>div,
-    #styleText>div {
-        margin-right: 0%;
-    }
+.brp2 span,
+.brp2 #shapeOptions>#styleShape,
+.brp2 #styleText {
+    /* margin-top: -7%; */
+    font-size: 20px;
+    font-family: arial
+}
 
-    #styleShape>div>label,
-    #styleText>div>label {
-        display: flex;
-        margin-right: 10px
-    }
+.brp2 #styleShape>div,
+.brp2 #styleText>div {
+    margin-right: 0%;
+}
 
-    #textContent {
+.brp2 #styleShape>div>label,
+.brp2 #styleText>div>label {
+    display: flex;
+    margin-right: 10px
+}
 
-        resize: horizontal;
-        height: 30px !important;
-        overflow-y: hidden;
-        overflow-x: scroll;
-        white-space: nowrap;
-        vertical-align: middle;
+.brp2 #textContent {
 
-    }
+    resize: horizontal;
+    height: 30px !important;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    white-space: nowrap;
+    vertical-align: middle;
 
-    #textContent::-webkit-scrollbar {
-        display: none;
-    }
+}
 
-    #textContent {
-        -ms-overflow-style: none;
-        /* IE and Edge */
-        scrollbar-width: none;
-        /* Firefox */
-        /* background-color: blue; */
-    }
+.brp2 #textContent::-webkit-scrollbar {
+    display: none;
+}
 
-    #styleShape input,
-    #styleText input,
-    #joinDiv input {
-        margin-right: 30%;
-        margin-top: 6px
-    }
+.brp2 #textContent {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+    /* background-color: blue; */
+}
+
+.brp2 #styleShape input,
+.brp2 #styleText input,
+.brp2 #joinDiv input {
+    margin-right: 30%;
+    margin-top: 6px
 }
 
 
@@ -190,70 +197,71 @@
 
 
 
-@media only screen and (max-width: 499px) {
-    #ljoin {
-        display: none;
-    }
-
-    input[type=range] {
-        width: 100px
-    }
-
-    input[type="range"]::-webkit-slider-thumb {
-        height: 1rem;
-        width: .5rem;
-        border-radius: 6px;
-    }
-
-    /***** Thumb Styles *****/
-    /***** Firefox *****/
-    input[type="range"]::-moz-range-thumb {
-        height: 1rem;
-        width: 1rem;
-    }
-
-    input[type='color'] {
-        width: 80px
-    }
-
-    .Options::-webkit-scrollbar {
-        display: none;
-    }
-
-    .Options {
-        -ms-overflow-style: none;
-        /* IE and Edge */
-        scrollbar-width: none;
-        /* Firefox */
-        /* background-color: blue; */
-        height: fit-content;
-        width: 100%
-    }
-
-    .Options>div {
-        /* background-color: red; */
-        margin: 5px;
-
-    }
-    .Options>div:last-of-type {
-        margin-right: 4%
-    }
-
-    .Options>div:first-of-type {
-        margin-left: 4%
-    }
 
 
+.brp4 #ljoin {
+    display: none;
+}
 
-    .Options>div>span {
-        font-size: 15px !important;
-    }
+.brp4 input[type=range] {
+    width: 100px
+}
 
-    .Options>div>div {
-        font-size: 12px !important;
-    }
+.brp4 input[type="range"]::-webkit-slider-thumb {
+    height: 1rem;
+    width: .5rem;
+    border-radius: 6px;
+}
 
-    #textContent {
-        width: 150px;
-    }
+/***** Thumb Styles *****/
+/***** Firefox *****/
+.brp4 input[type="range"]::-moz-range-thumb {
+    height: 1rem;
+    width: 1rem;
+}
+
+.brp4 input[type='color'] {
+    width: 80px
+}
+
+.brp4 .Options::-webkit-scrollbar {
+    display: none;
+}
+
+.brp4 .Options {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+    /* background-color: blue; */
+    height: fit-content;
+    width: 100%
+}
+
+.brp4 .Options>div {
+    /* background-color: red; */
+    margin: 5px;
+
+}
+
+.brp4 .Options>div:last-of-type {
+    margin-right: 4%
+}
+
+.brp4 .Options>div:first-of-type {
+    margin-left: 4%
+}
+
+
+
+.brp4 .Options>div>span {
+    font-size: 15px !important;
+}
+
+.brp4 .Options>div>div {
+    font-size: 12px !important;
+}
+
+.brp4 #textContent {
+    width: 150px;
 }

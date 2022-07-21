@@ -11,7 +11,10 @@ changeFavicon()
 
 //maxwidth of content
 const con = document.querySelector('#wholecontainer')
-con.style.maxWidth = `${screen.width}px`
+//this or screen.width
+con.style.maxWidth = `${window.innerWidth}px`
+// con.style.maxWidth = `1450px`
+
 // con.style.maxHeight=`${screen.height}px`
 // console.log(window.innerWidth);
 let conw = window.getComputedStyle(con).width.replace('px', '')
@@ -58,14 +61,70 @@ addEventListener('beforeunload', function (event) {
 
 });
 
-//width of .tools
-const tools = document.querySelector('#Tools')
-window.onresize = toolsresize
 
-function toolsresize() {
-    if (conw > 1100) {
-        console.log(tools)
-        // tools.style.width = `${Number(conw-1)}px`
+
+
+//media queries in js
+let w = window.innerWidth
+console.log('w', w);
+
+
+function myFunction(x) {
+    if (x.matches) {
+        document.querySelector('html').classList.add("brp1")
+    } else {
+        document.querySelector('html').classList.remove("brp1")
     }
-    // else tools.style.width='100%'
 }
+
+
+let x
+if (w <= 1280)
+    x = window.matchMedia(`(max-width: 1200px) `)
+else x = window.matchMedia(`(max-width: ${w*0.94}px) `)
+myFunction(x)
+x.addListener(myFunction)
+////////////////////
+function myFunction1(x) {
+    if (x.matches) {
+        document.querySelector('html').classList.add("brp2")
+    } else {
+        document.querySelector('html').classList.remove("brp2")
+    }
+}
+
+
+
+let x1
+if (w <= 1280) x1 = window.matchMedia(`(max-width: 1100px) `)
+else x1 = window.matchMedia(`(max-width: ${w*0.77}px) `)
+myFunction1(x1)
+x1.addListener(myFunction1)
+///////
+function myFunction2(x) {
+    if (x.matches) {
+        document.querySelector('html').classList.add("brp3")
+    } else {
+        document.querySelector('html').classList.remove("brp3")
+    }
+}
+
+
+
+var x2 = window.matchMedia(`(max-width: 555px)`)
+myFunction2(x2)
+x2.addListener(myFunction2)
+///////////
+function myFunction3(x) {
+    if (x.matches) {
+        document.querySelector('html').classList.add("brp4")
+    } else {
+        document.querySelector('html').classList.remove("brp4")
+    }
+}
+
+
+
+var x3 = window.matchMedia(`(max-width: 499px)`)
+myFunction3(x3)
+x3.addListener(myFunction3)
