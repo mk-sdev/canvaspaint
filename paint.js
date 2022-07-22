@@ -56,6 +56,8 @@ $(document).ready(function () {
         savedimg[j] = $(`<image src="${$('#uploadImage').val()}"  id="imageUploaded${j}" class="img imgUploaded" crossorigin='anonymous' onerror="$('#imageUploaded${j}').remove()" />`)
 
         $('#middle span').html('If the address is proper, you should see your image in images > gallery > uploaded')
+        $('#middle span').css('color', 'white')
+
         $('#uploadedImagesDiv').prepend(savedimg[j])
         j++
 
@@ -90,12 +92,15 @@ $(document).ready(function () {
         // console.log('czyszczę', $c.width());
         isLine = false
         $('#middle span').html('You cleared the canvas. You can undo it by clicking the undo button.')
+        $('#middle span').css('color', 'white')
+
 
     })
     //cleaning the span below the canvas
     $c.on('click', () => {
         if (!$('#middle span').text().length == 0 && whichBtn !== 'text' && whichBtn !== 'select') {
-            $('#middle span').html('')
+            $('#middle span').css('color', 'transparent')
+            $('#middle span').html('q')
         }
     })
 
@@ -554,40 +559,45 @@ $(document).ready(function () {
 
     $('#pencil').on('click', () => {
 
-        whichBtn = 'pencil'
         for (let i = 0; i < $('.Options').length; i++) {
             $('.Options').css('display', 'none')
         }
-        $('#pencilOptions').slideDown(200)
+        if (whichBtn !== 'pencil')
+            $('#pencilOptions').slideDown(200)
         $('#pencilOptions').css('display', 'flex')
+        whichBtn = 'pencil'
 
     })
     $('#line').on('click', () => {
 
-        whichBtn = 'line'
         for (let i = 0; i < $('.Options').length; i++) {
             $('.Options').css('display', 'none')
         }
-        $('#lineOptions').slideDown(200)
+        if (whichBtn !== 'line')
+            $('#lineOptions').slideDown(200)
 
         $('#lineOptions').css('display', 'flex')
+        whichBtn = 'line'
 
     })
     $('#shape').on('click', () => {
-        whichBtn = 'shape'
+
         for (let i = 0; i < $('.Options').length; i++) {
             $('.Options').css('display', 'none')
         }
-        $('#shapeOptions').slideDown(200)
+        if (whichBtn !== 'shape')
+            $('#shapeOptions').slideDown(200)
 
         $('#shapeOptions').css('display', 'flex')
+        whichBtn = 'shape'
     })
     $('#text').on('click', () => {
-        whichBtn = 'text'
+
         for (let i = 0; i < $('.Options').length; i++) {
             $('.Options').css('display', 'none')
         }
-        $('#textOptions').slideDown(200)
+        if (whichBtn !== 'text')
+            $('#textOptions').slideDown(200)
 
         $('#textOptions').css('display', 'flex')
         //e.preventDefault()
@@ -595,27 +605,29 @@ $(document).ready(function () {
         $('#textContent').get(0).focus()
 
         $('#textOptions').get(0).scrollTop = 0
-
+        whichBtn = 'text'
     })
 
 
     $('#colors').on('click', () => {
-        whichBtn = 'colors'
+
         for (let i = 0; i < $('.Options').length; i++) {
             $('.Options').css('display', 'none')
         }
-        $('#colorsOptions').slideDown(200)
+        if (whichBtn !== 'colors')
+            $('#colorsOptions').slideDown(200)
         $('#colorsOptions').css('display', 'flex')
-
+        whichBtn = 'colors'
     })
     $('#select').on('click', () => {
-        whichBtn = 'select'
+
         for (let i = 0; i < $('.Options').length; i++) {
             $('.Options').css('display', 'none')
         }
-        $('#selectOptions').slideDown(200)
+        if (whichBtn !== 'select')
+            $('#selectOptions').slideDown(200)
         $('#selectOptions').css('display', 'flex')
-
+        whichBtn = 'select'
     })
     $('#backColor').on('change', (e) => {
         $ctx.fillStyle = $('#backColor').val()
@@ -624,12 +636,14 @@ $(document).ready(function () {
     })
 
     $('#images').on('click', () => {
-        whichBtn = 'images'
+
         for (let i = 0; i < $('.Options').length; i++) {
             $('.Options').css('display', 'none')
         }
-        $('#imagesOptions').slideDown(200)
+        if (whichBtn !== 'images')
+            $('#imagesOptions').slideDown(200)
         $('#imagesOptions').css('display', 'flex')
+        whichBtn = 'images'
     })
     // $('#uploaderbtn').on('change', (e)=>{
     //     let image = $('#output')
@@ -655,12 +669,14 @@ $(document).ready(function () {
     //////////////////////////////////////////////////////////////
 
     const ua = navigator.userAgent;
-
+    //true if on mobile
+    window.mobile = false
     if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua) ||
         /Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
         document.querySelector('#joinDiv').style.display = "none"
         document.querySelector('#hr').style.display = "none"
         // document.querySelectorAll('.btn').style.color='rgba(255, 0, 0, 1)'
+        window.mobile = true
     } //nowe
 
     // let lineWidthPencil;
@@ -1172,6 +1188,8 @@ $(document).ready(function () {
                 $('#selected').prepend(clippedimg[k])
                 // window.imagee=clippedimg[k]
                 $('#middle span').html('Visit images > gallery > selected to use the selected area')
+                $('#middle span').css('color', 'white')
+
                 k++
                 // $('#images').click()
             }
@@ -1401,6 +1419,8 @@ $(document).ready(function () {
 
             if (e.type !== 'mousemove') {
                 $('#middle > span').html('You have to type some text firstly.')
+                $('#middle span').css('color', 'white')
+
             }
 
         } else $('#middle > span').html('&nbsp;')
@@ -1615,7 +1635,42 @@ $(document).ready(function () {
 
     })
 
+    const H = window.innerHeight
+    console.log('H', H);
 
+
+    $('#handle').on('click', (e) => {
+
+
+        if ($("#options").hasClass("show")) {
+            console.log('raz');
+            $('#options').toggleClass('show')
+            $('#options').animate({
+                top: `${H-109}`
+            }, 200) //closing
+        } else if (!$("#options").hasClass("show")) {
+            $('#options').animate({
+                top: `${H*.4}`
+            }, 200) //opening
+            console.log('dwa');
+            $('#options').toggleClass('show')
+        }
+
+        console.log('sprawdzam');
+
+    })
+
+    $('.btn').on('click', (e) => {
+        if (!$("#options").hasClass("show")) {
+            if (window.mobile)
+                $('#options').animate({
+                    top: `${H*.4}`
+                }, 200)
+            $('#options').addClass('show')
+        }
+
+
+    })
 
 
 });

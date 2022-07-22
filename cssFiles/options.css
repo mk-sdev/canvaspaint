@@ -73,24 +73,11 @@
     max-width: 200px
 }
 
-.brp4 #rpdiv2 {
-    max-width: 150px;
-    margin-right: 5px;
-    margin-left: 5px;
-}
 
-.brp4 #lineWidth {
-    width: fit-content;
-    margin-left: 15px;
-    margin-right: 5px
-}
 
-.brp4 #lineOptions {
-    width: 100vw
-}
 
-.brp5 #lineColor,
-.br4 #lineColor,
+
+
 .brp6 #lineColor {
     width: 400px !important;
 }
@@ -167,8 +154,7 @@
     width: auto
 }
 
-/* ^ nowe */
-/* | */
+
 
 
 
@@ -302,123 +288,110 @@
 
 
 
+/* MOBILE//////////////////////////////////////////////// */
 
 
-
-
-
-
-.brp4 #ljoin {
-    display: none;
+.brp4 hr {
+    display: block;
 }
 
-.brp4 input[type=range] {
-    width: 100px
+.brp4 #options,
+.brp4 .Options {
+    /* display: none; */
+    width: 100vw !important;
+    flex-direction: column;
+    z-index: 9;
+    position: fixed;
+    /* bottom: 65px; */
+    background: red;
+    margin-left: 0;
+    margin-right: 0;
+    /* padding-right: 5px;
+    padding-left: 5px; */
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+#handle{
+    display: none
+}
+.brp4 #handle {
+    display: block;
+    height: 45px;
+    background-color: blue;
+    z-index: 999;
 }
 
-.brp4 input[type="range"]::-webkit-slider-thumb {
-    height: 1rem;
-    width: .5rem;
-    border-radius: 6px;
-}
-
-/***** Thumb Styles *****/
-/***** Firefox *****/
-.brp4 input[type="range"]::-moz-range-thumb {
-    height: 1rem;
-    width: 1rem;
-}
-
-.brp4 input[type='color'] {
-    width: 80px
+.brp4 .Options {
+    overflow: scroll !important;
+    height: calc(50vh - 45px) !important;
+    /* margin-left: auto;
+    margin-right: auto; */
+    /* background-color: aqua; */
+    padding-right: 5px !important;
+    padding-left: 5px;
+    position: absolute;
+    top: 45px 
 }
 
 .brp4 .Options::-webkit-scrollbar {
     display: none;
 }
 
-.brp4 .Options {
-    -ms-overflow-style: none;
-    /* IE and Edge */
-    scrollbar-width: none;
-    /* Firefox */
-    /* background-color: blue; */
-    height: fit-content;
+.brp4 #options {
+    display: block;
+    height: 60vh !important;
+   top: calc(100vh - 110px);
+
+}
+
+/* .show {
+    top: 40vh !important;
+} */
+
+
+
+
+
+
+.brp4 .Options>div {
+    margin-left: 0;
+    margin-right: 0;
+    padding-right: 0;
+    padding-left: 0;
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%
+        /* margin-bottom: 10px */
+}
+
+.brp4 input[type=range] {
     width: 100%
 }
 
-.brp4 .Options>div {
-    /* background-color: red; */
-    margin: 5px;
-
+.brp4 #radiosShape {
+    width: fit-content
 }
 
-.brp4 .Options>div:last-of-type {
-    margin-right: 4%
+.brp4 #styleText,
+.brp4 #styleShape {
+    display: flex;
+    flex-direction: row;
 }
 
-.brp4 .Options>div:first-of-type {
-    margin-left: 4%
+.brp4 #styleText>div,
+.brp4 #styleShape>div {
+    min-width: 50%
 }
 
-
-
-.brp4 .Options>div>span {
-    font-size: 15px !important;
+.brp4 #styleText>div:first-of-type label,
+.brp4 #styleShape>div:first-of-type label {
+    /* margin-left: 50px !important; */
+    float: right;
+    /* background-color: blue; */
 }
 
-.brp4 .Options>div>div {
-    font-size: 12px !important;
+.brp4 #styleText>div:last-of-type label,
+.brp4 #styleShape>div:last-of-type label {
+    float: left;
+    /* background-color: blue; */
 }
-
-.brp4 #textContent {
-    width: 150px;
-}
-
-.brp4 #showImgBtn {
-    width: 70px;
-    height: 30px;
-    font-size: 70%;
-    top: 5px;
-    /* padding: 0 auto !important */
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-}
-
-.brp4 #showImgBtn b {
-    /* margin-left: -2px !important; */
-    top: 0px auto !important;
-    /* margin-right: auto !important; */
-}
-
-
-
-.brp5 #options span {
-    color: red !important;
-    font-size: small !important;
-}
-
-.brp5 input[type=range] {
-    width: 70px;
-}
-
-.brp5 input[type='color'] {
-    width: 65px
-}
-
-.brp5 #radiosPencil,
-.brp5 #radiosShape,
-.brp5 #radiosText {
-    font-size: 10px !important
-}
-
-.brp5 #spanStroke,
-.brp5 #spanFill,
-.brp5 #styleText span {
-    margin-top: 5px !important
-}
-
-/* .brp5 #q{
-    background: transparent !important;
-} */

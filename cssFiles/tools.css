@@ -237,16 +237,26 @@ i {
 }
 
 
-.brp4 .tools {
-    background-color: rgba(0, 0, 0, 0) !important;
-}
 
+.brp4 #wrapper{
+    position: fixed;
+    bottom: 0px;
+    overflow-x: scroll !important;
+   z-index: 10 !important;
+   width: 100vw;
+ padding-bottom: 15px;
+   background-color: rgb(136, 190, 0) !important;
+
+}
 /* i{
     display: none !important;
 } */
 .brp4 .tools::-webkit-scrollbar {
     display: none;
 }
+#wrapper::-webkit-scrollbar {
+    display: none;
+  }
 
 .brp4 .tools {
     -ms-overflow-style: none;
