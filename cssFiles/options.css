@@ -303,13 +303,15 @@
     z-index: 9;
     position: fixed;
     /* bottom: 65px; */
-    background: red;
+    background-color: rgba(100, 100, 100, .8);
+    -webkit-box-shadow: inset 0px 0px 46px 9px rgba(32, 32, 32, 1);
+    -moz-box-shadow: inset 0px 0px 46px 9px rgba(32, 32, 32, 1);
+    box-shadow: inset 0px 0px 46px 9px rgba(32, 32, 32, 1);
     margin-left: 0;
     margin-right: 0;
     /* padding-right: 5px;
     padding-left: 5px; */
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
+    
 }
 #handle{
     display: none
@@ -317,8 +319,14 @@
 .brp4 #handle {
     display: block;
     height: 45px;
-    background-color: blue;
+    background-color: rgb(40, 40, 40);
+    -webkit-box-shadow: inset 0px 50px 48px -44px rgb(91, 91, 91);
+-moz-box-shadow: inset 0px 50px 48px -44px rgb(91, 91, 91);
+box-shadow: inset 0px 50px 48px -44px rgb(91, 91, 91);
     z-index: 999;
+    text-align: center;
+   line-height: 45px;
+   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .brp4 .Options {
@@ -341,6 +349,8 @@
     display: block;
     height: 60vh !important;
    top: calc(100vh - 110px);
+   border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
 
 }
 
