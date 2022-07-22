@@ -245,11 +245,18 @@ i {
    z-index: 10 !important;
    width: 100vw;
  padding-bottom: 15px;
-   background-color: rgb(136, 190, 0) !important;
+ 
+   background-color: rgb(49, 49, 49);
 
+   -webkit-box-shadow: inset 0px -50px 50px -1vw rgba(32, 32, 32, 1),
+   0px -10px 40px 0px rgba(32,32 ,32,.8 );
+   -moz-box-shadow: inset 0px -50px 50px -1vw rgba(32, 32, 32, 1),
+   0px -10px 40px 0px rgba(32,32 ,32,.8 );
+   box-shadow: inset 0px -50px 50px -1vw rgba(32, 32, 32, 1), 
+   0px -10px 40px 0px rgba(32,32 ,32,1 );
 }
 /* i{
-    display: none !important;
+    display: none !important
 } */
 .brp4 .tools::-webkit-scrollbar {
     display: none;
@@ -273,6 +280,7 @@ i {
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
+
 }
 
 

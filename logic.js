@@ -168,4 +168,23 @@ let x4 = window.matchMedia(`(max-width: 360px)`)
 myFunction4(x4)
 x4.addListener(myFunction4)
 
-//height of #options and #savedimages
+
+
+
+//swipeing
+let touchstartX = 0
+let touchendX = 0
+    
+function checkDirection() {
+  if (touchendX < touchstartX) alert('swiped left!')
+  if (touchendX > touchstartX) alert('swiped right!')
+}
+
+document.querySelector('#right').addEventListener('touchstart', e => {
+  touchstartX = e.changedTouches[0].screenX
+})
+
+document.querySelector('#right').addEventListener('touchend', e => {
+  touchendX = e.changedTouches[0].screenX
+  checkDirection()
+})
