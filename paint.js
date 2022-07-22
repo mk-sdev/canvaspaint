@@ -1635,42 +1635,42 @@ $(document).ready(function () {
 
     })
 
-    const H = window.innerHeight
-    console.log('H', H);
+    // const H = window.innerHeight
+    // console.log('H', H);
 
 
-    $('#handle').on('click', (e) => {
+    // $('#handle').on('click', (e) => {
 
 
-        if ($("#options").hasClass("show")) {
-            console.log('raz');
-            $('#options').toggleClass('show')
-            $('#options').animate({
-                top: `${H-109}`
-            }, 200) //closing
-        } else if (!$("#options").hasClass("show")) {
-            $('#options').animate({
-                top: `${H*.4}`
-            }, 200) //opening
-            console.log('dwa');
-            $('#options').toggleClass('show')
-        }
+    //     if ($("#options").hasClass("show")) {
+    //         console.log('raz');
+    //         $('#options').toggleClass('show')
+    //         $('#options').animate({
+    //             top: `${H-109}`
+    //         }, 200) //closing
+    //     } else if (!$("#options").hasClass("show")) {
+    //         $('#options').animate({
+    //             top: `${H*.4}`
+    //         }, 200) //opening
+    //         console.log('dwa');
+    //         $('#options').toggleClass('show')
+    //     }
 
-        console.log('sprawdzam');
+    //     console.log('sprawdzam');
 
-    })
+    // })
 
-    $('.btn').on('click', (e) => {
-        if (!$("#options").hasClass("show")) {
-            if (window.mobile)
-                $('#options').animate({
-                    top: `${H*.4}`
-                }, 200)
-            $('#options').addClass('show')
-        }
+    // $('.btn').on('click', (e) => {
+    //     if (!$("#options").hasClass("show")) {
+    //         if (window.mobile)
+    //             $('#options').animate({
+    //                 top: `${H*.4}`
+    //             }, 200)
+    //         $('#options').addClass('show')
+    //     }
 
 
-    })
+    // })
 
 
 });

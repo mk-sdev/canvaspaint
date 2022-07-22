@@ -720,3 +720,30 @@ hr {
    
 }
 
+.brp4 #right{
+display: block;
+position: fixed;
+z-index: 11;
+/* background-color: blueviolet; */
+height: 90vh;
+bottom: 65px;
+left: 100%
+}
+.brp4 #savedImages{
+    height: 100%;
+    position: relative;
+    margin-top: 0;
+    flex-direction: column ;
+   
+    overflow-x: hidden ;
+    overflow-y: auto ;
+  
+}
+.brp4 #savedImages::-webkit-scrollbar {
+    width: 0px;
+}
+.brp4 .savedImage{
+    width: 100%;
+    height: auto;
+    display: block
+}
