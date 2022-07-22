@@ -7,6 +7,12 @@ body {
 
 #showImgBtn {
     position: relative;
+    background: black;
+    margin: 0 auto;
+    border: 2px solid silver;
+    border-radius: 3px;
+    cursor: pointer;
+    padding: 10px;
 }
 
 #showImgBtn::before {
@@ -32,6 +38,10 @@ body {
     transform: scaleX(1)
 }
 
+.brp3 #showImgBtn:hover::before {
+    transform: scaleX(0)
+}
+
 body,
 html {
     overflow-x: hidden;
@@ -43,6 +53,13 @@ html {
     user-select: none;
 }
 
+#beforeload {
+    width: 100%;
+    height: 100%;
+    background: rgb(31, 31, 31);
+    z-index: 999;
+    position: absolute;
+}
 
 input[type="range"] {
     -webkit-appearance: none;
@@ -175,7 +192,7 @@ input[type=checkbox] {
     width: 100%;
     /* height: 500px; */
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     /* flex-wrap: wrap; */
     /* background-color: chartreuse; */
 }
@@ -304,8 +321,9 @@ input[type=checkbox] {
 }
 
 #download {
-    height: calc(100% - 480px);
-    min-height: calc(100% - 480px);
+    /* height: calc(100% - 480px); */
+    min-height: 50px;
+    max-height: 100px;
     margin-left: 50%;
     margin-top: 5px;
     transform: translate(-50%);
@@ -326,7 +344,8 @@ input[type=checkbox] {
     width: 20%;
     min-width: 200px;
 
-    height: 400px;
+    height: 65vh;
+    max-height: 600px;
     overflow-y: auto;
 
 
@@ -361,6 +380,11 @@ background-image: radial-gradient(circle, rgba(49, 49, 49, 1) 23%, rgba(32, 32, 
     /* background-color: rgb(34, 10, 216); */
 }
 
+.brp1 .Options {
+    margin-right: 5px;
+    margin-left: 5px;
+
+}
 
 canvas {
     border: 5px solid black;
@@ -394,7 +418,8 @@ canvas:hover {
     width: 100%;
     overflow-x: hidden;
     overflow-y: auto;
-    height: 400px;
+    height: 65vh;
+    max-height: 600px;
     position: relative;
     border-radius: 0px 0px 0px 15px;
     /* right: 5px; */
@@ -618,9 +643,22 @@ hr {
     width: 50px;
 }
 
+.brp1 #q {
+    margin-top: 17px
+}
+
+.brp2 #q {
+    margin-top: 0;
+}
+
 .brp2 canvas {
     margin-top: 7px !important;
 }
+
+
+
+
+
 
 .brp2 #download {
     height: 70%;
@@ -639,16 +677,15 @@ hr {
 
 .brp2 #options {
     border-radius: 0;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
     box-shadow: none;
 }
 
 /* #ljoin {
         margin-top: -7%
     } */
-.brp2 body {
-    background-image: linear-gradient(rgb(0, 0, 0) 0%, rgb(49, 49, 49) 20%);
 
-}
 
 
 
@@ -671,7 +708,12 @@ hr {
 }
 
 
+.brp4 body {
+    background-image: linear-gradient(rgb(0, 0, 0) 0%, rgb(49, 49, 49) 20%);
+
+}
 
 .brp4 canvas {
     margin-top: 0px;
 }
+

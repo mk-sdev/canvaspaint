@@ -1,3 +1,5 @@
+//disable landscape mode
+screen.orientation.lock("landscape")
 //changing the tabicon depending on the browser theme
 const faviconTag = document.getElementById("faviconTag");
 const isDark = window.matchMedia("(prefers-color-scheme: dark)");
@@ -11,8 +13,8 @@ changeFavicon()
 
 //maxwidth of content
 const con = document.querySelector('#wholecontainer')
-//this or screen.width
-con.style.maxWidth = `${window.innerWidth}px`
+//this or screen.width or window.innerWidth
+con.style.maxWidth = `${screen.width}px`
 // con.style.maxWidth = `1450px`
 
 // con.style.maxHeight=`${screen.height}px`
@@ -72,8 +74,16 @@ console.log('w', w);
 function myFunction(x) {
     if (x.matches) {
         document.querySelector('html').classList.add("brp1")
+
+        // document.querySelector('#options').style.height=`100px`
+        // document.querySelector('#savedImages').style.height=`150px`
+
     } else {
         document.querySelector('html').classList.remove("brp1")
+
+        //         document.querySelector('#options').style.height=`${screen.height*.55}px`
+        // document.querySelector('#savedImages').style.height=`${screen.height*.55}px`
+
     }
 }
 
@@ -101,6 +111,20 @@ else x1 = window.matchMedia(`(max-width: ${w*0.77}px) `)
 myFunction1(x1)
 x1.addListener(myFunction1)
 ///////
+function myFunction5(x) {
+    if (x.matches) {
+        document.querySelector('html').classList.add("brp6")
+    } else {
+        document.querySelector('html').classList.remove("brp6")
+    }
+}
+
+
+
+let x5 = window.matchMedia(`(max-width: 815px)`)
+myFunction5(x5)
+x5.addListener(myFunction5)
+//////////
 function myFunction2(x) {
     if (x.matches) {
         document.querySelector('html').classList.add("brp3")
@@ -111,7 +135,7 @@ function myFunction2(x) {
 
 
 
-var x2 = window.matchMedia(`(max-width: 555px)`)
+let x2 = window.matchMedia(`(max-width: 555px)`)
 myFunction2(x2)
 x2.addListener(myFunction2)
 ///////////
@@ -125,6 +149,23 @@ function myFunction3(x) {
 
 
 
-var x3 = window.matchMedia(`(max-width: 499px)`)
+let x3 = window.matchMedia(`(max-width: 499px)`)
 myFunction3(x3)
 x3.addListener(myFunction3)
+//////////////////////////
+function myFunction4(x) {
+    if (x.matches) {
+        document.querySelector('html').classList.add("brp5")
+
+    } else {
+        document.querySelector('html').classList.remove("brp5")
+    }
+}
+
+
+
+let x4 = window.matchMedia(`(max-width: 360px)`)
+myFunction4(x4)
+x4.addListener(myFunction4)
+
+//height of #options and #savedimages

@@ -1,13 +1,15 @@
-// dodawanie zdjeć, color picker i tooltip dla range'y, poprawić colors, wysokość canvasa a wysokoś urządzenia, tablinks, responsywne options poniżej 1100px, może poprawić download, join lines, tools width after zooming in refreshing and zooming out, background toolsów na 1100px, na mobilnych brak Join, wysokość #options i #download na szerszych ekranach, poprawić download na moblinych (jest nierówno), disable landscape mode, plugin loading spinner, tools cień
+// dodawanie zdjeć, color picker i tooltip dla range'y, poprawić colors, wysokość canvasa a wysokoś urządzenia, tablinks, responsywne options poniżej 1100px, może poprawić download, tools width after zooming in refreshing and zooming out, background toolsów na 1100px, wysokość #options i #download na szerszych ekranach, poprawić download na moblinych (jest nierówno), disable landscape mode, plugin loading spinner, tools cień, choose between screen width or window.innerwidth in logic.js,
 
 //=== zamiast ==, usunąć zbędne komentarze
 $(window).load(function () {
     // PAGE IS FULLY LOADED  
     // FADE OUT YOUR OVERLAYING DIV
+
     $('#beforeload').fadeOut();
 });
 
 $(document).ready(function () {
+
 
 
     //e.log(c, ctx);
@@ -653,10 +655,12 @@ $(document).ready(function () {
     //////////////////////////////////////////////////////////////
 
     const ua = navigator.userAgent;
-    
+
     if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua) ||
-    /Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)){
-        document.querySelector('#joinDiv').style.display="none"
+        /Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
+        document.querySelector('#joinDiv').style.display = "none"
+        document.querySelector('#hr').style.display = "none"
+        // document.querySelectorAll('.btn').style.color='rgba(255, 0, 0, 1)'
     } //nowe
 
     // let lineWidthPencil;
