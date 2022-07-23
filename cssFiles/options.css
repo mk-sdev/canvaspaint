@@ -209,11 +209,11 @@
 }
 
 .brp2 .Options>div:last-of-type {
-    margin-right: 0%
+    margin-right: 0px !important
 }
 
 .brp2 .Options>div:first-of-type {
-    margin-left: 0%
+    margin-left: 0px !important
 }
 
 .brp2 #download1 {
@@ -380,6 +380,7 @@
     z-index: 11;
     left: -100%;
 background-color: rgba(32, 32, 32, .3);
+backdrop-filter: blur(1px);
 }
 
 /* .show {
