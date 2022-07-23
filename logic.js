@@ -174,6 +174,8 @@ x4.addListener(myFunction4)
 //swipeing
 let touchstartX = 0
 let touchendX = 0
+$("#right").data( "closed", true ); //true if #right is fully closed
+$("#right").data( "opened", false ); //true if #right is fully opened
 
 function checkDirection(a) {
  
@@ -182,44 +184,76 @@ $('#right').css('transition', '')
 
 
     // to left
-  if (touchendX < touchstartX && $('#right').css('transform')!='matrix(1, 0, 0, 1, -200, 0)' ) {
+  if ( touchendX < touchstartX  ) {
     
-    if(-touchendX+touchstartX <=200 && !a)
-    $('#right').css('transform', `translate(-${-touchendX+touchstartX}px, 0)`)
+    if(-touchendX+touchstartX <=200 && !a && !$( "#right" ).data("opened"))
+    $('#right').css('left', `calc(100% - ${-touchendX+touchstartX}px)`) 
 
 
-
-  if((-touchendX+touchstartX)/w>0.3 && a ){
+  if((-touchendX+touchstartX)/w>0.2 && a && !$( "#right" ).data("opened")){
         $('#right').css('transition', '.5s ease-out')
-    $('#right').css('transform', `translate(${-200}px, 0)`)
+        $('#right').css('left', `calc(100% - 200px)`) 
     // alert('aa')
+        $("#right").data( "closed", false );
+        $("#right").data( "opened", true );
     }
-    if((-touchendX+touchstartX)/w<=0.3 && a){
-        $('#right').css('transition', '.5s ease-out')
-        $('#right').css('transform', `translate(${w/2}px, 0)`)
+    if((-touchendX+touchstartX)/w<=0.2 && a && !$( "#right" ).data("opened")){
+        $('#right').css('transition', '.1s ease-out')
+        $('#right').css('left', `100%`)
+
         // alert('bb')
+        $("#right").data( "closed", true );
+        $("#right").data( "opened", false );
 
     }
-
-
+    // console.log('left', $('#right').css('left'));
+    
   }
+
   //to right
-  if (touchendX > touchstartX) {
-    if(w>=touchendX-touchstartX && $('#right').css('transform')!='matrix(1, 0, 0, 1, -200, 0)' )
-    $('#options').css('transform', `translate(${+touchendX-touchstartX}px, 0)`)
+  if (touchendX > touchstartX ){
+    if(w>=touchendX-touchstartX  && $( "#right" ).data("closed"))
+    $('#options').css('left', `${-100+(touchendX-touchstartX)/w*100}%`)
 
-    if((touchendX-touchstartX)/w>0.3 && a && $('#right').css('transform')!='matrix(1, 0, 0, 1, -200, 0)'){
+    if((touchendX-touchstartX)/w>0.3 && a && $( "#right" ).data("closed")){
         $('#options').css('transition', '.5s ease-out')
-    $('#options').css('transform', `translate(${w}px, 0)`)
+    $('#options').css('left', `0%`)
     }
-    if((touchendX-touchstartX)/w<=0.3 && a && $('#right').css('transform')!='matrix(1, 0, 0, 1, -200, 0)'){
-        $('#options').css('transition', '.5s ease-out')
-        $('#options').css('transform', `translate(-${w/2}px, 0)`)
+    if((touchendX-touchstartX)/w<=0.3 && a && $( "#right" ).data("closed")){
+        $('#options').css('transition', '.1s ease-out')
+        $('#options').css('left', `-100%`)
   
+    }
+    // console.log('data', $( "#right" ).data("closed") );
+
+
+
+    if($( "#right" ).data("closed")==false){
+       console.log('lefttt', $('#right').css('left') );
+ 
+        $('#right').css('left', `calc(100% - 200px + ${(touchendX-touchstartX)}px)`)
+        $("#right").data( "opened", false );
+    }
+    if((+touchendX-touchstartX)/w<=0.2 && a && !$( "#right" ).data("opened")){
+        $('#right').css('transition', '.3s ease-out')
+        $('#right').css('left', `calc(100% - 200px)`) 
+    // alert('aa')
+        $("#right").data( "closed", false );
+        $("#right").data( "opened", true );
+    }
+    if((+touchendX-touchstartX)/w>0.2 && a && !$( "#right" ).data("opened")){
+        $('#right').css('transition', '.3s ease-out')
+        $('#right').css('left', `100%`)
+
+        // alert('bb')
+        $("#right").data( "closed", true );
+        $("#right").data( "opened", false );
+
     }
 
   }
-  
+//   && $('#right').css('left')!='calc(100% - 200px)'
+//   && $('#right').css('transform')!='matrix(1, 0, 0, 1, -200, 0)'
 }
 
 document.querySelector('#swiper').addEventListener('touchstart', e => {
