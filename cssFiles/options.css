@@ -287,16 +287,23 @@
 }
 
 
-
+.testdiv{
+    display: none
+}
 /* MOBILE//////////////////////////////////////////////// */
 
-
+.brp4 .testdiv{
+    display: block;
+    height: 200px
+}
 .brp4 hr {
     display: block;
 }
-.brp4 #textOptions{
-height: fit-content
+
+.brp4 #textOptions {
+    height: fit-content
 }
+
 .brp4 #options,
 .brp4 .Options {
     /* display: none; */
@@ -332,7 +339,7 @@ height: fit-content
 
 .brp4 .Options {
     overflow: scroll !important;
-    height: fit-content ;
+    height: fit-content;
     /* margin-left: auto;
     margin-right: auto; */
     /* background-color: aqua; */
@@ -341,13 +348,21 @@ height: fit-content
     position: absolute;
     /* top: 45px */
     bottom: 0 !important;
-    background-color: rgb(49, 49, 49);
+    /* background-color: rgb(49, 49, 49); */
+    background: linear-gradient(0deg, rgba(33, 33, 33, 0.3) 60%, rgba(255, 0, 0, 0) 99.71%);
 
+/* 
     -webkit-box-shadow: inset 0px 13px 80px 52px rgba(32, 32, 32, 1);
     -moz-box-shadow: inset 0px 13px 80px 52px rgba(32, 32, 32, 1);
-    box-shadow: inset 0px 13px 80px 52px rgba(32, 32, 32, 1);
+    box-shadow: inset 0px 13px 80px 52px rgba(32, 32, 32, 1); */
 
 }
+.brp4 #wholecontainer{
+    margin-bottom: 0px !important ;
+    position: fixed;
+    height: calc(100vh - 65px) !important;
+}
+
 /* .brp4 #pencilOptions{
     display: flex;
     flex-flow: column-reverse;
@@ -360,12 +375,11 @@ height: fit-content
     display: block;
     height: 100vh !important;
     bottom: 65px;
-    background-color: transparent;
     /* border-top-left-radius: 15px;
     border-top-right-radius: 15px; */
     z-index: 11;
     left: -100%;
-    
+background-color: rgba(32, 32, 32, .3);
 }
 
 /* .show {

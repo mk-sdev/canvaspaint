@@ -45,7 +45,7 @@ else
 //     c.height = conh * .85
 
 if (conw <= 555)
-    c.height = window.innerHeight * .6
+    c.height = window.innerHeight * .77
 else if (conw > 555 && conw <= 1100)
     c.height = window.innerHeight * .69
 else c.height = window.innerHeight * .75
@@ -174,22 +174,24 @@ x4.addListener(myFunction4)
 //swipeing
 let touchstartX = 0
 let touchendX = 0
-    
+
 function checkDirection(a) {
  
 $('#options').css('transition', '')
 $('#right').css('transition', '')
 
 
-    // w lewo
-  if (touchendX < touchstartX) {
-    if(w>=-touchendX+touchstartX  )
+    // to left
+  if (touchendX < touchstartX && $('#right').css('transform')!='matrix(1, 0, 0, 1, -200, 0)' ) {
+    
+    if(-touchendX+touchstartX <=200 && !a)
     $('#right').css('transform', `translate(-${-touchendX+touchstartX}px, 0)`)
+
 
 
   if((-touchendX+touchstartX)/w>0.3 && a ){
         $('#right').css('transition', '.5s ease-out')
-    $('#right').css('transform', `translate(${-w}px, 0)`)
+    $('#right').css('transform', `translate(${-200}px, 0)`)
     // alert('aa')
     }
     if((-touchendX+touchstartX)/w<=0.3 && a){
@@ -200,38 +202,38 @@ $('#right').css('transition', '')
     }
 
 
-
   }
-  //w prawo
+  //to right
   if (touchendX > touchstartX) {
-    if(w>=touchendX-touchstartX  )
+    if(w>=touchendX-touchstartX && $('#right').css('transform')!='matrix(1, 0, 0, 1, -200, 0)' )
     $('#options').css('transform', `translate(${+touchendX-touchstartX}px, 0)`)
 
-    if((touchendX-touchstartX)/w>0.3 && a ){
+    if((touchendX-touchstartX)/w>0.3 && a && $('#right').css('transform')!='matrix(1, 0, 0, 1, -200, 0)'){
         $('#options').css('transition', '.5s ease-out')
     $('#options').css('transform', `translate(${w}px, 0)`)
     }
-    if((touchendX-touchstartX)/w<=0.3 && a){
+    if((touchendX-touchstartX)/w<=0.3 && a && $('#right').css('transform')!='matrix(1, 0, 0, 1, -200, 0)'){
         $('#options').css('transition', '.5s ease-out')
         $('#options').css('transform', `translate(-${w/2}px, 0)`)
-
+  
     }
 
-    
   }
   
 }
 
-document.querySelector('#middle').addEventListener('touchstart', e => {
+document.querySelector('#swiper').addEventListener('touchstart', e => {
   touchstartX = e.changedTouches[0].screenX
 })
 
-document.querySelector('#middle').addEventListener('touchmove', e => {
+document.querySelector('#swiper').addEventListener('touchmove', e => {
   touchendX = e.changedTouches[0].screenX
   checkDirection()
 })
 
-document.querySelector('#middle').addEventListener('touchend', e => {
+
+document.querySelector('#swiper').addEventListener('touchend', e => {
     touchendX = e.changedTouches[0].screenX
   checkDirection(true)
   })
+

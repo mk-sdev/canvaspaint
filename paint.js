@@ -597,7 +597,7 @@ $(document).ready(function () {
             $('.Options').css('display', 'none')
         }
         if (whichBtn !== 'text')
-            $('#textOptions').slideDown(200)
+            $('#textOptions').slideDown(300)
 
         $('#textOptions').css('display', 'flex')
         //e.preventDefault()

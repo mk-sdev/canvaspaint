@@ -435,6 +435,18 @@ canvas:hover {
     box-shadow: inset 0px 13px 80px 52px rgba(32, 32, 32, 1);
 }
 
+#savedImages span {
+    color: grey;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    text-align: center;
+    
+}
+
 .savedImage {
 
     /* height: 135px; */
@@ -717,33 +729,76 @@ hr {
 
 .brp4 canvas {
     margin-top: 0px;
-   
+    border: 0;
+   width: 100%;
+
+}
+.brp4 #wholecontainer{
+    right: 0;
+    left: 0
 }
 
-.brp4 #right{
-display: block;
-position: fixed;
-z-index: 11;
-/* background-color: blueviolet; */
-height: 90vh;
-bottom: 65px;
-left: 100%
+.brp4 #right {
+    display: block;
+    position: fixed;
+    z-index: 11;
+    /* background-color: blueviolet; */
+    height: 90vh;
+    bottom: 65px;
+    left: 100%;
+    width: 200px
 }
-.brp4 #savedImages{
+
+.brp4 #savedImages {
     height: 100%;
     position: relative;
     margin-top: 0;
-    flex-direction: column ;
-   
-    overflow-x: hidden ;
-    overflow-y: auto ;
-  
+    flex-direction: column;
+    background-color: rgb(47, 47, 47);
+    width: 100%;
+    border-radius: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+
 }
+
 .brp4 #savedImages::-webkit-scrollbar {
     width: 0px;
 }
-.brp4 .savedImage{
+
+.brp4 #savedImages span {
+    display: inline-block;
+    width: 90% ;
+    height: 0px;
+    word-break: break-word !important;
+    word-wrap: break-word !important;
+overflow-wrap: break-word !important;
+
+white-space: pre-line !important;
+
+}
+.brp4 #middle{
+    display: flex;
+    flex-wrap: wrap-reverse;
+}
+.brp4 #middle span{
+    font-size: .55em !important;
+}
+.brp4 .savedImage {
     width: 100%;
     height: auto;
     display: block
+}
+#swiper{
+    display: none
+}
+.brp4 #swiper{
+    display: block;
+    /* background-color: red; */
+    width: 100%;
+    height: 100px !important;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    padding-top: 10px;
+    color: silver
 }
