@@ -45,7 +45,7 @@ else
 //     c.height = conh * .85
 
 if (conw <= 555)
-    c.height = window.innerHeight * .77
+    c.height = window.innerHeight - 140
 else if (conw > 555 && conw <= 1100)
     c.height = window.innerHeight * .69
 else c.height = window.innerHeight * .75
@@ -142,6 +142,8 @@ x2.addListener(myFunction2)
 function myFunction3(x) {
     if (x.matches) {
         document.querySelector('html').classList.add("brp4")
+        // $('#right').css('height', `${window.innerHeight}px`)
+        // $('#savedImages').css('height', `100%`)
     } else {
         document.querySelector('html').classList.remove("brp4")
     }
@@ -273,9 +275,9 @@ document.querySelector('#swiper').addEventListener('touchend', e => {
 
 
 document.getElementById('middle').addEventListener('touchend', ()=>{
-    console.log('aab');
     $('#right').css('transition', '.1s ease-out')
     $('#right').css('left', `100%`)
     $("#right").data("closed", true);
     $("#right").data("opened", false);
 })
+

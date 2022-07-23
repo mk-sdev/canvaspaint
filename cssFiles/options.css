@@ -209,11 +209,11 @@
 }
 
 .brp2 .Options>div:last-of-type {
-    margin-right: 0px !important
+    margin-right: 0%
 }
 
 .brp2 .Options>div:first-of-type {
-    margin-left: 0px !important
+    margin-left: 0%
 }
 
 .brp2 #download1 {
@@ -287,15 +287,9 @@
 }
 
 
-.testdiv{
-    display: none
-}
+
 /* MOBILE//////////////////////////////////////////////// */
 
-.brp4 .testdiv{
-    display: block;
-    height: 200px
-}
 .brp4 hr {
     display: block;
 }
@@ -317,12 +311,10 @@
     margin-right: 0;
     /* padding-right: 5px;
     padding-left: 5px; */
-
+max-height: none
 }
 
-#handle {
-    display: none
-}
+
 
 .brp4 #handle {
     display: block;

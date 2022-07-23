@@ -677,6 +677,7 @@ $(document).ready(function () {
         document.querySelector('#hr').style.display = "none"
         // document.querySelectorAll('.btn').style.color='rgba(255, 0, 0, 1)'
         window.mobile = true
+        
     } //nowe
 
     // let lineWidthPencil;
