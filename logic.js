@@ -188,8 +188,15 @@ function checkDirection(a) {
     // to left
     if (touchendX < touchstartX) {
 
-        if (-touchendX + touchstartX <= 200 && !a && !$("#right").data("opened"))
+        if (-touchendX + touchstartX <= 200 && !a && $("#right").data("closed")){
             $('#right').css('left', `calc(100% - ${-touchendX+touchstartX}px)`)
+            console.log('RIOGHT',-touchendX + touchstartX );
+            if(-touchendX + touchstartX == 200)
+            $("#right").data("opened", true);
+            else 
+            $("#right").data("opened", false);
+
+        }
 
 
         if ((-touchendX + touchstartX) / w > 0.2 && a && !$("#right").data("opened")) {
@@ -198,10 +205,13 @@ function checkDirection(a) {
             // alert('aa')
             $("#right").data("closed", false);
             $("#right").data("opened", true);
+            
         }
         if ((-touchendX + touchstartX) / w <= 0.2 && a && !$("#right").data("opened")) {
+            console.log('qq',$('#right').css('left')==='200px')
             $('#right').css('transition', '.1s ease-out')
             $('#right').css('left', `100%`)
+console.log('bb');
 
             // alert('bb')
             $("#right").data("closed", true);
@@ -231,8 +241,8 @@ function checkDirection(a) {
 
 
         if ($("#right").data("closed") == false) {
-            console.log('lefttt', $('#right').css('left'));
-
+            // console.log('lefttt', $('#right').css('left'));
+console.log('qqqqqqqqqq')
             $('#right').css('left', `calc(100% - 200px + ${(touchendX-touchstartX)}px)`)
             $("#right").data("opened", false);
         }
@@ -295,12 +305,13 @@ function opt(a){
 
 
     //to right
-    if (touchendX > touchstartX) {
-        if (w >= touchendX - touchstartX )
-            $('#options').css('left', `${-100+(touchendX-touchstartX)/w*100}%`)
+    // if (touchendX > touchstartX) {
+    //     console.log('RIGHT')
+    //     // if (w >= touchendX - touchstartX )
+    //     //     $('#options').css('left', `${-100+(touchendX-touchstartX)/w*100}%`)
 
       
-    }
+    // }
 }
 document.querySelector('#options').addEventListener('touchstart', e => {
     touchstartX = e.changedTouches[0].screenX
