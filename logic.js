@@ -309,10 +309,19 @@ document.querySelector('#options').addEventListener('touchstart', e => {
 
 document.querySelector('#options').addEventListener('touchmove', e => {
     touchendX = e.changedTouches[0].screenX
-    if(e.target.id==='options')
+    let id = e.target.id
+    let parent = e.target.parentElement
+    // console.log('x', e.target.parentElement);
+
+    if(id==='options' && w<499)
     opt()
     
-
+    if(id==='red' || id==='green' || id==='blue' || id==='lightness'){
+        for(let x of Array.from(document.getElementById('colorsOptions').children)) {
+        if(x.id!==parent.id)
+        x.style.opacity='0'
+        }
+    }
     //console.log('touch',touchendX)
 })
 
@@ -321,6 +330,15 @@ document.querySelector('#options').addEventListener('touchend', e => {
     console.log('targetend', e.target.id);
     if(e.target.id==='options')
     opt(true)
+
+    let id = e.target.id
+    let parent = e.target.parentElement
+    if(id==='red' || id==='green' || id==='blue' || id==='lightness'){
+        for(let x of Array.from(document.getElementById('colorsOptions').children)) {
+       // if(x.id!==parent.id)
+        x.style.opacity='1'
+        }
+    }
 })
 
 
@@ -329,5 +347,16 @@ document.getElementById('middle').addEventListener('touchend', ()=>{
     $('#right').css('left', `100%`)
     $("#right").data("closed", true);
     $("#right").data("opened", false);
+})
+document.querySelector('#right').addEventListener('click', (e)=>{
+
+
+ if(e.target.id.slice(0,14)==='imageConverted' || e.target.id.slice(0,14)==='closeright')
+ {
+    $('#right').css('transition', '.1s ease-out')
+    $('#right').css('left', `100%`)
+    $("#right").data("closed", true);
+    $("#right").data("opened", false);
+ }
 })
 

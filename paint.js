@@ -1,4 +1,4 @@
-// dodawanie zdjeć, color picker i tooltip dla range'y, poprawić colors, wysokość canvasa a wysokoś urządzenia, tablinks, responsywne options poniżej 1100px, może poprawić download, tools width after zooming in refreshing and zooming out, background toolsów na 1100px, wysokość #options i #download na szerszych ekranach, poprawić download na moblinych (jest nierówno), disable landscape mode, plugin loading spinner, tools cień, choose between screen width or window.innerwidth in logic.js,
+// dodawanie zdjeć, color picker i tooltip dla range'y, poprawić colors, wysokość canvasa a wysokoś urządzenia, tablinks, responsywne options poniżej 1100px, może poprawić download, tools width after zooming in refreshing and zooming out, background toolsów na 1100px, wysokość #options i #download na szerszych ekranach, disable landscape mode, plugin loading spinner, tools cień, choose between screen width or window.innerwidth in logic.js,
 
 //=== zamiast ==, usunąć zbędne komentarze
 $(window).load(function () {
@@ -99,8 +99,8 @@ $(document).ready(function () {
     //cleaning the span below the canvas
     $c.on('click', () => {
         if (!$('#middle span').text().length == 0 && whichBtn !== 'text' && whichBtn !== 'select') {
-            $('#middle span').css('color', 'transparent')
-            $('#middle span').html('q')
+            // $('#middle span').css('color', 'transparent')
+            $('#middle span').html('')
         }
     })
 
@@ -139,6 +139,7 @@ $(document).ready(function () {
 
 
         i++
+        $('#middle span').css('color', 'white')
 
         $('#middle > span').html("You created a new draft! Click on it any time you want in order to display it again on the canvas.")
     })
@@ -303,10 +304,10 @@ $(document).ready(function () {
     })
 
 
-    $('#red').on('mousedown', (e) => {
+    $('#red').on('mousedown touchstart', (e) => {
         $(this).data('prevValue', $('#red').val())
 
-    }).on('mouseup', (e) => {
+    }).on('mouseup touchend', (e) => {
         let prevValue = $(this).data('prevValue')
         let difference = $('#red').val() - prevValue
         let a = $ctx.getImageData(0, 0, $c.width(), $c.height())
@@ -321,10 +322,10 @@ $(document).ready(function () {
         undofn(e)
     })
 
-    $('#green').on('mousedown', (e) => {
+    $('#green').on('mousedown touchstart', (e) => {
         $(this).data('prevValue', $('#green').val())
 
-    }).on('mouseup', (e) => {
+    }).on('mouseup touchend', (e) => {
         let prevValue = $(this).data('prevValue')
         let difference = $('#green').val() - prevValue
 
@@ -340,10 +341,10 @@ $(document).ready(function () {
         undofn(e)
     })
 
-    $('#blue').on('mousedown', (e) => {
+    $('#blue').on('mousedown touchstart', (e) => {
         $(this).data('prevValue', $('#blue').val())
 
-    }).on('mouseup', (e) => {
+    }).on('mouseup touchend', (e) => {
         let prevValue = $(this).data('prevValue')
         let difference = $('#blue').val() - prevValue
 
@@ -365,9 +366,9 @@ $(document).ready(function () {
 
 
 
-    $('#lightness').on('mousedown', (e) => {
+    $('#lightness').on('mousedown touchstart', (e) => {
         $(this).data('prevValue', $('#lightness').val())
-    }).on('mouseup', (e) => {
+    }).on('mouseup touchend', (e) => {
         let prevValue = $(this).data('prevValue')
         let difference = $('#lightness').val() - prevValue
         let a = $ctx.getImageData(0, 0, $c.width(), $c.height())
@@ -382,7 +383,7 @@ $(document).ready(function () {
     })
 
 
-    $('#contrast').on('mousedown', (e) => {
+    $('#contrast').on('mousedown touchend', (e) => {
         $(this).data('prevValue', $('#contrast').val())
     }).on('mouseup', (e) => {
         let prevValue = $(this).data('prevValue')
