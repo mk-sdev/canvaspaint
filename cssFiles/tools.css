@@ -322,3 +322,6 @@ i {
     margin-right: 13px !important;
     border: 0px solid white !important;
 }
+.brp5 .btn{
+    min-width: 18vw
+}

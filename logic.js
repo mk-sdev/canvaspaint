@@ -323,8 +323,8 @@ document.querySelector('#options').addEventListener('touchmove', e => {
     let id = e.target.id
     let parent = e.target.parentElement
     // console.log('x', e.target.parentElement);
-
-    if(id==='options' && w<499)
+console.log('zzzzz',e.target.type)
+    if(e.target.type!=='range' && w<499)
     opt()
     
     if(id==='red' || id==='green' || id==='blue' || id==='lightness'){
@@ -339,8 +339,9 @@ document.querySelector('#options').addEventListener('touchmove', e => {
 document.querySelector('#options').addEventListener('touchend', e => {
     touchendX = e.changedTouches[0].screenX
     console.log('targetend', e.target.id);
-    if(e.target.id==='options')
+    if(e.target.type!=='range')
     opt(true)
+console.log('ididid', e.target.id);
 
     let id = e.target.id
     let parent = e.target.parentElement
