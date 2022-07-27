@@ -10,6 +10,7 @@ html {
     overflow-x: hidden;
     min-height: -webkit-fill-available;
 }
+
 #showImgBtn {
     position: relative;
     background: black;
@@ -446,7 +447,7 @@ canvas:hover {
     transform: translate(-50%, -50%);
     width: 90%;
     text-align: center;
-    
+
 }
 
 .savedImage {
@@ -732,19 +733,21 @@ hr {
 .brp4 canvas {
     margin-top: 0px;
     border: 0;
-   width: 100%;
-   
+    width: 100%;
+
 
 }
-.brp4 #q{
+
+.brp4 #q {
     /* height: 70% !important; */
-   
+
     margin-bottom: 0
 }
-.brp4 #wholecontainer{
+
+.brp4 #wholecontainer {
     right: 0;
     left: 0;
-  
+
 }
 
 .brp4 #right {
@@ -752,7 +755,7 @@ hr {
     position: fixed;
     z-index: 11;
     /* background-color: blueviolet; */
-    height: 100vh;
+    height: calc(100vh - 65px);
     bottom: 65px;
     left: 100%;
     width: 200px;
@@ -765,13 +768,18 @@ hr {
     position: relative;
     margin-top: 0;
     flex-direction: column;
-    background-color: rgb(47, 47, 47);
+    background-color: rgba(47, 47, 47, .3);
     width: 100%;
     border-radius: 0;
     overflow-x: hidden;
     overflow-y: auto;
     max-height: none;
-height: 100%
+    height: 100%;
+backdrop-filter: blur(1px);
+
+    -webkit-box-shadow: inset 0px 0px 24px 0px rgba(40, 40, 40, 1);
+-moz-box-shadow: inset 0px 0px 24px 0px rgba(40, 40, 40, 1);
+box-shadow: inset 0px 0px 24px 0px rgba(40, 40, 40, 1);
 }
 
 .brp4 #savedImages::-webkit-scrollbar {
@@ -780,40 +788,53 @@ height: 100%
 
 .brp4 #savedImages span {
     display: inline-block;
-    width: 90% ;
+    width: 90%;
     height: 0px;
     word-break: break-word !important;
     word-wrap: break-word !important;
-overflow-wrap: break-word !important;
-
-white-space: pre-line !important;
+    overflow-wrap: break-word !important;
+color: black;
+    white-space: pre-line !important;
 
 }
-.brp4 #middle{
+
+.brp4 #middle {
     display: flex;
     flex-wrap: wrap-reverse;
 }
-.brp4 #middle span{
+
+.brp4 #middle span {
     display: none !important
 }
+
 .brp4 .savedImage {
-    width: 100%;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
     height: auto;
     display: block
 }
-#swiper{
+
+#swiper {
     display: none
 }
-.brp4 #swiper{
+
+.brp4 #swiper {
     display: block;
     position: fixed;
     bottom: 65px;
     /* background-color: red; */
     width: 100%;
+    padding-right: 10px;
+    padding-left: 10px;
     height: 50px !important;
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
     /* padding-top: 10px; */
     color: silver;
     background-color: brown;
+}
+.brp5 #swiper{
+    font-size: 13px
 }

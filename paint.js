@@ -28,26 +28,81 @@ $(document).ready(function () {
 
 
     let restore_array = []
+    let ranges_array = []
     let index = -1
     restore_array.push($ctx.getImageData(0, 0, $c.width(), $c.height()))
+    ranges_array.push({red: $('#red').val(), green: $('#green').val(),
+     blue: $('#blue').val(), light: $('#lightness').val()})
     index++
 
+console.log('pierwsze array',ranges_array[0])
+
+
+    $('#undo').on('click', () => {
+        if (index <= 0) {
+
+            $ctx.fillStyle = 'white'
+            $ctx.fillRect(0, 0, $c.width(), $c.height())
+           
+            //index = -1
+          //  $('#lineWidthPencil').attr('value', '100')
+//alert(ranges_array[index].red)
+            // $('#red').attr('value', `12` )
+            $('#red').val(127)
+            $('#green').attr('value', `127` )
+            $('#blue').attr('value', `127` )
+            $('#lightness').attr('value', `127` )
+            //tutaj jeszcze poustawiać wszystko na 127
+        } else {
+            index -= 1
+            restore_array.pop()
+            ranges_array.pop()
+//alert(ranges_array[index])
+
+            $ctx.putImageData(restore_array[index], 0, 0)
+            console.log('ppp',ranges_array[index].red, 'ppp');
+            console.log('redvl',$('#red').val());
+
+            //z jakiegoś jebitnego powodu nie chce się ustawić 
+            // $('#red').attr('value', `${ranges_array[index].red}` )
+            $('#red').val(ranges_array[index].red)
+            $('#green').val(ranges_array[index].green)
+            $('#blue').val(ranges_array[index].blue)
+            $('#lightness').val(ranges_array[index].light)
+
+          
+            
+        }
+        //console.log(index, restore_array)
+
+    })
+
+    
+    function undofn(e, t) {
+        if (e.type != 'mouseout') {
+            restore_array.push($ctx.getImageData(0, 0, $c.width(), $c.height()))
+            console.log(t, 't')
+            if(t===undefined)
+            t={red: $('#red').val(), green: $('#green').val(),
+            blue: $('#blue').val(), light: $('#lightness').val()}
+            console.log(t, 'tt')
+
+            ranges_array.push(t)
+            console.log('push', ranges_array[index+1], t);
+            
+            index += 1
+        }
+        // console.log(index, restore_array)
+    }
+
+   
 
 
 
-    // const $reader = new FileReader()
-    // const $img = new Image()
-    // const uploadImage = (e)=>{
-    //     $reader.onload= function (){
-    //         $img.onload=function (){
-    //             $ctx.drawImage($img, 0, 0)
-    //         }
-    //         $img.src=reader.result
-    //     }
-    //     $reader.readAsDataURL(e.target.files[0])
-    // }
 
-    //     $('#uploaderbtn').on('click', uploadImage)
+
+
+
     let j = 0;
     let savedimg = []
     $('#uploadImage').on('input', (e) => {
@@ -58,29 +113,11 @@ $(document).ready(function () {
         $('#middle span').html('If the address is proper, you should see your image in images > gallery > uploaded')
         $('#middle span').css('color', 'white')
 
+        $('#swiper').html('If the address is proper, you should see your image in images > gallery > uploaded')
+        $('#middle span').css('color', 'white')
+
         $('#uploadedImagesDiv').prepend(savedimg[j])
         j++
-
-    })
-
-
-
-
-
-    $('#undo').on('click', () => {
-        if (index <= 0) {
-
-            $ctx.fillStyle = 'white'
-            $ctx.fillRect(0, 0, $c.width(), $c.height())
-            //restore_array.pop()
-            //index = -1
-        } else {
-            index -= 1
-            restore_array.pop()
-            $ctx.putImageData(restore_array[index], 0, 0)
-        }
-
-        //console.log(index, restore_array)
 
     })
 
@@ -153,18 +190,18 @@ $(document).ready(function () {
         $('#uploadImage').val('')
 
         if ($('input[name=radioCopy]').is(':checked')) {
-            console.log('copy');
+           // console.log('copy');
         }
         if ($('input[name=radioDelete]').is(':checked')) {
-            console.log('Delete');
+          //  console.log('Delete');
         }
         if ($('input[name=radioCut]').is(':checked')) {
-            console.log('Cut');
+           // console.log('Cut');
         }
 
 
 
-        console.log('wwwwww', e.target.id);
+       // console.log('wwwwww', e.target.id);
         //console.log('ss', e.target.id.slice(0, 14));
         if (e.target.id.slice(0, 7) == 'tablink') {
             for (let i = 1; i <= $(".tablink").length; i++) {
@@ -221,6 +258,8 @@ $(document).ready(function () {
 
 
         }
+
+    
     })
 
     $('#showImgBtn').on('click', (e) => {
@@ -233,7 +272,7 @@ $(document).ready(function () {
     const closebtn = $('#close')
 
     $(window).click((event) => {
-        console.log(event.target.id)
+       // console.log(event.target.id)
         if (event.target.id == 'id01' || event.target.id == 'close' || event.target.id.slice(0, 3) == 'img' || event.target.id.slice(0, 13) == 'imageUploaded' || event.target.id.slice(0, 3) == 'obj' || event.target.id.slice(0, 13) == 'imageSelected') {
             modal.css('background-color', 'rgb(0,0,0,0)');
             closebtn.css('display', 'none');
@@ -304,6 +343,7 @@ $(document).ready(function () {
     })
 
 
+  
     $('#red').on('mousedown touchstart', (e) => {
         $(this).data('prevValue', $('#red').val())
 
@@ -319,8 +359,11 @@ $(document).ready(function () {
             data[i + 2] = data[i + 2]; // blue
         }
         $ctx.putImageData(a, 0, 0)
-        undofn(e)
+        console.log('#red tt',{red: $('#red').val(), green: $('#green').val(), blue: $('#blue').val(), light: $('#lightness').val()} );
+        
+        undofn(e, {red: $('#red').val(), green: $('#green').val(), blue: $('#blue').val(), light: $('#lightness').val()})
     })
+
 
     $('#green').on('mousedown touchstart', (e) => {
         $(this).data('prevValue', $('#green').val())
@@ -338,7 +381,7 @@ $(document).ready(function () {
             data[i + 2] = data[i + 2]; // blue
         }
         $ctx.putImageData(a, 0, 0)
-        undofn(e)
+        undofn(e, {red: $('#red').val(), green: $('#green').val(), blue: $('#blue').val(), light: $('#lightness').val()})
     })
 
     $('#blue').on('mousedown touchstart', (e) => {
@@ -357,7 +400,7 @@ $(document).ready(function () {
             data[i + 2] = data[i + 2] + difference; // blue
         }
         $ctx.putImageData(a, 0, 0)
-        undofn(e)
+        undofn(e, {red: $('#red').val(), green: $('#green').val(), blue: $('#blue').val(), light: $('#lightness').val()})
     })
 
 
@@ -379,7 +422,7 @@ $(document).ready(function () {
             data[i + 2] = data[i + 2] + difference; // blue
         }
         $ctx.putImageData(a, 0, 0)
-        undofn(e)
+        undofn(e, {red: $('#red').val(), green: $('#green').val(), blue: $('#blue').val(), light: $('#lightness').val()})
     })
 
 
@@ -567,7 +610,7 @@ let box, x;
             $('#pencilOptions').slideDown(200)
         $('#pencilOptions').css('display', 'flex')
         whichBtn = 'pencil'
-       
+        
         
         box=$('#pencilOptions')
     })
@@ -690,6 +733,7 @@ let box, x;
         // document.querySelectorAll('.btn').style.color='rgba(255, 0, 0, 1)'
         window.mobile = true
         
+        
     } //nowe
 
     // let lineWidthPencil;
@@ -715,13 +759,6 @@ let box, x;
     //     //$('#pencilOptions > .lineWidth').val() = lineWidth
     // })
 
-    function undofn(e) {
-        if (e.type != 'mouseout') {
-            restore_array.push($ctx.getImageData(0, 0, $c.width(), $c.height()))
-            index += 1
-        }
-        // console.log(index, restore_array)
-    }
 
 
 
@@ -1708,6 +1745,8 @@ let box, x;
         })
       }
     })
+
+
 
 
 });

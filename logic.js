@@ -3,7 +3,7 @@ screen.orientation.lock("landscape")
 //changing the tabicon depending on the browser theme
 const faviconTag = document.getElementById("faviconTag");
 const isDark = window.matchMedia("(prefers-color-scheme: dark)");
-console.log(isDark);
+//console.log(isDark);
 
 const changeFavicon = () => {
     if (isDark.matches) faviconTag.setAttribute("href", "./images/pencil-white.png")
@@ -21,7 +21,7 @@ con.style.maxWidth = `${screen.width}px`
 // console.log(window.innerWidth);
 let conw = window.getComputedStyle(con).width.replace('px', '')
 let conh = window.getComputedStyle(con).height.replace('px', '')
-console.log(conw);
+//console.log(conw);
 // console.log(window.getComputedStyle(document.querySelectorAll("tools").width));
 
 
@@ -52,7 +52,7 @@ else c.height = window.innerHeight * .75
 
 
 
-console.log('aaaa', window.innerWidth, );
+//console.log('aaaa', window.innerWidth, );
 
 document.querySelector('#middle').style.width = `${c.width+10}px`
 
@@ -68,7 +68,7 @@ addEventListener('beforeunload', function (event) {
 
 //media queries in js
 let w = window.innerWidth
-console.log('w', w);
+//console.log('w', w);
 
 
 function myFunction(x) {
@@ -190,7 +190,7 @@ function checkDirection(a) {
 
         if (-touchendX + touchstartX <= 200 && !a && $("#right").data("closed")){
             $('#right').css('left', `calc(100% - ${-touchendX+touchstartX}px)`)
-            console.log('RIOGHT',-touchendX + touchstartX );
+           // console.log('RIOGHT',-touchendX + touchstartX );
             if(-touchendX + touchstartX == 200)
             $("#right").data("opened", true);
             else 
@@ -208,10 +208,10 @@ function checkDirection(a) {
             
         }
         if ((-touchendX + touchstartX) / w <= 0.2 && a && !$("#right").data("opened")) {
-            console.log('qq',$('#right').css('left')==='200px')
+           // console.log('qq',$('#right').css('left')==='200px')
             $('#right').css('transition', '.1s ease-out')
             $('#right').css('left', `100%`)
-console.log('bb');
+//console.log('bb');
 
             // alert('bb')
             $("#right").data("closed", true);
@@ -242,7 +242,7 @@ console.log('bb');
 
         if ($("#right").data("closed") == false) {
             // console.log('lefttt', $('#right').css('left'));
-console.log('qqqqqqqqqq')
+//console.log('qqqqqqqqqq')
             $('#right').css('left', `calc(100% - 200px + ${(touchendX-touchstartX)}px)`)
             $("#right").data("opened", false);
         }
@@ -323,7 +323,7 @@ document.querySelector('#options').addEventListener('touchmove', e => {
     let id = e.target.id
     let parent = e.target.parentElement
     // console.log('x', e.target.parentElement);
-console.log('zzzzz',e.target.type)
+//console.log('zzzzz',e.target.type)
     if(e.target.type!=='range' && w<499)
     opt()
     
@@ -338,10 +338,10 @@ console.log('zzzzz',e.target.type)
 
 document.querySelector('#options').addEventListener('touchend', e => {
     touchendX = e.changedTouches[0].screenX
-    console.log('targetend', e.target.id);
+   // console.log('targetend', e.target.id);
     if(e.target.type!=='range')
     opt(true)
-console.log('ididid', e.target.id);
+//console.log('ididid', e.target.id);
 
     let id = e.target.id
     let parent = e.target.parentElement
