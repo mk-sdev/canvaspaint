@@ -63,7 +63,34 @@ html {
     z-index: 999;
     position: absolute;
 }
+#orientation{
+    display: none;
+    z-index: 99999;
 
+    width: 100vw;
+    height: 100vh;
+line-height: 100vh;
+font-size: 200%;
+font-family: Verdana, Geneva, Tahoma, sans-serif;
+    overflow-x: hidden;
+    position: absolute;
+  text-align: center;
+    background-color: rgb(15, 15, 15);
+}
+
+/* @media screen and (min-width: 320px) and (max-width: 900px) and (orientation: landscape) {
+    #orientation {
+        display: block;
+        z-index: 99999;
+   
+      width: 100vw;
+      height: 200vh;
+      overflow-x: hidden;
+      position: absolute;
+    
+      background-color: black;
+    }
+  } */
 input[type="range"] {
     -webkit-appearance: none;
     appearance: none;

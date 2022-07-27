@@ -1,5 +1,4 @@
 // dodawanie zdjeć, color picker i tooltip dla range'y, poprawić colors, wysokość canvasa a wysokoś urządzenia, tablinks, responsywne options poniżej 1100px, może poprawić download, tools width after zooming in refreshing and zooming out, background toolsów na 1100px, wysokość #options i #download na szerszych ekranach, disable landscape mode, plugin loading spinner, tools cień, choose between screen width or window.innerwidth in logic.js,
-
 //=== zamiast ==, usunąć zbędne komentarze
 $(window).load(function () {
     // PAGE IS FULLY LOADED  
@@ -1751,9 +1750,36 @@ let box, x;
 
 });
 
+let nrofchange=0
+//chyba nie działa na safari i na pewno na ie :(
+screen.orientation.addEventListener("change", e=>{
+
+    nrofchange++
+    if(nrofchange%2==1){
+    document.querySelector('#orientation').style.display='block'
+    document.querySelector('#wholecontainer').style.display='none'
+
+    }
+    else{
+    document.querySelector('#orientation').style.display='none'
+    document.querySelector('#wholecontainer').style.display='block'
+    }
+
+});
+//and the depreciated version:
+// $(window).on("orientationchange", function( event ) {
+    
+//     // $("#orientation").text( "This device is in " + event.orientation + " mode!");
+//      nrofchange++
+//      if(nrofchange%2==1)
+//      $('#orientation').css('display', 'block')
+//      else
+//      $('#orientation').css('display', 'none')
+//    });
 
 
 
+   
 // let dataURI = []
 // let savedimage = []
 // let i = 0
