@@ -556,7 +556,7 @@ $(document).ready(function () {
     //    })
     // }
 
-
+let box, x;
     $('#pencil').on('click', () => {
 
         for (let i = 0; i < $('.Options').length; i++) {
@@ -566,7 +566,9 @@ $(document).ready(function () {
             $('#pencilOptions').slideDown(200)
         $('#pencilOptions').css('display', 'flex')
         whichBtn = 'pencil'
-
+       
+        
+        box=$('#pencilOptions')
     })
     $('#line').on('click', () => {
 
@@ -578,6 +580,8 @@ $(document).ready(function () {
 
         $('#lineOptions').css('display', 'flex')
         whichBtn = 'line'
+        box=$('#lineOptions')
+
 
     })
     $('#shape').on('click', () => {
@@ -590,6 +594,8 @@ $(document).ready(function () {
 
         $('#shapeOptions').css('display', 'flex')
         whichBtn = 'shape'
+        box=$('#shapeOptions')
+
     })
     $('#text').on('click', () => {
 
@@ -606,6 +612,8 @@ $(document).ready(function () {
 
         $('#textOptions').get(0).scrollTop = 0
         whichBtn = 'text'
+        box=$('#textOptions')
+
     })
 
 
@@ -618,6 +626,8 @@ $(document).ready(function () {
             $('#colorsOptions').slideDown(200)
         $('#colorsOptions').css('display', 'flex')
         whichBtn = 'colors'
+        box=$('#colorsOptions')
+
     })
     $('#select').on('click', () => {
 
@@ -644,6 +654,7 @@ $(document).ready(function () {
             $('#imagesOptions').slideDown(200)
         $('#imagesOptions').css('display', 'flex')
         whichBtn = 'images'
+        box=$('#imagesOptions')
     })
     // $('#uploaderbtn').on('change', (e)=>{
     //     let image = $('#output')
@@ -1672,6 +1683,30 @@ $(document).ready(function () {
 
 
     // })
+    
+    // $('#leftar').on('click', e=>{
+    //     $('#textOptions').animate({
+    //         scrollLeft: 70
+    //     })
+    // })
+
+
+
+
+
+    $(".arrow").click(function() {
+      if ($(this).hasClass("arrow-right")) {
+        x = ((box.width() / 2)) + box.scrollLeft();
+        box.animate({
+          scrollLeft: x,
+        })
+      } else {
+        x = ((box.width() / 2)) - box.scrollLeft();
+        box.animate({
+          scrollLeft: -x,
+        })
+      }
+    })
 
 
 });

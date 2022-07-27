@@ -272,6 +272,56 @@ document.querySelector('#swiper').addEventListener('touchend', e => {
     touchendX = e.changedTouches[0].screenX
     checkDirection(true)
 })
+///
+function opt(a){
+    $('#options').css('transition', '')
+
+
+    //to left
+    if(touchendX < touchstartX ){
+        $('#options').css('left', `${0+(touchendX-touchstartX)/w*100}%`)
+
+        if ((-touchendX + touchstartX) / w < 0.3 && a ) {
+            $('#options').css('transition', '.1s ease-out')
+            $('#options').css('left', `0%`)
+        }
+        if ((-touchendX + touchstartX) / w >= 0.3 && a ) {
+            // alert('a')
+            $('#options').css('transition', '.5s ease-out')
+            $('#options').css('left', `-100%`)
+
+        }
+    }
+
+
+    //to right
+    if (touchendX > touchstartX) {
+        if (w >= touchendX - touchstartX )
+            $('#options').css('left', `${-100+(touchendX-touchstartX)/w*100}%`)
+
+      
+    }
+}
+document.querySelector('#options').addEventListener('touchstart', e => {
+    touchstartX = e.changedTouches[0].screenX
+    
+})
+
+document.querySelector('#options').addEventListener('touchmove', e => {
+    touchendX = e.changedTouches[0].screenX
+    if(e.target.id==='options')
+    opt()
+    
+
+    //console.log('touch',touchendX)
+})
+
+document.querySelector('#options').addEventListener('touchend', e => {
+    touchendX = e.changedTouches[0].screenX
+    console.log('targetend', e.target.id);
+    if(e.target.id==='options')
+    opt(true)
+})
 
 
 document.getElementById('middle').addEventListener('touchend', ()=>{
