@@ -183,6 +183,9 @@
 
 /* Set default styles for tab content */
 .tabcontent {
+    backdrop-filter: blur(5px);
+
+    height: calc(70vh + 70px);
     background-color: rgba(100, 100, 100, .8);
     display: none;
     padding: 10px;
@@ -219,13 +222,12 @@
     height: 70vh;
     width: 100%;
     z-index: -1;
-backdrop-filter: blur(5px);
 
 }
 
 .galleryDiv_ {
     -ms-overflow-style: 10px;
-backdrop-filter: blur(5px);
+
 
     /* IE and Edge */
     scrollbar-width: 10px;
@@ -245,6 +247,7 @@ backdrop-filter: blur(5px);
     overflow-x: visible;
     height: 70vh;
     width: 100%
+    
 }
 
 .img {

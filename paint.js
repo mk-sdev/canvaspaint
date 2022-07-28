@@ -106,9 +106,9 @@ console.log('pierwsze array',ranges_array[0])
     let savedimg = []
     $('#uploadImage').on('input', (e) => {
 
-
-        savedimg[j] = $(`<image src="${$('#uploadImage').val()}"  id="imageUploaded${j}" class="img imgUploaded" crossorigin='anonymous' onerror="$('#imageUploaded${j}').remove()" />`)
-
+        $('#uploadspan').css('display', 'none')
+        savedimg[j] = $(`<image src="${$('#uploadImage').val()}"  id="imageUploaded${j}" class="img imgUploaded" crossorigin='anonymous' onerror="$('#imageUploaded${j}').remove();  $('#uploadspan').css('display', 'block') " />`)
+       
         $('#middle span').html('If the address is proper, you should see your image in images > gallery > uploaded')
         $('#middle span').css('color', 'white')
 
@@ -116,8 +116,13 @@ console.log('pierwsze array',ranges_array[0])
         $('#middle span').css('color', 'white')
 
         $('#uploadedImagesDiv').prepend(savedimg[j])
-        j++
+console.log('asdfgh', $('#uploadedImadesDiv').children().length);
 
+        // if($('#uploadedImadesDiv').children().length>0)
+    
+
+        j++
+       
     })
 
     $('#clear').on('click', (e) => {
@@ -205,10 +210,20 @@ console.log('pierwsze array',ranges_array[0])
         if (e.target.id.slice(0, 7) == 'tablink') {
             for (let i = 1; i <= $(".tablink").length; i++) {
                 $(`#tabCon${i}`).css('display', 'none')
+                // $('.galleryDiv').eq(i-1).css('display', 'none')
+                // $('.galleryDiv_').eq(0).css('display', 'none')
+                $('.modal-content > div > div').css('display', 'none')
             }
         }
-        $(`#tabCon${e.target.id.slice(7,8)}`).slideDown(200)
+        // $(`#tabCon${e.target.id.slice(7,8)}`).slideDown(200)
         $(`#tabCon${e.target.id.slice(7,8)}`).css('display', 'block')
+
+        // $('.galleryDiv').eq(e.target.id.slice(7,8) -1).slideDown(200)
+        $('.modal-content > div > div').slideDown(200)
+        $('.modal-content > div > div').css('display', 'grid')
+
+        // $('.galleryDiv').eq(e.target.id.slice(7,8) -1).css('display', 'grid')
+
 
 
 
