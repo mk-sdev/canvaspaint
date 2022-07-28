@@ -69,13 +69,14 @@ html {
 
     width: 100vw;
     height: 100vh;
-line-height: 100vh;
-font-size: 200%;
+line-height: 50vh;
+font-size: 100%;
 font-family: Verdana, Geneva, Tahoma, sans-serif;
     overflow-x: hidden;
     position: absolute;
   text-align: center;
-    background-color: rgb(15, 15, 15);
+  background: rgb(33,51,2);
+  background: linear-gradient(131deg, rgba(33,51,2,1) 0%, rgba(59,2,41,1) 100%);
 }
 
 /* @media screen and (min-width: 320px) and (max-width: 900px) and (orientation: landscape) {
@@ -637,7 +638,10 @@ hr {
     height: 100%;
     width: 100%
 }
-
+.test{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1px;
+}
 .brp1 #savedImages {
     width: 90%;
     margin: auto;

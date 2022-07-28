@@ -16,14 +16,48 @@
     <link rel="stylesheet" href="./cssFiles/fontawesome.min.css">
 
     <link rel="icon" href="./images/pencil-solid.png" id="faviconTag">
+
+
+
     <script src="logic.js" defer></script>
+
+
+    <script src="https://code.jquery.com/jquery-1.12.3.js"
+    integrity="sha256-1XMpEtA4eKXNNpXcJ1pmMPs8JV+nwLdEqwiJeCQEkyc=" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"></script>
+
 
 </head>
 
 <body>
-    <div id="beforeload"><span>Loading...</span></div>
-
-    <div id="orientation">Please go back to the previous orientation mode</div>
+    <div id="beforeload" style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif" onload="showLoader()"></div>
+    <script type="text/javascript">
+        function showLoader(){
+            $('#beforeload').LoadingOverlay("show", {
+                background: "rgba(0, 0, 0, 0)",
+                imageColor: 'white',
+                text: 'Loading...',
+                textClass: 'test',
+                textResizeFactor: '.25',
+                // textAnimation: '3000ms pulse'
+                // textColor: 'white',
+                
+                // imageAnimation: '4000ms pulse'
+            });
+            setTimeout(function(){
+    $('#beforeload').LoadingOverlay("text", "This takes a bit more than I expected...");
+}, 5000);
+// Hide it after 3 seconds
+// setTimeout(function(){
+//     $.LoadingOverlay("hide");
+// }, 3000);
+        }
+        showLoader()
+    </script>
+    <div id="orientation"><p style="height: 20px">Please go back to the previous orientation mode</p>
+        <img src="images/pencil-solid.png" alt="" style="opacity: .2; height: 100vh; position: absolute; top: 0; transform: translate(-10%, 0);">
+    </div>
     <!-- <div id="honeycomb">wdwd</div> -->
     <div id="wholecontainer" style=" margin: auto; ">
         <div id="wrapper">
@@ -543,8 +577,8 @@
 
 
 
-    <script src="https://code.jquery.com/jquery-1.12.3.js"
-        integrity="sha256-1XMpEtA4eKXNNpXcJ1pmMPs8JV+nwLdEqwiJeCQEkyc=" crossorigin="anonymous"></script>
+   
+
     <script src="paint.js" crossorigin="use-credentials"></script>
 </body>
 

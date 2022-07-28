@@ -1,4 +1,4 @@
-// dodawanie zdjeć, color picker i tooltip dla range'y, poprawić colors, wysokość canvasa a wysokoś urządzenia, tablinks, responsywne options poniżej 1100px, może poprawić download, tools width after zooming in refreshing and zooming out, background toolsów na 1100px, wysokość #options i #download na szerszych ekranach, disable landscape mode, plugin loading spinner, tools cień, choose between screen width or window.innerwidth in logic.js,
+// dodawanie zdjeć, color picker i tooltip dla range'y, poprawić colors, wysokość canvasa a wysokoś urządzenia, tablinks, responsywne options poniżej 1100px, może poprawić download, tools width after zooming in refreshing and zooming out, background toolsów na 1100px, wysokość #options i #download na szerszych ekranach, disable landscape mode, plugin loading spinner, tools cień, choose between screen width or window.innerwidth in logic.js, poprawić span w uploaded, przyciąć buttony może, poprawić zmianę orientacji
 //=== zamiast ==, usunąć zbędne komentarze
 $(window).load(function () {
     // PAGE IS FULLY LOADED  
