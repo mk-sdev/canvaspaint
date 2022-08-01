@@ -14,9 +14,9 @@ changeFavicon()
 //maxwidth of content
 const con = document.querySelector('#wholecontainer')
 //this or screen.width or window.innerWidth
-con.style.maxWidth = `${screen.width}px`
+// con.style.maxWidth = `${screen.width}px`
 // con.style.maxWidth = `1450px`
-
+con.style.height = `${window.innerHeight + 220}px`;
 // con.style.maxHeight=`${screen.height}px`
 // console.log(window.innerWidth);
 let conw = window.getComputedStyle(con).width.replace('px', '')
@@ -188,13 +188,13 @@ function checkDirection(a) {
     // to left
     if (touchendX < touchstartX) {
 
-        if (-touchendX + touchstartX <= 200 && !a && $("#right").data("closed")){
+        if (-touchendX + touchstartX <= 200 && !a && $("#right").data("closed")) {
             $('#right').css('left', `calc(100% - ${-touchendX+touchstartX}px)`)
-           // console.log('RIOGHT',-touchendX + touchstartX );
-            if(-touchendX + touchstartX == 200)
-            $("#right").data("opened", true);
-            else 
-            $("#right").data("opened", false);
+            // console.log('RIOGHT',-touchendX + touchstartX );
+            if (-touchendX + touchstartX == 200)
+                $("#right").data("opened", true);
+            else
+                $("#right").data("opened", false);
 
         }
 
@@ -205,13 +205,13 @@ function checkDirection(a) {
             // alert('aa')
             $("#right").data("closed", false);
             $("#right").data("opened", true);
-            
+
         }
         if ((-touchendX + touchstartX) / w <= 0.2 && a && !$("#right").data("opened")) {
-           // console.log('qq',$('#right').css('left')==='200px')
+            // console.log('qq',$('#right').css('left')==='200px')
             $('#right').css('transition', '.1s ease-out')
             $('#right').css('left', `100%`)
-//console.log('bb');
+            //console.log('bb');
 
             // alert('bb')
             $("#right").data("closed", true);
@@ -242,7 +242,7 @@ function checkDirection(a) {
 
         if ($("#right").data("closed") == false) {
             // console.log('lefttt', $('#right').css('left'));
-//console.log('qqqqqqqqqq')
+            //console.log('qqqqqqqqqq')
             $('#right').css('left', `calc(100% - 200px + ${(touchendX-touchstartX)}px)`)
             $("#right").data("opened", false);
         }
@@ -283,19 +283,19 @@ document.querySelector('#swiper').addEventListener('touchend', e => {
     checkDirection(true)
 })
 ///
-function opt(a){
+function opt(a) {
     $('#options').css('transition', '')
 
 
     //to left
-    if(touchendX < touchstartX ){
+    if (touchendX < touchstartX) {
         $('#options').css('left', `${0+(touchendX-touchstartX)/w*100}%`)
 
-        if ((-touchendX + touchstartX) / w < 0.3 && a ) {
+        if ((-touchendX + touchstartX) / w < 0.3 && a) {
             $('#options').css('transition', '.1s ease-out')
             $('#options').css('left', `0%`)
         }
-        if ((-touchendX + touchstartX) / w >= 0.3 && a ) {
+        if ((-touchendX + touchstartX) / w >= 0.3 && a) {
             // alert('a')
             $('#options').css('transition', '.5s ease-out')
             $('#options').css('left', `-100%`)
@@ -310,12 +310,12 @@ function opt(a){
     //     // if (w >= touchendX - touchstartX )
     //     //     $('#options').css('left', `${-100+(touchendX-touchstartX)/w*100}%`)
 
-      
+
     // }
 }
 document.querySelector('#options').addEventListener('touchstart', e => {
     touchstartX = e.changedTouches[0].screenX
-    
+
 })
 
 document.querySelector('#options').addEventListener('touchmove', e => {
@@ -323,14 +323,14 @@ document.querySelector('#options').addEventListener('touchmove', e => {
     let id = e.target.id
     let parent = e.target.parentElement
     // console.log('x', e.target.parentElement);
-//console.log('zzzzz',e.target.type)
-    if(e.target.type!=='range' && w<499)
-    opt()
-    
-    if(id==='red' || id==='green' || id==='blue' || id==='lightness'){
-        for(let x of Array.from(document.getElementById('colorsOptions').children)) {
-        if(x.id!==parent.id)
-        x.style.opacity='0'
+    //console.log('zzzzz',e.target.type)
+    if (e.target.type !== 'range' && w < 499)
+        opt()
+
+    if (id === 'red' || id === 'green' || id === 'blue' || id === 'lightness') {
+        for (let x of Array.from(document.getElementById('colorsOptions').children)) {
+            if (x.id !== parent.id)
+                x.style.opacity = '0'
         }
     }
     //console.log('touch',touchendX)
@@ -338,55 +338,94 @@ document.querySelector('#options').addEventListener('touchmove', e => {
 
 document.querySelector('#options').addEventListener('touchend', e => {
     touchendX = e.changedTouches[0].screenX
-   // console.log('targetend', e.target.id);
-    if(e.target.type!=='range')
-    opt(true)
-//console.log('ididid', e.target.id);
+    // console.log('targetend', e.target.id);
+    if (e.target.type !== 'range')
+        opt(true)
+    //console.log('ididid', e.target.id);
 
     let id = e.target.id
     let parent = e.target.parentElement
-    if(id==='red' || id==='green' || id==='blue' || id==='lightness'){
-        for(let x of Array.from(document.getElementById('colorsOptions').children)) {
-       // if(x.id!==parent.id)
-        x.style.opacity='1'
+    if (id === 'red' || id === 'green' || id === 'blue' || id === 'lightness') {
+        for (let x of Array.from(document.getElementById('colorsOptions').children)) {
+            // if(x.id!==parent.id)
+            x.style.opacity = '1'
         }
     }
 })
 
 
-document.getElementById('middle').addEventListener('touchend', ()=>{
+document.getElementById('middle').addEventListener('touchend', () => {
     $('#right').css('transition', '.1s ease-out')
     $('#right').css('left', `100%`)
     $("#right").data("closed", true);
     $("#right").data("opened", false);
 })
-document.querySelector('#right').addEventListener('click', (e)=>{
+document.querySelector('#right').addEventListener('click', (e) => {
 
 
- if(e.target.id.slice(0,14)==='imageConverted' || e.target.id.slice(0,14)==='closeright')
- {
-    $('#right').css('transition', '.1s ease-out')
-    $('#right').css('left', `100%`)
-    $("#right").data("closed", true);
-    $("#right").data("opened", false);
- }
+    if (e.target.id.slice(0, 14) === 'imageConverted' || e.target.id.slice(0, 14) === 'closeright') {
+        $('#right').css('transition', '.1s ease-out')
+        $('#right').css('left', `100%`)
+        $("#right").data("closed", true);
+        $("#right").data("opened", false);
+    }
 })
 ///zoom canvas
+const zoom = document.querySelector("#zoomable");
+
 const content = document.getElementById('canvas');
+
+
+content.addEventListener('mousemove', e => {
+    console.log('scroll', e.offsetY);
+
+    // return(e.offsetX, e.offsetY)
+    window.xPos = e.offsetX;
+    window.yPos = e.offsetY
+})
+
+// const contentInitialHeight=getComputedStyle(content).height.replace('px','');
+// alert(getComputedStyle(content).transformOrigin)
+const initialOrigin = getComputedStyle(content).transformOrigin
 var zX = 1;
 document.querySelector('#zoomable').addEventListener('wheel', function (e) {
-    var dir;
+    // var dir;
+
     if (e.ctrlKey) {
+        // dir = (e.deltaY > 0) ? 0.1 : -0.1;
+
+        if (e.deltaY < 0) {
+            if (zX < 5)
+                zX += 0.1;
+        } else {
+            if (zX > 0.2)
+                zX -= 0.1
+
+        }
+
+
+        content.style.transform = `scale( ${zX})`;
+
+        if (zX > 1)
+            content.style.transformOrigin = '0 0'
+        else
+            content.style.transformOrigin = initialOrigin
+
+        zoom.scrollTop = window.yPos
+        zoom.scrollLeft = window.xPos
+
         return;
     }
-    // alert('a')
-    dir = (e.deltaY > 0) ? 0.1 : -0.1;
-    zX += dir;
-   
-         content.style.transform = 'scale(' + zX + ')';
-        
-
-    e.preventDefault();
     return;
 });
 
+
+///prevent zooming while pressing ctrl
+document.querySelector('#wholecontainer').addEventListener('wheel', function (e) {
+    // var dir;
+    if (e.ctrlKey) {
+
+        e.preventDefault()
+    }
+    return;
+})

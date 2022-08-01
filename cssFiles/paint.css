@@ -15,7 +15,10 @@ html {
     min-height: -webkit-fill-available;
 
 }
-
+/* #zoomable::-webkit-scrollbar {
+    width: 0px;
+    height:0
+} */
 #showImgBtn {
     position: relative;
     background: black;
@@ -426,15 +429,16 @@ background-image: radial-gradient(circle, rgba(49, 49, 49, 1) 23%, rgba(32, 32, 
 
 canvas {
     border: 5px solid black;
+    box-sizing: border-box;
     /* width: 80%;
     height: 80%; */
     /* margin-left: calc(20% - 4px); */
     object-fit: contain;
     background-color: white;
-    overflow: hidden;
+    /* overflow: hidden; */
     cursor: crosshair;
     /* box-sizing: border-box; */
-    margin-top: 0 !important
+    /* margin-top: 0 !important */
 }
 
 canvas:hover {

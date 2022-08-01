@@ -1668,10 +1668,6 @@ $(document).ready(function () {
 
     // });
 
-$c.on('mousemove', e=>{
-    console.log('clientX: ', e.offsetX);
-    
-})
 
 
 
@@ -1728,7 +1724,7 @@ $c.on('mousemove', e=>{
                 var x = touch.pageX;
                 var y = touch.pageY;
 
-                $ctx.lineTo(e.offsetX, e.offsetY);
+                $ctx.lineTo(x - $c.offset().left, y - $c.offset().top);
 
 
 
