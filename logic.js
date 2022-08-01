@@ -371,4 +371,22 @@ document.querySelector('#right').addEventListener('click', (e)=>{
     $("#right").data("opened", false);
  }
 })
+///zoom canvas
+const content = document.getElementById('canvas');
+var zX = 1;
+document.querySelector('#zoomable').addEventListener('wheel', function (e) {
+    var dir;
+    if (e.ctrlKey) {
+        return;
+    }
+    // alert('a')
+    dir = (e.deltaY > 0) ? 0.1 : -0.1;
+    zX += dir;
+   
+         content.style.transform = 'scale(' + zX + ')';
+        
+
+    e.preventDefault();
+    return;
+});
 

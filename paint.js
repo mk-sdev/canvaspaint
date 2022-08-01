@@ -1668,7 +1668,14 @@ $(document).ready(function () {
 
     // });
 
+$c.on('mousemove', e=>{
+    console.log('clientX: ', e.offsetX);
+    
+})
 
+
+
+  
     let isPencil
     $c.on('mousedown touchstart', (e) => {
         //tyuf
@@ -1691,7 +1698,7 @@ $(document).ready(function () {
                 $ctx.moveTo(x - $c.offset().left, y - $c.offset().top);
 
             } else {
-                $ctx.moveTo(e.clientX - $c.offset().left, e.clientY - $c.offset().top);
+                $ctx.moveTo(e.offsetX, e.offsetY);
             }
 
             e.preventDefault()
@@ -1721,12 +1728,12 @@ $(document).ready(function () {
                 var x = touch.pageX;
                 var y = touch.pageY;
 
-                $ctx.lineTo(x - $c.offset().left, y - $c.offset().top);
+                $ctx.lineTo(e.offsetX, e.offsetY);
 
 
 
             } else {
-                $ctx.lineTo(e.clientX - $c.offset().left, e.clientY - $c.offset().top);
+                $ctx.lineTo(e.offsetX, e.offsetY);
             }
 
             //$ctx.stroke(); // Draw it

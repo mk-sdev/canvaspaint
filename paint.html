@@ -4,8 +4,8 @@
 <head>
 
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0", user-scalable=no>
     <title>paint 2.0</title>
     <link rel="stylesheet" href="cssFiles/paint.css">
     <link rel="stylesheet" href="cssFiles/tools.css">
@@ -33,8 +33,10 @@
 </head>
 
 <body onload="document.body.classList.add('loaded')">
+    
     <div id="beforeload" style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif" onload="showLoader()"></div>
     <script type="text/javascript">
+        
         function showLoader(){
             $('#beforeload').LoadingOverlay("show", {
                 background: "rgba(0, 0, 0, 0)",
@@ -472,8 +474,12 @@
                 <button id="download1"><span id='ds1' class="font-awesome-icons fa-arrow-down">Download</span></button>
             </div>
 
-            <div id="middle">
-                <canvas id="canvas"></canvas>
+            <div id="middle" style="overflow: auto">
+
+             <div id="zoomable" style=" background: red; overflow: auto; width: 100%">
+                <canvas id="canvas"  ></canvas>
+            </div>
+
                 <span style="display: table; margin: 0 auto; font-size: 15px;">&nbsp;</span>
             </div>
             <div id="swiper"> <div><i class="fa-solid fa-arrow-left-long"></i> swipe here <i class="fa-solid fa-arrow-right-long"></i></div></div>
