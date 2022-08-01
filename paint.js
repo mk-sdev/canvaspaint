@@ -1,4 +1,4 @@
-// dodawanie zdjeć, color picker i tooltip dla range'y, poprawić colors, wysokość canvasa a wysokoś urządzenia, tablinks, responsywne options poniżej 1100px, może poprawić download, tools width after zooming in refreshing and zooming out, background toolsów na 1100px, wysokość #options i #download na szerszych ekranach, disable landscape mode, plugin loading spinner, tools cień, choose between screen width or window.innerwidth in logic.js, poprawić span w uploaded, przyciąć buttony może, poprawić zmianę orientacji
+// dodawanie zdjeć, poprawić colors, wysokość canvasa a wysokoś urządzenia, tablinks, responsywne options poniżej 1100px, może poprawić download, tools width after zooming in refreshing and zooming out, background toolsów na 1100px, wysokość #options i #download na szerszych ekranach, disable landscape mode, tools cień, choose between screen width or window.innerwidth in logic.js, poprawić span w uploaded, przyciąć buttony może, poprawić zmianę orientacji, przyciąć button download, undo n amobilnych
 //=== zamiast ==, usunąć zbędne komentarze
 $(window).load(function () {
     // PAGE IS FULLY LOADED  
@@ -30,11 +30,15 @@ $(document).ready(function () {
     let ranges_array = []
     let index = -1
     restore_array.push($ctx.getImageData(0, 0, $c.width(), $c.height()))
-    ranges_array.push({red: $('#red').val(), green: $('#green').val(),
-     blue: $('#blue').val(), light: $('#lightness').val()})
+    ranges_array.push({
+        red: $('#red').val(),
+        green: $('#green').val(),
+        blue: $('#blue').val(),
+        light: $('#lightness').val()
+    })
     index++
 
-console.log('pierwsze array',ranges_array[0])
+    console.log('pierwsze array', ranges_array[0])
 
 
     $('#undo').on('click', () => {
@@ -42,25 +46,25 @@ console.log('pierwsze array',ranges_array[0])
 
             $ctx.fillStyle = 'white'
             $ctx.fillRect(0, 0, $c.width(), $c.height())
-           
+
             //index = -1
-          //  $('#lineWidthPencil').attr('value', '100')
-//alert(ranges_array[index].red)
+            //  $('#lineWidthPencil').attr('value', '100')
+            //alert(ranges_array[index].red)
             // $('#red').attr('value', `12` )
             $('#red').val(127)
-            $('#green').attr('value', `127` )
-            $('#blue').attr('value', `127` )
-            $('#lightness').attr('value', `127` )
+            $('#green').attr('value', `127`)
+            $('#blue').attr('value', `127`)
+            $('#lightness').attr('value', `127`)
             //tutaj jeszcze poustawiać wszystko na 127
         } else {
             index -= 1
             restore_array.pop()
             ranges_array.pop()
-//alert(ranges_array[index])
+            //alert(ranges_array[index])
 
             $ctx.putImageData(restore_array[index], 0, 0)
-            console.log('ppp',ranges_array[index].red, 'ppp');
-            console.log('redvl',$('#red').val());
+            console.log('ppp', ranges_array[index].red, 'ppp');
+            console.log('redvl', $('#red').val());
 
             //z jakiegoś jebitnego powodu nie chce się ustawić 
             // $('#red').attr('value', `${ranges_array[index].red}` )
@@ -69,32 +73,36 @@ console.log('pierwsze array',ranges_array[0])
             $('#blue').val(ranges_array[index].blue)
             $('#lightness').val(ranges_array[index].light)
 
-          
-            
+
+
         }
         //console.log(index, restore_array)
 
     })
 
-    
+
     function undofn(e, t) {
         if (e.type != 'mouseout') {
             restore_array.push($ctx.getImageData(0, 0, $c.width(), $c.height()))
             console.log(t, 't')
-            if(t===undefined)
-            t={red: $('#red').val(), green: $('#green').val(),
-            blue: $('#blue').val(), light: $('#lightness').val()}
+            if (t === undefined)
+                t = {
+                    red: $('#red').val(),
+                    green: $('#green').val(),
+                    blue: $('#blue').val(),
+                    light: $('#lightness').val()
+                }
             console.log(t, 'tt')
 
             ranges_array.push(t)
-            console.log('push', ranges_array[index+1], t);
-            
+            console.log('push', ranges_array[index + 1], t);
+
             index += 1
         }
         // console.log(index, restore_array)
     }
 
-   
+
 
 
 
@@ -105,24 +113,27 @@ console.log('pierwsze array',ranges_array[0])
     let j = 0;
     let savedimg = []
     $('#uploadImage').on('input', (e) => {
+        // $('#uploadspan').css('display', 'none')
+        savedimg[j] = $(`<image src="${$('#uploadImage').val()}"  id="imageUploaded${j}" class="img imgUploaded" crossorigin='anonymous' onerror="$('#imageUploaded${j}').remove();  " />`)
 
-        $('#uploadspan').css('display', 'none')
-        savedimg[j] = $(`<image src="${$('#uploadImage').val()}"  id="imageUploaded${j}" class="img imgUploaded" crossorigin='anonymous' onerror="$('#imageUploaded${j}').remove();  $('#uploadspan').css('display', 'block') " />`)
-       
         $('#middle span').html('If the address is proper, you should see your image in images > gallery > uploaded')
         $('#middle span').css('color', 'white')
 
         $('#swiper').html('If the address is proper, you should see your image in images > gallery > uploaded')
-        $('#middle span').css('color', 'white')
+        $('#swiper').css('color', 'white')
 
         $('#uploadedImagesDiv').prepend(savedimg[j])
-console.log('asdfgh', $('#uploadedImadesDiv').children().length);
-
-        // if($('#uploadedImadesDiv').children().length>0)
-    
+      
+        setTimeout(()=>{
+        console.log('Dzieci', $("#uploadedImagesDiv").children().length);
+        if ($("#uploadedImagesDiv").children().length > 0) {
+            $('#uploadspan').css('display', 'none')
+        }
+          
+        }, 10)
 
         j++
-       
+
     })
 
     $('#clear').on('click', (e) => {
@@ -135,13 +146,19 @@ console.log('asdfgh', $('#uploadedImadesDiv').children().length);
         $('#middle span').html('You cleared the canvas. You can undo it by clicking the undo button.')
         $('#middle span').css('color', 'white')
 
+        $('#swiper').html('You cleared the canvas. You can undo it by clicking the undo button.')
+        $('#swiper').css('color', 'white')
+
 
     })
     //cleaning the span below the canvas
-    $c.on('click', () => {
+    $c.on('click touchstart', () => {
         if (!$('#middle span').text().length == 0 && whichBtn !== 'text' && whichBtn !== 'select') {
             // $('#middle span').css('color', 'transparent')
             $('#middle span').html('')
+
+            $('#swiper').css('color', 'silver')
+            $('#swiper').html('<div><i class="fa-solid fa-arrow-left-long"></i> swipe here <i class="fa-solid fa-arrow-right-long"></i></div>')
         }
     })
 
@@ -183,6 +200,10 @@ console.log('asdfgh', $('#uploadedImadesDiv').children().length);
         $('#middle span').css('color', 'white')
 
         $('#middle > span').html("You created a new draft! Click on it any time you want in order to display it again on the canvas.")
+
+
+        $('#swiper').html('You created a new draft! Click on it any time you want in order to display it again on the canvas.')
+        $('#swiper').css('color', 'white')
     })
 
     //let elemnt = window.dzieci
@@ -194,18 +215,18 @@ console.log('asdfgh', $('#uploadedImadesDiv').children().length);
         $('#uploadImage').val('')
 
         if ($('input[name=radioCopy]').is(':checked')) {
-           // console.log('copy');
+            // console.log('copy');
         }
         if ($('input[name=radioDelete]').is(':checked')) {
-          //  console.log('Delete');
+            //  console.log('Delete');
         }
         if ($('input[name=radioCut]').is(':checked')) {
-           // console.log('Cut');
+            // console.log('Cut');
         }
 
 
 
-       // console.log('wwwwww', e.target.id);
+        // console.log('wwwwww', e.target.id);
         //console.log('ss', e.target.id.slice(0, 14));
         if (e.target.id.slice(0, 7) == 'tablink') {
             for (let i = 1; i <= $(".tablink").length; i++) {
@@ -273,7 +294,7 @@ console.log('asdfgh', $('#uploadedImadesDiv').children().length);
 
         }
 
-    
+
     })
 
     $('#showImgBtn').on('click', (e) => {
@@ -286,7 +307,7 @@ console.log('asdfgh', $('#uploadedImadesDiv').children().length);
     const closebtn = $('#close')
 
     $(window).click((event) => {
-       // console.log(event.target.id)
+        // console.log(event.target.id)
         if (event.target.id == 'id01' || event.target.id == 'close' || event.target.id.slice(0, 3) == 'img' || event.target.id.slice(0, 13) == 'imageUploaded' || event.target.id.slice(0, 3) == 'obj' || event.target.id.slice(0, 13) == 'imageSelected') {
             modal.css('background-color', 'rgb(0,0,0,0)');
             closebtn.css('display', 'none');
@@ -357,13 +378,16 @@ console.log('asdfgh', $('#uploadedImadesDiv').children().length);
     })
 
 
-  
+
     $('#red').on('mousedown touchstart', (e) => {
         $(this).data('prevValue', $('#red').val())
+        console.log('redddd', $('#red').val())
 
-    }).on('mouseup touchend', (e) => {
+    }).on('input change', (e) => {
         let prevValue = $(this).data('prevValue')
         let difference = $('#red').val() - prevValue
+        console.log('current red', $('#red').val());
+        
         let a = $ctx.getImageData(0, 0, $c.width(), $c.height())
         const data = a.data;
         //let val = $('#red').val()
@@ -373,9 +397,21 @@ console.log('asdfgh', $('#uploadedImadesDiv').children().length);
             data[i + 2] = data[i + 2]; // blue
         }
         $ctx.putImageData(a, 0, 0)
-        console.log('#red tt',{red: $('#red').val(), green: $('#green').val(), blue: $('#blue').val(), light: $('#lightness').val()} );
-        
-        undofn(e, {red: $('#red').val(), green: $('#green').val(), blue: $('#blue').val(), light: $('#lightness').val()})
+        // console.log('#red tt', {
+        //     red: $('#red').val(),
+        //     green: $('#green').val(),
+        //     blue: $('#blue').val(),
+        //     light: $('#lightness').val()
+        // });
+
+       
+    }).on('mouseup touchend', e=>{
+        undofn(e, {
+            red: $('#red').val(),
+            green: $('#green').val(),
+            blue: $('#blue').val(),
+            light: $('#lightness').val()
+        })
     })
 
 
@@ -395,7 +431,12 @@ console.log('asdfgh', $('#uploadedImadesDiv').children().length);
             data[i + 2] = data[i + 2]; // blue
         }
         $ctx.putImageData(a, 0, 0)
-        undofn(e, {red: $('#red').val(), green: $('#green').val(), blue: $('#blue').val(), light: $('#lightness').val()})
+        undofn(e, {
+            red: $('#red').val(),
+            green: $('#green').val(),
+            blue: $('#blue').val(),
+            light: $('#lightness').val()
+        })
     })
 
     $('#blue').on('mousedown touchstart', (e) => {
@@ -414,7 +455,12 @@ console.log('asdfgh', $('#uploadedImadesDiv').children().length);
             data[i + 2] = data[i + 2] + difference; // blue
         }
         $ctx.putImageData(a, 0, 0)
-        undofn(e, {red: $('#red').val(), green: $('#green').val(), blue: $('#blue').val(), light: $('#lightness').val()})
+        undofn(e, {
+            red: $('#red').val(),
+            green: $('#green').val(),
+            blue: $('#blue').val(),
+            light: $('#lightness').val()
+        })
     })
 
 
@@ -436,7 +482,12 @@ console.log('asdfgh', $('#uploadedImadesDiv').children().length);
             data[i + 2] = data[i + 2] + difference; // blue
         }
         $ctx.putImageData(a, 0, 0)
-        undofn(e, {red: $('#red').val(), green: $('#green').val(), blue: $('#blue').val(), light: $('#lightness').val()})
+        undofn(e, {
+            red: $('#red').val(),
+            green: $('#green').val(),
+            blue: $('#blue').val(),
+            light: $('#lightness').val()
+        })
     })
 
 
@@ -614,7 +665,7 @@ console.log('asdfgh', $('#uploadedImadesDiv').children().length);
     //    })
     // }
 
-let box, x;
+    let box, x;
     $('#pencil').on('click', () => {
 
         for (let i = 0; i < $('.Options').length; i++) {
@@ -624,9 +675,9 @@ let box, x;
             $('#pencilOptions').slideDown(200)
         $('#pencilOptions').css('display', 'flex')
         whichBtn = 'pencil'
-        
-        
-        box=$('#pencilOptions')
+
+
+        box = $('#pencilOptions')
     })
     $('#line').on('click', () => {
 
@@ -638,7 +689,7 @@ let box, x;
 
         $('#lineOptions').css('display', 'flex')
         whichBtn = 'line'
-        box=$('#lineOptions')
+        box = $('#lineOptions')
 
 
     })
@@ -652,7 +703,7 @@ let box, x;
 
         $('#shapeOptions').css('display', 'flex')
         whichBtn = 'shape'
-        box=$('#shapeOptions')
+        box = $('#shapeOptions')
 
     })
     $('#text').on('click', () => {
@@ -670,7 +721,7 @@ let box, x;
 
         $('#textOptions').get(0).scrollTop = 0
         whichBtn = 'text'
-        box=$('#textOptions')
+        box = $('#textOptions')
 
     })
 
@@ -684,7 +735,7 @@ let box, x;
             $('#colorsOptions').slideDown(200)
         $('#colorsOptions').css('display', 'flex')
         whichBtn = 'colors'
-        box=$('#colorsOptions')
+        box = $('#colorsOptions')
 
     })
     $('#select').on('click', () => {
@@ -712,7 +763,7 @@ let box, x;
             $('#imagesOptions').slideDown(200)
         $('#imagesOptions').css('display', 'flex')
         whichBtn = 'images'
-        box=$('#imagesOptions')
+        box = $('#imagesOptions')
     })
     // $('#uploaderbtn').on('change', (e)=>{
     //     let image = $('#output')
@@ -746,8 +797,23 @@ let box, x;
         document.querySelector('#hr').style.display = "none"
         // document.querySelectorAll('.btn').style.color='rgba(255, 0, 0, 1)'
         window.mobile = true
-        
-        
+
+        let nrofchange = 0
+        //chyba nie działa na safari i na pewno na ie :(
+        screen.orientation.addEventListener("change", e => {
+
+            nrofchange++
+            if (nrofchange % 2 == 1) {
+                document.querySelector('#orientation').style.display = 'block'
+                document.querySelector('#wholecontainer').style.display = 'none'
+
+            } else {
+                document.querySelector('#orientation').style.display = 'none'
+                document.querySelector('#wholecontainer').style.display = 'block'
+            }
+
+        });
+
     } //nowe
 
     // let lineWidthPencil;
@@ -1254,6 +1320,9 @@ let box, x;
                 $('#middle span').html('Visit images > gallery > selected to use the selected area')
                 $('#middle span').css('color', 'white')
 
+
+                $('#swiper').html('Visit images > gallery > selected to use the selected area')
+                $('#swiper').css('color', 'white')
                 k++
                 // $('#images').click()
             }
@@ -1485,6 +1554,8 @@ let box, x;
                 $('#middle > span').html('You have to type some text firstly.')
                 $('#middle span').css('color', 'white')
 
+                $('#swiper').html('You have to type some text firstly.')
+                $('#swiper').css('color', 'white')
             }
 
         } else $('#middle > span').html('&nbsp;')
@@ -1735,7 +1806,7 @@ let box, x;
 
 
     // })
-    
+
     // $('#leftar').on('click', e=>{
     //     $('#textOptions').animate({
     //         scrollLeft: 70
@@ -1746,18 +1817,18 @@ let box, x;
 
 
 
-    $(".arrow").click(function() {
-      if ($(this).hasClass("arrow-right")) {
-        x = ((box.width() / 2)) + box.scrollLeft();
-        box.animate({
-          scrollLeft: x,
-        })
-      } else {
-        x = ((box.width() / 2)) - box.scrollLeft();
-        box.animate({
-          scrollLeft: -x,
-        })
-      }
+    $(".arrow").click(function () {
+        if ($(this).hasClass("arrow-right")) {
+            x = ((box.width() / 2)) + box.scrollLeft();
+            box.animate({
+                scrollLeft: x,
+            })
+        } else {
+            x = ((box.width() / 2)) - box.scrollLeft();
+            box.animate({
+                scrollLeft: -x,
+            })
+        }
     })
 
 
@@ -1765,25 +1836,10 @@ let box, x;
 
 });
 
-let nrofchange=0
-//chyba nie działa na safari i na pewno na ie :(
-screen.orientation.addEventListener("change", e=>{
 
-    nrofchange++
-    if(nrofchange%2==1){
-    document.querySelector('#orientation').style.display='block'
-    document.querySelector('#wholecontainer').style.display='none'
-
-    }
-    else{
-    document.querySelector('#orientation').style.display='none'
-    document.querySelector('#wholecontainer').style.display='block'
-    }
-
-});
 //and the depreciated version:
 // $(window).on("orientationchange", function( event ) {
-    
+
 //     // $("#orientation").text( "This device is in " + event.orientation + " mode!");
 //      nrofchange++
 //      if(nrofchange%2==1)
@@ -1794,7 +1850,7 @@ screen.orientation.addEventListener("change", e=>{
 
 
 
-   
+
 // let dataURI = []
 // let savedimage = []
 // let i = 0

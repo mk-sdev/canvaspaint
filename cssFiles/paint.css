@@ -5,10 +5,15 @@ body {
     min-height: 100vh;
 }
 
+body:not(.loaded) #slider img {
+    display: none;
+}
+
 body,
 html {
     overflow-x: hidden;
     min-height: -webkit-fill-available;
+
 }
 
 #showImgBtn {
@@ -63,20 +68,21 @@ html {
     z-index: 999;
     position: absolute;
 }
-#orientation{
+
+#orientation {
     display: none;
     z-index: 99999;
 
     width: 100vw;
     height: 100vh;
-line-height: 50vh;
-font-size: 100%;
-font-family: Verdana, Geneva, Tahoma, sans-serif;
+    line-height: 50vh;
+    font-size: 100%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     overflow-x: hidden;
     position: absolute;
-  text-align: center;
-  background: rgb(33,51,2);
-  background: linear-gradient(131deg, rgba(33,51,2,1) 0%, rgba(59,2,41,1) 100%);
+    text-align: center;
+    background: rgb(33, 51, 2);
+    background: linear-gradient(131deg, rgba(33, 51, 2, 1) 0%, rgba(59, 2, 41, 1) 100%);
 }
 
 /* @media screen and (min-width: 320px) and (max-width: 900px) and (orientation: landscape) {
@@ -265,6 +271,7 @@ input[type=checkbox] {
 
 #uploadImage {
     outline: none;
+    border-color: dimgrey;
     background-color: grey;
     color: black;
     cursor: pointer;
@@ -436,6 +443,9 @@ canvas:hover {
 
 
 
+#closeright {
+    display: none;
+}
 
 #right {
     width: 19.2%;
@@ -638,10 +648,12 @@ hr {
     height: 100%;
     width: 100%
 }
-.test{
+
+.test {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 1px;
 }
+
 .brp1 #savedImages {
     width: 90%;
     margin: auto;
@@ -781,6 +793,24 @@ hr {
 
 }
 
+.brp4 #closeright {
+    display: block;
+    background-color: rgba(255, 0, 0, .1);
+    width: fit-content;
+    padding: 5px;
+    border-radius: 5px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    right: -139px !important;
+
+    position: relative;
+    /* right: -150px; */
+    bottom: 40px;
+    color: rgba(255, 0, 0, 0.567)
+}
+#swiper >div{
+    margin-top: 10px;
+    color: silver
+}
 .brp4 #right {
     display: block;
     position: fixed;
@@ -806,11 +836,11 @@ hr {
     overflow-y: auto;
     max-height: none;
     height: 100%;
-backdrop-filter: blur(1px);
+    backdrop-filter: blur(1px);
 
     -webkit-box-shadow: inset 0px 0px 24px 0px rgba(40, 40, 40, 1);
--moz-box-shadow: inset 0px 0px 24px 0px rgba(40, 40, 40, 1);
-box-shadow: inset 0px 0px 24px 0px rgba(40, 40, 40, 1);
+    -moz-box-shadow: inset 0px 0px 24px 0px rgba(40, 40, 40, 1);
+    box-shadow: inset 0px 0px 24px 0px rgba(40, 40, 40, 1);
 }
 
 .brp4 #savedImages::-webkit-scrollbar {
@@ -824,7 +854,7 @@ box-shadow: inset 0px 0px 24px 0px rgba(40, 40, 40, 1);
     word-break: break-word !important;
     word-wrap: break-word !important;
     overflow-wrap: break-word !important;
-color: black;
+    color: black;
     white-space: pre-line !important;
 
 }
@@ -864,8 +894,16 @@ color: black;
     font-family: Arial, Helvetica, sans-serif;
     /* padding-top: 10px; */
     color: silver;
-    background-color: brown;
+    /* background-color: brown; */
 }
-.brp5 #swiper{
+
+.brp5 #swiper {
     font-size: 13px
+}
+
+.fa-arrow-left-long,
+.fa-arrow-right-long {
+    color: silver;
+
+    vertical-align: sub
 }

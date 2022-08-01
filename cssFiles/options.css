@@ -335,8 +335,8 @@ max-height: none
     /* margin-left: auto;
     margin-right: auto; */
     /* background-color: aqua; */
-    padding-right: 5px !important;
-    padding-left: 5px;
+    padding-right: 25px !important;
+    padding-left: 25px;
     position: absolute;
     /* top: 45px */
     bottom: 0 !important;
@@ -427,3 +427,62 @@ backdrop-filter: blur(1px);
     /* background-color: blue; */
 }
 
+.brp4 input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+    /* width: 90%; */
+}
+
+
+/***** Track Styles *****/
+/***** Chrome, Safari, Opera, and Edge Chromium *****/
+.brp4 input[type="range"]::-webkit-slider-runnable-track {
+    background: gray;
+    border-radius: 2px;
+    border: .1px solid black;
+    height: 0.3rem;
+}
+
+/******** Firefox ********/
+.brp4 input[type="range"]::-moz-range-track {
+    background: gray;
+    border-radius: 2px;
+
+    height: 0.3rem;
+}
+
+/***** Thumb Styles *****/
+/***** Chrome, Safari, Opera, and Edge Chromium *****/
+.brp4 input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    /* Override default look */
+    appearance: none;
+    margin-top: -10px;
+    /* Centers thumb on the track */
+    background-color: black;
+    border: 1px solid white;
+    border-radius: 10px;
+    height: 1.5rem;
+    width: .4rem;
+}
+
+/***** Thumb Styles *****/
+/***** Firefox *****/
+.brp4 input[type="range"]::-moz-range-thumb {
+    border: none;
+    /*Removes extra border that FF applies*/
+    border: 1px solid white;
+    margin-top: -5px;
+
+    border-radius: 10px;
+    /*Removes default border-radius that FF applies*/
+    margin-top: -10px;
+    /* Centers thumb on the track */
+    background-color: black;
+    border: 1px solid white;
+    border-radius: 10px;
+    height: 1.5rem;
+    width: .4rem;
+}

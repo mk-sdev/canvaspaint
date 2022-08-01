@@ -27,10 +27,12 @@
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"></script>
 
+    <script src="paint.js" crossorigin="use-credentials" defer></script>
+
 
 </head>
 
-<body>
+<body onload="document.body.classList.add('loaded')">
     <div id="beforeload" style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif" onload="showLoader()"></div>
     <script type="text/javascript">
         function showLoader(){
@@ -48,13 +50,13 @@
             setTimeout(function(){
     $('#beforeload').LoadingOverlay("text", "This takes a bit more than I expected...");
 }, 5000);
-// Hide it after 3 seconds
-// setTimeout(function(){
-//     $.LoadingOverlay("hide");
-// }, 3000);
+
         }
         showLoader()
     </script>
+
+
+
     <div id="orientation"><p style="height: 20px">Please go back to the previous orientation mode</p>
         <img src="images/pencil-solid.png" alt="" style="opacity: .2; height: 100vh; position: absolute; top: 0; transform: translate(-10%, 0);">
     </div>
@@ -406,10 +408,10 @@
                     <div id="lightdiv"><span><b>Lightness</b></span>
                         <input type="range" id="lightness" value="127" max="255" min="0"
                             style="margin-left: auto; margin-right: auto"></div>
-                    <hr>
+                    <!-- <hr>
                     <div><span><b>Contrast</b></span>
                         <input type="range" id="contrast" value="127" max="255" min="0"
-                            style="margin-left: auto; margin-right: auto"></div>
+                            style="margin-left: auto; margin-right: auto"></div> -->
                     <!-- <div><span><b>Saturation</b></span>
     <input type="range" id="sat" value="0" max="1" min="0" step="0.01"
         style="margin-left: auto; margin-right: auto"></div> -->
@@ -474,7 +476,7 @@
                 <canvas id="canvas"></canvas>
                 <span style="display: table; margin: 0 auto; font-size: 15px;">&nbsp;</span>
             </div>
-            <div id="swiper"> <i class="fa-solid fa-arrow-left-long"></i> swipe here <i class="fa-solid fa-arrow-right-long"></i></div>
+            <div id="swiper"> <div><i class="fa-solid fa-arrow-left-long"></i> swipe here <i class="fa-solid fa-arrow-right-long"></i></div></div>
             <div id="right">
                 <div id="savedImages">
                     <!-- <img src="" id="imageConverted" -->
@@ -482,7 +484,7 @@
                     
                     <span>No drafts yet. Click the save button to create one</span>
                 </div>
-                <b id="closeright" style="position: relative; right: -150px; bottom: 30px; color: red">close</b>
+                <b id="closeright">close</b>
                 <button id="download"><span id="ds" class="font-awesome-icons fa-arrow-down">Download</span></button>
 
             </div>
@@ -507,7 +509,6 @@
                 <button class="tablink" id="tablink2">Objects</button>
                 <button class="tablink" id="tablink3">Uploaded</button>
                 <button class="tablink" id="tablink4">Selected</button>
-                <button class="tablink" id="tablink5">GOogle</button>
             </div>
             <!-- <button class="tablink" onclick="openTab('Oslo', this, 'orange')">Oslo</button> -->
 
@@ -565,10 +566,7 @@
             </div>
 
            
-            <div id="tabCon5" class="tabcontent">
-                <div id="googleDiv" class="galleryDiv"></div>
-
-            </div>
+      
 
         </div>
     </div>
@@ -579,7 +577,6 @@
 
    
 
-    <script src="paint.js" crossorigin="use-credentials"></script>
 </body>
 
 </html>
