@@ -377,11 +377,11 @@ const content = document.getElementById('canvas');
 
 
 content.addEventListener('mousemove', e => {
-    console.log('scroll', e.offsetY);
+    // console.log('scroll', e.offsetY);
 
     // return(e.offsetX, e.offsetY)
-    window.xPos = e.offsetX;
-    window.yPos = e.offsetY
+    window.xPos = e.offsetX*1;
+    window.yPos = e.offsetY*1
 })
 
 // const contentInitialHeight=getComputedStyle(content).height.replace('px','');
@@ -429,3 +429,34 @@ document.querySelector('#wholecontainer').addEventListener('wheel', function (e)
     }
     return;
 })
+//////inputs type number'
+const pencilRange  = document.querySelector('#lineWidthPencil')
+const pencilNr = document.querySelector('#lineWidthPencilNr')
+pencilRange.addEventListener('input', ()=>{
+    pencilNr.value=pencilRange.value
+})
+var invalidChars = [
+    "-",
+    "+",
+    "e",
+  ];
+  pencilNr.addEventListener("keydown", function(e) {
+    if (invalidChars.includes(e.key)) {
+      e.preventDefault();
+    }
+  });
+pencilNr.addEventListener('input', e=>{
+// alert(pencilNr.max)
+if(pencilNr.value>Number(pencilNr.max))
+pencilNr.value=50
+if(pencilNr.value<0)
+pencilNr.value=1
+
+    pencilRange.value=pencilNr.value
+
+    if(pencilNr.value=='')
+    pencilRange.value=1
+    // alert(e.target.value)
+})
+///////////////
+

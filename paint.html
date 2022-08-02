@@ -68,41 +68,41 @@
         <div class="tools" id="Tools">
 
 
-            <button id="save" class="btn">
+            <button title='Shift + S' id="save" class="btn">
                 <i class="fa-solid fa-floppy-disk"></i>
             </button>
-            <button id="undo" class="btn">
+            <button title='Ctrl + Z' id="undo" class="btn">
                 <i class="fa-solid fa-rotate-left"></i>
             </button>
 
-            <button id="pencil" class="btn">
+            <button title='P' id="pencil" class="btn">
                 <i class="fa-solid fa-pencil"></i>
             </button>
-            <button id="line" class="btn">
+            <button title='L' id="line" class="btn">
                 <i class="fa-solid fa-pen-ruler"></i>
             </button>
-            <button id="shape" class="btn">
+            <button title='H' id="shape" class="btn">
                 <!-- <i class="fa-solid fa-shapes"></i> -->
                 <i class="fa-regular fa-square" style="transform: rotate(7deg)"></i>
                 <!-- <i class="fa-regular fa-square"></i>
             <i class="fa-regular fa-circle" style="margin-left: -25px"></i> -->
 
             </button>
-            <button id="text" class="btn">
+            <button title='T' id="text" class="btn">
                 <i class="fa-solid fa-text-height"></i>
             </button>
             <!-- <button id="modify" clas="btn">modify</button> -->
-            <button id="images" class="btn">
+            <button title='I' id="images" class="btn">
                 <i class="fa-solid fa-image"></i>
             </button>
-            <button id="select" class="btn">
-                <i class="fa-solid fa-vector-square"></i>
+            <button title='S' id="select" class="btn">
+                <i class="fa-solid fa-scissors"></i>
             </button>
-            <button id="colors" class="btn">
+            <button title='C' id="colors" class="btn">
                 <i class="fa-solid fa-paint-roller"></i>
             </button>
 
-            <button id="clear" class="btn">
+            <button title='Delete' id="clear" class="btn">
                 <i class="fa-solid fa-trash"></i>
             </button>
             <button id="download2" class="btn">
@@ -120,8 +120,10 @@
                 <div id="pencilOptions" class='Options' style="display: flex">
                     <!-- <div class="testdiv" ></div> -->
                     <div id="pencilWidth">
-                        <span><b>Width</b></span>
-                        <input type="range" id="lineWidthPencil" value="5" maxvalue="50"></div>
+                        <span><b>Width: </b>
+                            <input type="number" style="width: 50px; color:black" value="5" min="1" max="50" id="lineWidthPencilNr">
+                        </span>
+                        <input type="range" id="lineWidthPencil" value="5" min=1 max="50"></div>
                     <hr>
                     <div>
 
@@ -347,7 +349,7 @@
                 <div id="imagesOptions" class='Options'>
                     <!-- <div class="testdiv"></div> -->
 
-                    <div id="showImages" style="display: flex;"><button id="showImgBtn"><b>GALLERY</b></button>
+                    <div id="showImages" style="display: flex;"><button title='G' id="showImgBtn"><b>GALLERY</b></button>
                     </div>
                     <hr>
                     <!-- <label id="uploader"><input type="file" id="uploaderbtn" style="height: 10px !important" accept="image/*">upload</label> -->
@@ -478,7 +480,7 @@
 
              <div id="zoomable" style="overflow: auto; width: 100%; position: relative;">
              
-                <canvas id="canvas"  style="position: relative"></canvas>
+                <canvas id="canvas"  style="position: relative;" oncontextmenu="return false""></canvas>
             </div>
 
                 <span style="display: table; margin: 0 auto; font-size: 15px;">&nbsp;</span>
@@ -505,7 +507,7 @@
 
     <!-- The Modal -->
     <div id="id01" class="modal">
-        <span id="close">&times;</span>
+        <span title="Escape" id="close">&times;</span>
 
         <!-- Modal Content -->
         <div class="modal-content animate">

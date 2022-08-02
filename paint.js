@@ -38,7 +38,7 @@ $(document).ready(function () {
     })
     index++
 
-    console.log('pierwsze array', ranges_array[0])
+    // console.log('pierwsze array', ranges_array[0])
 
 
     $('#undo').on('click', () => {
@@ -63,8 +63,8 @@ $(document).ready(function () {
             //alert(ranges_array[index])
 
             $ctx.putImageData(restore_array[index], 0, 0)
-            console.log('ppp', ranges_array[index].red, 'ppp');
-            console.log('redvl', $('#red').val());
+            // console.log('ppp', ranges_array[index].red, 'ppp');
+            // console.log('redvl', $('#red').val());
 
             //z jakiegoś jebitnego powodu nie chce się ustawić 
             // $('#red').attr('value', `${ranges_array[index].red}` )
@@ -84,7 +84,7 @@ $(document).ready(function () {
     function undofn(e, t) {
         if (e.type != 'mouseout') {
             restore_array.push($ctx.getImageData(0, 0, $c.width(), $c.height()))
-            console.log(t, 't')
+            // console.log(t, 't')
             if (t === undefined)
                 t = {
                     red: $('#red').val(),
@@ -92,10 +92,10 @@ $(document).ready(function () {
                     blue: $('#blue').val(),
                     light: $('#lightness').val()
                 }
-            console.log(t, 'tt')
+            // console.log(t, 'tt')
 
             ranges_array.push(t)
-            console.log('push', ranges_array[index + 1], t);
+            // console.log('push', ranges_array[index + 1], t);
 
             index += 1
         }
@@ -123,13 +123,13 @@ $(document).ready(function () {
         $('#swiper').css('color', 'white')
 
         $('#uploadedImagesDiv').prepend(savedimg[j])
-      
-        setTimeout(()=>{
-        console.log('Dzieci', $("#uploadedImagesDiv").children().length);
-        if ($("#uploadedImagesDiv").children().length > 0) {
-            $('#uploadspan').css('display', 'none')
-        }
-          
+
+        setTimeout(() => {
+            // console.log('Dzieci', $("#uploadedImagesDiv").children().length);
+            if ($("#uploadedImagesDiv").children().length > 0) {
+                $('#uploadspan').css('display', 'none')
+            }
+
         }, 10)
 
         j++
@@ -140,6 +140,7 @@ $(document).ready(function () {
 
         $ctx.fillStyle = 'white'
         $ctx.fillRect(0, 0, $c.width(), $c.height())
+        // $ctx.clearRect(0, 0, $c.width(), $c.height())
         undofn(e)
         // console.log('czyszczę', $c.width());
         isLine = false
@@ -381,13 +382,11 @@ $(document).ready(function () {
 
     $('#red').on('mousedown touchstart', (e) => {
         $(this).data('prevValue', $('#red').val())
-        console.log('redddd', $('#red').val())
-
+        // console.log('redddd', $('#red').val())
     }).on('input change', (e) => {
         let prevValue = $(this).data('prevValue')
         let difference = $('#red').val() - prevValue
-        console.log('current red', $('#red').val());
-        
+
         let a = $ctx.getImageData(0, 0, $c.width(), $c.height())
         const data = a.data;
         //let val = $('#red').val()
@@ -397,15 +396,8 @@ $(document).ready(function () {
             data[i + 2] = data[i + 2]; // blue
         }
         $ctx.putImageData(a, 0, 0)
-        // console.log('#red tt', {
-        //     red: $('#red').val(),
-        //     green: $('#green').val(),
-        //     blue: $('#blue').val(),
-        //     light: $('#lightness').val()
-        // });
 
-       
-    }).on('mouseup touchend', e=>{
+    }).on('mouseup touchend', e => {
         undofn(e, {
             red: $('#red').val(),
             green: $('#green').val(),
@@ -414,23 +406,24 @@ $(document).ready(function () {
         })
     })
 
-
     $('#green').on('mousedown touchstart', (e) => {
         $(this).data('prevValue', $('#green').val())
-
-    }).on('mouseup touchend', (e) => {
+        // console.log('redddd', $('#red').val())
+    }).on('input change', (e) => {
         let prevValue = $(this).data('prevValue')
         let difference = $('#green').val() - prevValue
 
         let a = $ctx.getImageData(0, 0, $c.width(), $c.height())
         const data = a.data;
-        // let val = $('#green').val()
+        //let val = $('#red').val()
         for (let i = 0; i < data.length; i += 4) {
             data[i] = data[i]; // red
             data[i + 1] = data[i + 1] + difference; // green
             data[i + 2] = data[i + 2]; // blue
         }
         $ctx.putImageData(a, 0, 0)
+
+    }).on('mouseup touchend', e => {
         undofn(e, {
             red: $('#red').val(),
             green: $('#green').val(),
@@ -439,22 +432,49 @@ $(document).ready(function () {
         })
     })
 
+
+
+    // $('#green').on('mousedown touchstart', (e) => {
+    //     $(this).data('prevValue', $('#green').val())
+
+    // }).on('mouseup touchend', (e) => {
+    //     let prevValue = $(this).data('prevValue')
+    //     let difference = $('#green').val() - prevValue
+
+    //     let a = $ctx.getImageData(0, 0, $c.width(), $c.height())
+    //     const data = a.data;
+    //     // let val = $('#green').val()
+    //     for (let i = 0; i < data.length; i += 4) {
+    //         data[i] = data[i]; // red
+    //         data[i + 1] = data[i + 1] + difference; // green
+    //         data[i + 2] = data[i + 2]; // blue
+    //     }
+    //     $ctx.putImageData(a, 0, 0)
+    //     undofn(e, {
+    //         red: $('#red').val(),
+    //         green: $('#green').val(),
+    //         blue: $('#blue').val(),
+    //         light: $('#lightness').val()
+    //     })
+    // })
     $('#blue').on('mousedown touchstart', (e) => {
         $(this).data('prevValue', $('#blue').val())
-
-    }).on('mouseup touchend', (e) => {
+        // console.log('redddd', $('#red').val())
+    }).on('input change', (e) => {
         let prevValue = $(this).data('prevValue')
         let difference = $('#blue').val() - prevValue
 
         let a = $ctx.getImageData(0, 0, $c.width(), $c.height())
         const data = a.data;
-        //let val = $('#blue').val()
+        //let val = $('#red').val()
         for (let i = 0; i < data.length; i += 4) {
             data[i] = data[i]; // red
             data[i + 1] = data[i + 1]; // green
             data[i + 2] = data[i + 2] + difference; // blue
         }
         $ctx.putImageData(a, 0, 0)
+
+    }).on('mouseup touchend', e => {
         undofn(e, {
             red: $('#red').val(),
             green: $('#green').val(),
@@ -464,24 +484,81 @@ $(document).ready(function () {
     })
 
 
+    // $('#blue').on('mousedown touchstart', (e) => {
+    //     $(this).data('prevValue', $('#blue').val())
+
+    // }).on('mouseup touchend', (e) => {
+    //     let prevValue = $(this).data('prevValue')
+    //     let difference = $('#blue').val() - prevValue
+
+    //     let a = $ctx.getImageData(0, 0, $c.width(), $c.height())
+    //     const data = a.data;
+    //     //let val = $('#blue').val()
+    //     for (let i = 0; i < data.length; i += 4) {
+    //         data[i] = data[i]; // red
+    //         data[i + 1] = data[i + 1]; // green
+    //         data[i + 2] = data[i + 2] + difference; // blue
+    //     }
+    //     $ctx.putImageData(a, 0, 0)
+    //     undofn(e, {
+    //         red: $('#red').val(),
+    //         green: $('#green').val(),
+    //         blue: $('#blue').val(),
+    //         light: $('#lightness').val()
+    //     })
+    // })
 
 
 
 
+
+
+
+    // $('#lightness').on('mousedown touchstart', (e) => {
+    //     $(this).data('prevValue', $('#lightness').val())
+    // }).on('mouseup touchend', (e) => {
+    //     let prevValue = $(this).data('prevValue')
+    //     let difference = $('#lightness').val() - prevValue
+    //     let a = $ctx.getImageData(0, 0, $c.width(), $c.height())
+    //     const data = a.data;
+    //     for (let i = 0; i < data.length; i += 4) {
+    //         data[i] = data[i] + difference; // red
+    //         data[i + 1] = data[i + 1] + difference; // green
+    //         data[i + 2] = data[i + 2] + difference; // blue
+    //     }
+    //     $ctx.putImageData(a, 0, 0)
+    //     undofn(e, {
+    //         red: $('#red').val(),
+    //         green: $('#green').val(),
+    //         blue: $('#blue').val(),
+    //         light: $('#lightness').val()
+    //     })
+    // })
 
     $('#lightness').on('mousedown touchstart', (e) => {
         $(this).data('prevValue', $('#lightness').val())
-    }).on('mouseup touchend', (e) => {
+        $(this).data('a', $ctx.getImageData(0, 0, $c.width(), $c.height()))
+        console.log('a', restore_array[index]);
+
+        // console.log('redddd', $('#red').val())
+    }).on('input change', (e) => {
         let prevValue = $(this).data('prevValue')
         let difference = $('#lightness').val() - prevValue
-        let a = $ctx.getImageData(0, 0, $c.width(), $c.height())
+        let a = $(this).data('a')
+
+
+
+
         const data = a.data;
+        //let val = $('#red').val()
         for (let i = 0; i < data.length; i += 4) {
             data[i] = data[i] + difference; // red
             data[i + 1] = data[i + 1] + difference; // green
             data[i + 2] = data[i + 2] + difference; // blue
         }
         $ctx.putImageData(a, 0, 0)
+
+    }).on('mouseup touchend', e => {
         undofn(e, {
             red: $('#red').val(),
             green: $('#green').val(),
@@ -489,6 +566,22 @@ $(document).ready(function () {
             light: $('#lightness').val()
         })
     })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     $('#contrast').on('mousedown touchend', (e) => {
@@ -547,10 +640,10 @@ $(document).ready(function () {
 
         //$ctx.transform(1, -0.01, 0, 1, 0, 0);
         // 
+      
 
-
-        let x = e.clientX - $c.offset().left
-        let y = e.clientY - $c.offset().top
+        let x = e.offsetX 
+        let y = e.offsetY
         let width = window.imagee.width
         let height = window.imagee.height
 
@@ -579,7 +672,7 @@ $(document).ready(function () {
         // let before = $ctx.getImageData(0, 0, $c.width(), $c.height())
 
 
-        if (whichBtn == 'images' && document.body.scrollTop == 0 && document.documentElement.scrollTop == 0) {
+        if (whichBtn == 'images') {
 
 
 
@@ -595,13 +688,14 @@ $(document).ready(function () {
     })
 
     $c.on('mouseout', (e) => {
-        if (whichBtn == 'images' && document.body.scrollTop == 0 && document.documentElement.scrollTop == 0)
+        if (whichBtn == 'images')
             $ctx.putImageData(restore_array[index], 0, 0);
     })
 
     let isImage
     $c.on('mousedown', (e) => {
-        if (whichBtn == 'images' && document.body.scrollTop == 0 && document.documentElement.scrollTop == 0) {
+       
+        if (whichBtn == 'images' && e.button!==1 && e.button!==2) {
             isImage = true
             imageFn(e)
             undofn(e)
@@ -609,7 +703,7 @@ $(document).ready(function () {
         }
     })
 
-
+   
 
 
 
@@ -666,6 +760,8 @@ $(document).ready(function () {
     // }
 
     let box, x;
+
+    
     $('#pencil').on('click', () => {
 
         for (let i = 0; i < $('.Options').length; i++) {
@@ -679,6 +775,8 @@ $(document).ready(function () {
 
         box = $('#pencilOptions')
     })
+
+
     $('#line').on('click', () => {
 
         for (let i = 0; i < $('.Options').length; i++) {
@@ -748,11 +846,7 @@ $(document).ready(function () {
         $('#selectOptions').css('display', 'flex')
         whichBtn = 'select'
     })
-    $('#backColor').on('change', (e) => {
-        $ctx.fillStyle = $('#backColor').val()
-        $ctx.fillRect(0, 0, $c.width(), $c.height())
-        undofn(e)
-    })
+   
 
     $('#images').on('click', () => {
 
@@ -764,6 +858,15 @@ $(document).ready(function () {
         $('#imagesOptions').css('display', 'flex')
         whichBtn = 'images'
         box = $('#imagesOptions')
+    })
+
+
+
+
+    $('#backColor').on('change', (e) => {
+        $ctx.fillStyle = $('#backColor').val()
+        $ctx.fillRect(0, 0, $c.width(), $c.height())
+        undofn(e)
     })
     // $('#uploaderbtn').on('change', (e)=>{
     //     let image = $('#output')
@@ -918,7 +1021,7 @@ $(document).ready(function () {
     $c.on('mousedown touchstart', (e) => {
         // console.log('down');
         // console.log('join lines', isJoin);
-        if (whichBtn == 'line' && document.body.scrollTop == 0 && document.documentElement.scrollTop == 0) {
+        if (whichBtn == 'line'  && e.button!==1 && e.button!==2) {
             isLine = true
             //isJoin = true
             if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua) ||
@@ -933,8 +1036,8 @@ $(document).ready(function () {
 
             } else {
                 mouseDownPos = {
-                    x: e.clientX - $c.offset().left,
-                    y: e.clientY - $c.offset().top
+                    x: e.offsetX,
+                    y: e.offsetY
                 }
             }
 
@@ -973,8 +1076,8 @@ $(document).ready(function () {
 
             } else {
                 currentPos = {
-                    x: e.clientX - $c.offset().left,
-                    y: e.clientY - $c.offset().top
+                    x: e.offsetX,
+                    y: e.offsetY
                 }
             }
 
@@ -1034,8 +1137,8 @@ $(document).ready(function () {
 
 
             let currentPos = {
-                x: e.clientX - $c.offset().left,
-                y: e.clientY - $c.offset().top
+                x: e.offsetX,
+                y: e.offsetY
             }
 
             // let mouseDownPos = {
@@ -1137,7 +1240,7 @@ $(document).ready(function () {
         // console.log('down');
 
 
-        if (whichBtn == 'select' && document.body.scrollTop == 0 && document.documentElement.scrollTop == 0) {
+        if (whichBtn == 'select' && e.button!==1 && e.button!==2) {
             isSelect = true
 
 
@@ -1155,8 +1258,8 @@ $(document).ready(function () {
 
             } else {
                 mouseDownPosSel = {
-                    x: e.clientX - $c.offset().left,
-                    y: e.clientY - $c.offset().top
+                    x: e.offsetX,
+                    y: e.offsetY
                 }
             }
             //console.log('mousedownpos', mouseDownPos);
@@ -1191,8 +1294,8 @@ $(document).ready(function () {
 
             } else {
                 currentPosSel = {
-                    x: e.clientX - $c.offset().left,
-                    y: e.clientY - $c.offset().top
+                    x: e.offsetX,
+                    y: e.offsetY
                 }
             }
 
@@ -1443,7 +1546,7 @@ $(document).ready(function () {
         // console.log('down');
 
 
-        if (whichBtn == 'shape' && document.body.scrollTop == 0 && document.documentElement.scrollTop == 0) {
+        if (whichBtn == 'shape'  && e.button!==1 && e.button!==2) {
             isShape = true
 
 
@@ -1461,8 +1564,8 @@ $(document).ready(function () {
 
             } else {
                 mouseDownPosS = {
-                    x: e.clientX - $c.offset().left,
-                    y: e.clientY - $c.offset().top
+                    x: e.offsetX, 
+                y: e.offsetY
                 }
             }
             //console.log('mousedownpos', mouseDownPos);
@@ -1497,8 +1600,8 @@ $(document).ready(function () {
 
             } else {
                 currentPosS = {
-                    x: e.clientX - $c.offset().left,
-                    y: e.clientY - $c.offset().top
+                    x: e.offsetX, 
+                    y: e.offsetY
                 }
             }
 
@@ -1573,19 +1676,19 @@ $(document).ready(function () {
         if (isChecked1) {
             $ctx.lineWidth = $('#textStrokeWidth').val()
             $ctx.strokeStyle = $('#colorStrokeText').val()
-            $ctx.strokeText(`${$('#textContent').val()}`, e.clientX - $c.offset().left, e.clientY - $c.offset().top);
+            $ctx.strokeText(`${$('#textContent').val()}`, e.offsetX, e.offsetY);
         }
         if (isChecked2) {
             $ctx.fillStyle = $('#colorFillText').val()
             // console.log($('#colorFillText').val());
 
-            $ctx.fillText(`${$('#textContent').val()}`, e.clientX - $c.offset().left, e.clientY - $c.offset().top);
+            $ctx.fillText(`${$('#textContent').val()}`, e.offsetX, e.offsetY);
         }
     }
 
     $c.on('mousemove', (e) => {
         // let before = $ctx.getImageData(0, 0, $c.width(), $c.height())
-        if (whichBtn == 'text' && document.body.scrollTop == 0 && document.documentElement.scrollTop == 0) {
+        if (whichBtn == 'text' ) {
             isText = true
             $ctx.putImageData(restore_array[index], 0, 0);
             textFn(e)
@@ -1595,13 +1698,13 @@ $(document).ready(function () {
     })
 
     $c.on('mouseout', (e) => {
-        if (whichBtn == 'text' && document.body.scrollTop == 0 && document.documentElement.scrollTop == 0)
+        if (whichBtn == 'text' )
             $ctx.putImageData(restore_array[index], 0, 0);
     })
 
     let isText
     $c.on('mousedown', (e) => {
-        if (whichBtn == 'text' && document.body.scrollTop == 0 && document.documentElement.scrollTop == 0) {
+        if (whichBtn == 'text'  && e.button!==1 && e.button!==2) {
             isText = true
 
             textFn(e)
@@ -1671,14 +1774,14 @@ $(document).ready(function () {
 
 
 
-  
+
     let isPencil
     $c.on('mousedown touchstart', (e) => {
         //tyuf
         // console.log(e.type)
 
 
-        if (whichBtn == 'pencil' && document.documentElement.scrollTop == 0 && document.body.scrollTop == 0) {
+        if (whichBtn == 'pencil' && e.button!==1 && e.button!==2) {
             isPencil = true
 
             $ctx.beginPath();
@@ -1701,19 +1804,19 @@ $(document).ready(function () {
         }
     })
 
-    $c.on('mouseup touchend', (e) => {
-        if (document.documentElement.scrollTop > 0 || document.body.scrollTop > 0)
-            document.documentElement.scrollTop = 0
-        document.body.scrollTop = 0
+    // $c.on('mouseup touchend', (e) => {
+    //     if (document.documentElement.scrollTop > 0 || document.body.scrollTop > 0)
+    //         document.documentElement.scrollTop = 0
+    //     document.body.scrollTop = 0
 
-    })
+    // })
 
     $c.on('mousemove touchmove', (e) => {
 
         //  $('body').css('cursor', `url('ja.jpg')`)
 
 
-        if (isPencil && whichBtn == 'pencil' && document.documentElement.scrollTop == 0 && document.body.scrollTop == 0) {
+        if (isPencil && whichBtn == 'pencil') {
             // console.log(e.type)
 
 
@@ -1764,7 +1867,7 @@ $(document).ready(function () {
     $c.on('mouseup touchend', (e) => {
 
 
-        if (whichBtn == 'pencil') {
+        if (whichBtn == 'pencil'&& e.button!==1 && e.button!==2) {
             undofn(e)
             isPencil = false
             $ctx.closePath()
@@ -1834,6 +1937,65 @@ $(document).ready(function () {
         }
     })
 
+
+    /////keyboard shortcuts
+    $(document).on('keyup', e=>{
+        if(!e.ctrlKey && $('input[name=join]').is(':checked')){
+            $('#ljoin').click()
+        }
+    })
+
+    $(document).on('keydown', e=>{
+       
+        if(e.target.id!=='textContent')
+        {
+            if((e.key==='s' || e.key==='S') && e.shiftKey)
+                $('#save').click()
+            
+            if((e.key==='z' || e.key==='Z') && e.ctrlKey)
+                $('#undo').click()
+            
+            if((e.key==='p' || e.key==='P') && !e.shiftKey)
+                $('#pencil').click()
+            
+            if((e.key==='l' || e.key==='L') && !e.shiftKey)
+                $('#line').click()
+            
+            if((e.key==='l' || e.key==='L') && !e.shiftKey)
+                $('#line').click()
+            
+            if(e.ctrlKey && !$('input[name=join]').is(':checked'))
+                $('#ljoin').click()
+            
+            // else $('#ljoin').click()
+            if((e.key==='h' || e.key==='H') && !e.shiftKey)
+                $('#shape').click()
+            
+            if((e.key==='t' || e.key==='T') && !e.shiftKey)
+                $('#text').click()
+            
+            if((e.key==='i' || e.key==='I') && !e.shiftKey)
+                $('#images').click()
+            
+            if((e.key==='s' || e.key==='S') && !e.shiftKey)
+                $('#select').click()
+                // alert(ctrl)
+            
+            if((e.key==='c' || e.key==='C') && !e.shiftKey)
+                $('#colors').click()
+            
+            if((e.key==='Delete') && !e.shiftKey)
+               $('#clear').click()
+            
+
+            if((e.key==='g' || e.key==='G') && !e.ctrlKey)
+                $('#showImgBtn').click()
+            
+            if((e.key==='Escape') && !e.ctrlKey)
+                $('#close').click()
+            
+        }
+    })
 
 
 
