@@ -1,9 +1,70 @@
 /* the rest is in the main css file */
+.brp1 #options {
+    position: absolute;
+    top: 70px;
+    left: -240px;
+    z-index: 10
+}
+/* .brp1 #options::-webkit-scrollbar{
+    width: 10px;
+    direction: rtl;
+}
+#options:hover #options::-webkit-scrollbar{
+    width: 10px !important
+} */
+.brp4 #options {
+    top: -65px
+}
 
-.brp1 #handle-left{
+.brp4 #options,
+.brp4 .Options {
+    width: 100vw !important;
+    flex-direction: column;
+    z-index: 9;
+    position: fixed;
+    margin-left: 0;
+    margin-right: 0;
+    max-height: none
+}
+
+.brp4 #options {
+    display: block;
+    height: 100vh !important;
+    bottom: 65px;
+    z-index: 11;
+    left: -100%;
+    background-color: rgba(32, 32, 32, .3);
+    backdrop-filter: blur(1px);
+}
+
+
+.brp4 .Options {
+    overflow: scroll !important;
+    height: fit-content;
+    padding-right: 25px !important;
+    padding-left: 25px;
+    position: absolute;
+    bottom: 0 !important;
+    background: linear-gradient(0deg, rgba(33, 33, 33, 0.3) 60%, rgba(255, 0, 0, 0) 99.71%);
+}
+
+.brp4 .Options::-webkit-scrollbar {
+    display: none;
+}
+
+.brp4 .Options>div {
+    margin-left: 0;
+    margin-right: 0;
+    padding-right: 0;
+    padding-left: 0;
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%
+}
+
+.brp1 #handle-left {
     position: absolute;
     display: block;
-    /* display: inline-block; */
     right: 0px;
     top: 0px;
     width: 30px;
@@ -14,80 +75,27 @@
     text-align: center;
     line-height: 30px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    transition: display 2s !important
 }
-#handle-left, .brp4 #handle-left{
+#options:hover #handle-left{
+    display: none
+}
+
+#handle-left,
+.brp4 #handle-left {
     display: none;
-    }
-.brp1 #options {
-    /* background-color: brown; */
-    /* margin: auto;
-    overflow-y: hidden; */
-position: absolute;
-top: 70px;
-left: -240px;
-z-index: 10
-    /* margin-top: 30px; */
-    /* background-color: brown; */
 }
-.brp4 #options{
-    top: -65px
-}
-/* .brp1 #imagesOptions {
-    height: 320px !important;
-    /* background-color: blue; */
-/* }*/
-/* 
-.brp1 #download1 {
-    display: block;
-    position: absolute;
-    height: 10%;
-    width: 150px;
-    font-size: 150%;
-    border: 1.5px solid silver;
-    border-radius: 5px;
-    font-family: arial;
-    text-align: center;
-    background-color: rgb(31, 31, 31);
-    left: 50%;
-    transform: translate(-50%);
-    bottom: 5px;
-} */
 
 
 
 
 
 
-
-/* 
-.brp2 #lineOptions {
-    width: 80%;
-    padding-right: 20px
-} */
 
 /* .brp3 #lineOptions {
     width: 100%;
     padding-right: 0
 } */
-/* 
-.brp2 #radiosLine {
-    max-width: 100px;
-}
-
-.brp2 #lineWidth {
-    max-width: 200px;
-
-}
-
-.brp2 #rpdiv2 {
-    max-width: 200px;
-
-}
-
-.brp2 #lineColor {
-    max-width: 200px
-} */
-
 
 
 
@@ -97,11 +105,11 @@ z-index: 10
     width: 400px !important;
 }
 
-/* .brp5 #lineColor,
+.brp5 #lineColor,
 .br4 #lineColor,
 .brp3 #lineColor {
     padding-left: 0 !important
-} */
+}
 
 .brp6 #lineColor {
     padding-left: 20px
@@ -111,49 +119,6 @@ z-index: 10
     width: 100%
 }
 
-/* ///////////////////////////// */
-
-/* 
-
-
- */
-/* ///////////////////////////// */
-
-
-
-
-/* .brp2 #pencilOptions>div,
-.brp2 #rpdiv2
-{
-    margin-left: 5px !important;
-    margin-right: 5px !important;
-}
-.brp2 #rpdiv2{
-    max-width: 100px !important;
-}
-.brp2 #lineWidth{
-    max-width: 200px;
-    margin: auto
-}
-.brp2 #lineColor{
-    max-width: 100px;
-    margin: auto
-}
-.brp2 #joinDiv{
-    min-width: 150px;
-    margin: auto
-} */
-
-
-
-
-/* .brp2 #options {
-    width: 95% !important
-} */
-
-/* .brp2 #pencilOptions {
-    width: 75%
-} */
 
 .brp6 #pencilOptions {
     width: 100%;
@@ -165,128 +130,9 @@ z-index: 10
     width: auto
 } */
 
-
-
-
-
-/* .brp2 #pencilWidth {
-    width: fit-content
-} */
-
-/* .brp2 #options {
-    display: flex;
-    width: 100%;
-    height: 90px;
-    justify-content: center;
-    align-items: center;
-} */
-
-/* .brp2 #options::-webkit-scrollbar {
-    display: none;
-} */
-
-/* .brp2 #options { */
-    /* -ms-overflow-style: none; */
-    /* IE and Edge */
-    /* scrollbar-width: none; */
-    /* Firefox */
-    /* overflow-x: auto; */
-    /* width: 100%; */
-    /* background-color: brown; */
-/* } */
-
-/* .brp2 .Options {
-    width: 100%;
-    height: 100%;
-    flex-direction: row;
-    margin: 0;
-    overflow-x: auto;
-    overflow-y: hidden;
-    white-space: nowrap;
-    align-items: center;
-   
-} */
-
-
-/* .brp2 .Options>div {
-    margin-left: 45px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-} */
-/* 
-.brp2 .Options>div:last-of-type {
-    margin-right: 0%
-}
-
-.brp2 .Options>div:first-of-type {
-    margin-left: 0%
-} */
-
 .brp2 #download1 {
     display: none;
 }
-/* 
-.brp2 #textOptions {
-    height: 100%;
-    overflow-y: hidden
-} */
-
-/* .brp2 #showImgBtn {
-    width: fit-content;
-    background-color: black !important;
-    margin: auto;
-} */
-
-
-/* .brp2 input[type=range] {
-    width: 200px
-}
-
-.brp2 span,
-.brp2 #shapeOptions>#styleShape,
-.brp2 #styleText {
-    font-size: 20px;
-    font-family: arial
-} */
-/* 
-.brp2 #styleShape>div,
-.brp2 #styleText>div {
-    margin-right: 0%;
-}
-
-.brp2 #styleShape>div>label,
-.brp2 #styleText>div>label {
-    display: flex;
-    margin-right: 10px
-}
-
-.brp2 #textContent {
-
-    resize: horizontal;
-    height: 30px !important;
-    overflow-y: hidden;
-    overflow-x: scroll;
-    white-space: nowrap;
-    vertical-align: middle;
-
-}
-
-.brp2 #textContent::-webkit-scrollbar {
-    display: none;
-} */
-
-/* .brp2 #textContent {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-} */
-
-/* .brp2 #styleShape input,
-.brp2 #styleText input,
-.brp2 #joinDiv input {
-    margin-right: 30%;
-    margin-top: 6px
-} */
 
 
 
@@ -300,21 +146,7 @@ z-index: 10
     height: fit-content
 }
 
-.brp4 #options,
-.brp4 .Options {
-    /* display: none; */
-    width: 100vw !important;
-    flex-direction: column;
-    z-index: 9;
-    position: fixed;
-    /* bottom: 65px; */
 
-    margin-left: 0;
-    margin-right: 0;
-    /* padding-right: 5px;
-    padding-left: 5px; */
-max-height: none
-}
 
 
 
@@ -331,28 +163,10 @@ max-height: none
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.brp4 .Options {
-    overflow: scroll !important;
-    height: fit-content;
-    /* margin-left: auto;
-    margin-right: auto; */
-    /* background-color: aqua; */
-    padding-right: 25px !important;
-    padding-left: 25px;
-    position: absolute;
-    /* top: 45px */
-    bottom: 0 !important;
-    /* background-color: rgb(49, 49, 49); */
-    background: linear-gradient(0deg, rgba(33, 33, 33, 0.3) 60%, rgba(255, 0, 0, 0) 99.71%);
 
-/* 
-    -webkit-box-shadow: inset 0px 13px 80px 52px rgba(32, 32, 32, 1);
-    -moz-box-shadow: inset 0px 13px 80px 52px rgba(32, 32, 32, 1);
-    box-shadow: inset 0px 13px 80px 52px rgba(32, 32, 32, 1); */
 
-}
-.brp4 #wholecontainer{
-    margin-bottom: 0px !important ;
+.brp4 #wholecontainer {
+    margin-bottom: 0px !important;
     position: fixed;
     height: calc(100vh - 65px) !important;
 }
@@ -361,21 +175,9 @@ max-height: none
     display: flex;
     flex-flow: column-reverse;
 } */
-.brp4 .Options::-webkit-scrollbar {
-    display: none;
-}
 
-.brp4 #options {
-    display: block;
-    height: 100vh !important;
-    bottom: 65px;
-    /* border-top-left-radius: 15px;
-    border-top-right-radius: 15px; */
-    z-index: 11;
-    left: -100%;
-background-color: rgba(32, 32, 32, .3);
-backdrop-filter: blur(1px);
-}
+
+
 
 /* .show {
     top: 40vh !important;
@@ -386,16 +188,7 @@ backdrop-filter: blur(1px);
 
 
 
-.brp4 .Options>div {
-    margin-left: 0;
-    margin-right: 0;
-    padding-right: 0;
-    padding-left: 0;
-    width: 100%;
-    min-width: 100%;
-    max-width: 100%
-        /* margin-bottom: 10px */
-}
+
 
 .brp4 input[type=range] {
     width: 100%

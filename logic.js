@@ -19,6 +19,7 @@ const con = document.querySelector('#wholecontainer')
 // con.style.height = `${window.innerHeight + 220}px`;
 // con.style.maxHeight=`${screen.height}px`
 // console.log(window.innerWidth);
+// con.style.maxWidth=`${screen.width}px`
 let conw = window.getComputedStyle(con).width.replace('px', '')
 let conh = window.getComputedStyle(con).height.replace('px', '')
 //console.log(conw);
@@ -118,8 +119,6 @@ function myFunction1(x) {
     }
 }
 
-
-
 let x1
 // if (w <= 1280)
  x1 = window.matchMedia(`(max-width: 900px) `)
@@ -135,8 +134,6 @@ function myFunction2(x) {
         // document.querySelector('html').classList.remove("brp3")
     }
 }
-
-
 
 let x2 = window.matchMedia(`(max-width: 555px)`)
 myFunction2(x2)
@@ -480,14 +477,20 @@ pencilNr.value=1
 ///////////////
 
 document.querySelector('#options').addEventListener('mouseenter', e=>{
-    if(document.querySelector('html').classList.contains('brp1'))
+    if(document.querySelector('html').classList.contains('brp1')){
     e.target.style.left='0px'
+    e.target.style.direction='ltr'
+    }
+ 
 })
 document.querySelector('#options').addEventListener('mouseleave', e=>{
-    if(document.querySelector('html').classList.contains('brp1'))
+    if(document.querySelector('html').classList.contains('brp1')){
     e.target.style.left='-240px'
+    e.target.style.direction='rtl'
+e.target.scrollTop=0
+    }
 })
-
+//
 document.querySelector('#right').addEventListener('mouseenter', e=>{
     if(document.querySelector('html').classList.contains('brp1'))
     e.target.style.right='0px'
