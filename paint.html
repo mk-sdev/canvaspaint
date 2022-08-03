@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="cssFiles/tools.css">
     <link rel="stylesheet" href="cssFiles/gallery.css">
     <link rel="stylesheet" href="cssFiles/options.css">
-
+<link rel="stylesheet" href="cssFiles/right.css">
     <link rel="stylesheet" href="./cssFiles/all.min.css">
     <link rel="stylesheet" href="./cssFiles/fontawesome.min.css">
 
@@ -113,7 +113,7 @@
         </div>
         <div id="q">
             <div id="options" >
-          
+          <div id="handle-left">Options</div>
                 <!-- <div id="leftar" class="arrow arrow-left" style="background: red; position: absolute; width: fit-content; height: 100px; left: -10px; z-index: 999">-----</div> -->
                 <!-- <div id="handle">Touch to show / hide options</div> -->
              
@@ -476,11 +476,11 @@
                 <button id="download1"><span id='ds1' class="font-awesome-icons fa-arrow-down">Download</span></button>
             </div>
 
-            <div id="middle" style="overflow: auto">
+            <div id="middle">
 
-             <div id="zoomable" style="overflow: auto; width: 100%; position: relative;">
+             <div id="zoomable" style="overflow: auto;  position: relative;">
              
-                <canvas id="canvas"  style="position: relative;" oncontextmenu="return false""></canvas>
+                <canvas id="canvas"  style="position: relative; margin: auto" oncontextmenu="return false""></canvas>
             </div>
 
                 <span style="display: table; margin: 0 auto; font-size: 15px;">&nbsp;</span>
@@ -493,8 +493,10 @@
                     
                     <span>No drafts yet. Click the save button to create one</span>
                 </div>
+                <div id="handle-right">Drafts</div>
+
                 <b id="closeright">close</b>
-                <button id="download"><span id="ds" class="font-awesome-icons fa-arrow-down">Download</span></button>
+                <!-- <button id="download"><span id="ds" class="font-awesome-icons fa-arrow-down">Download</span></button> -->
 
             </div>
         </div>

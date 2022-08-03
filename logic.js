@@ -16,7 +16,7 @@ const con = document.querySelector('#wholecontainer')
 //this or screen.width or window.innerWidth
 // con.style.maxWidth = `${screen.width}px`
 // con.style.maxWidth = `1450px`
-con.style.height = `${window.innerHeight + 220}px`;
+// con.style.height = `${window.innerHeight + 220}px`;
 // con.style.maxHeight=`${screen.height}px`
 // console.log(window.innerWidth);
 let conw = window.getComputedStyle(con).width.replace('px', '')
@@ -37,7 +37,7 @@ else
 if (conw <= 900)
     c.width = conw * .95
 else
-    c.width = conw * .6
+    c.width = conw -550
 
 // if (conw <= 555)
 //     c.height = conh * .6
@@ -53,15 +53,30 @@ else c.height = window.innerHeight * .75
 
 
 //console.log('aaaa', window.innerWidth, );
-
-document.querySelector('#middle').style.width = `${c.width+10}px`
+const middle=document.querySelector('#middle')
+// middle.style.width = `${c.width+10}px`
 
 //message before closing the tab
-addEventListener('beforeunload', function (event) {
+// addEventListener('beforeunload', function (event) {
 
-    event.returnValue = 'You have unsaved changes.';
+//     event.returnValue = 'You have unsaved changes.';
 
-});
+// });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -89,9 +104,9 @@ function myFunction(x) {
 
 
 let x
-if (w <= 1280)
+// if (w <= 1280)
     x = window.matchMedia(`(max-width: 1200px) `)
-else x = window.matchMedia(`(max-width: ${w*0.94}px) `)
+// else x = window.matchMedia(`(max-width: ${w*0.94}px) `)
 myFunction(x)
 x.addListener(myFunction)
 ////////////////////
@@ -106,30 +121,18 @@ function myFunction1(x) {
 
 
 let x1
-if (w <= 1280) x1 = window.matchMedia(`(max-width: 1100px) `)
-else x1 = window.matchMedia(`(max-width: ${w*0.77}px) `)
+// if (w <= 1280)
+ x1 = window.matchMedia(`(max-width: 900px) `)
+// else x1 = window.matchMedia(`(max-width: ${w*0.77}px) `)
 myFunction1(x1)
 x1.addListener(myFunction1)
-///////
-function myFunction5(x) {
-    if (x.matches) {
-        document.querySelector('html').classList.add("brp6")
-    } else {
-        document.querySelector('html').classList.remove("brp6")
-    }
-}
 
-
-
-let x5 = window.matchMedia(`(max-width: 815px)`)
-myFunction5(x5)
-x5.addListener(myFunction5)
 //////////
 function myFunction2(x) {
     if (x.matches) {
-        document.querySelector('html').classList.add("brp3")
+        // document.querySelector('html').classList.add("brp3")
     } else {
-        document.querySelector('html').classList.remove("brp3")
+        // document.querySelector('html').classList.remove("brp3")
     }
 }
 
@@ -149,8 +152,6 @@ function myFunction3(x) {
     }
 }
 
-
-
 let x3 = window.matchMedia(`(max-width: 499px)`)
 myFunction3(x3)
 x3.addListener(myFunction3)
@@ -164,11 +165,29 @@ function myFunction4(x) {
     }
 }
 
-
-
 let x4 = window.matchMedia(`(max-width: 360px)`)
 myFunction4(x4)
 x4.addListener(myFunction4)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -460,3 +479,20 @@ pencilNr.value=1
 })
 ///////////////
 
+document.querySelector('#options').addEventListener('mouseenter', e=>{
+    if(document.querySelector('html').classList.contains('brp1'))
+    e.target.style.left='0px'
+})
+document.querySelector('#options').addEventListener('mouseleave', e=>{
+    if(document.querySelector('html').classList.contains('brp1'))
+    e.target.style.left='-240px'
+})
+
+document.querySelector('#right').addEventListener('mouseenter', e=>{
+    if(document.querySelector('html').classList.contains('brp1'))
+    e.target.style.right='0px'
+})
+document.querySelector('#right').addEventListener('mouseleave', e=>{
+    if(document.querySelector('html').classList.contains('brp1'))
+    e.target.style.right='-240px'
+})

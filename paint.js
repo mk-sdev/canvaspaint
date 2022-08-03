@@ -1,5 +1,5 @@
-// dodawanie zdjeć, poprawić colors, wysokość canvasa a wysokoś urządzenia, tablinks, responsywne options poniżej 1100px, może poprawić download, tools width after zooming in refreshing and zooming out, background toolsów na 1100px, wysokość #options i #download na szerszych ekranach, disable landscape mode, tools cień, choose between screen width or window.innerwidth in logic.js, poprawić span w uploaded, przyciąć buttony może, poprawić zmianę orientacji, przyciąć button download, undo n amobilnych
-//=== zamiast ==, usunąć zbędne komentarze
+// dodawanie zdjeć, poprawić download,  disable landscape mode, tools cień, uniemożliwic zoomowanie, poprawić pod wzgędem stylistycznym, dodać span przy rendżach, canvas równo po środku, transition bocnego menu po rozszerzaniu, uporządkować kod, change orientation
+//=== zamiast ==, usunąć zbędne komentarze, lazy loading obrazkow
 $(window).load(function () {
     // PAGE IS FULLY LOADED  
     // FADE OUT YOUR OVERLAYING DIV
@@ -640,9 +640,9 @@ $(document).ready(function () {
 
         //$ctx.transform(1, -0.01, 0, 1, 0, 0);
         // 
-      
 
-        let x = e.offsetX 
+
+        let x = e.offsetX
         let y = e.offsetY
         let width = window.imagee.width
         let height = window.imagee.height
@@ -694,8 +694,8 @@ $(document).ready(function () {
 
     let isImage
     $c.on('mousedown', (e) => {
-       
-        if (whichBtn == 'images' && e.button!==1 && e.button!==2) {
+
+        if (whichBtn == 'images' && e.button !== 1 && e.button !== 2) {
             isImage = true
             imageFn(e)
             undofn(e)
@@ -703,7 +703,7 @@ $(document).ready(function () {
         }
     })
 
-   
+
 
 
 
@@ -761,7 +761,7 @@ $(document).ready(function () {
 
     let box, x;
 
-    
+
     $('#pencil').on('click', () => {
 
         for (let i = 0; i < $('.Options').length; i++) {
@@ -846,7 +846,7 @@ $(document).ready(function () {
         $('#selectOptions').css('display', 'flex')
         whichBtn = 'select'
     })
-   
+
 
     $('#images').on('click', () => {
 
@@ -1021,7 +1021,7 @@ $(document).ready(function () {
     $c.on('mousedown touchstart', (e) => {
         // console.log('down');
         // console.log('join lines', isJoin);
-        if (whichBtn == 'line'  && e.button!==1 && e.button!==2) {
+        if (whichBtn == 'line' && e.button !== 1 && e.button !== 2) {
             isLine = true
             //isJoin = true
             if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua) ||
@@ -1240,7 +1240,7 @@ $(document).ready(function () {
         // console.log('down');
 
 
-        if (whichBtn == 'select' && e.button!==1 && e.button!==2) {
+        if (whichBtn == 'select' && e.button !== 1 && e.button !== 2) {
             isSelect = true
 
 
@@ -1546,7 +1546,7 @@ $(document).ready(function () {
         // console.log('down');
 
 
-        if (whichBtn == 'shape'  && e.button!==1 && e.button!==2) {
+        if (whichBtn == 'shape' && e.button !== 1 && e.button !== 2) {
             isShape = true
 
 
@@ -1564,8 +1564,8 @@ $(document).ready(function () {
 
             } else {
                 mouseDownPosS = {
-                    x: e.offsetX, 
-                y: e.offsetY
+                    x: e.offsetX,
+                    y: e.offsetY
                 }
             }
             //console.log('mousedownpos', mouseDownPos);
@@ -1600,7 +1600,7 @@ $(document).ready(function () {
 
             } else {
                 currentPosS = {
-                    x: e.offsetX, 
+                    x: e.offsetX,
                     y: e.offsetY
                 }
             }
@@ -1688,7 +1688,7 @@ $(document).ready(function () {
 
     $c.on('mousemove', (e) => {
         // let before = $ctx.getImageData(0, 0, $c.width(), $c.height())
-        if (whichBtn == 'text' ) {
+        if (whichBtn == 'text') {
             isText = true
             $ctx.putImageData(restore_array[index], 0, 0);
             textFn(e)
@@ -1698,13 +1698,13 @@ $(document).ready(function () {
     })
 
     $c.on('mouseout', (e) => {
-        if (whichBtn == 'text' )
+        if (whichBtn == 'text')
             $ctx.putImageData(restore_array[index], 0, 0);
     })
 
     let isText
     $c.on('mousedown', (e) => {
-        if (whichBtn == 'text'  && e.button!==1 && e.button!==2) {
+        if (whichBtn == 'text' && e.button !== 1 && e.button !== 2) {
             isText = true
 
             textFn(e)
@@ -1781,7 +1781,7 @@ $(document).ready(function () {
         // console.log(e.type)
 
 
-        if (whichBtn == 'pencil' && e.button!==1 && e.button!==2) {
+        if (whichBtn == 'pencil' && e.button !== 1 && e.button !== 2) {
             isPencil = true
 
             $ctx.beginPath();
@@ -1867,7 +1867,7 @@ $(document).ready(function () {
     $c.on('mouseup touchend', (e) => {
 
 
-        if (whichBtn == 'pencil'&& e.button!==1 && e.button!==2) {
+        if (whichBtn == 'pencil' && e.button !== 1 && e.button !== 2) {
             undofn(e)
             isPencil = false
             $ctx.closePath()
@@ -1939,61 +1939,60 @@ $(document).ready(function () {
 
 
     /////keyboard shortcuts
-    $(document).on('keyup', e=>{
-        if(!e.ctrlKey && $('input[name=join]').is(':checked')){
+    $(document).on('keyup', e => {
+        if (!e.ctrlKey && $('input[name=join]').is(':checked')) {
             $('#ljoin').click()
         }
     })
 
-    $(document).on('keydown', e=>{
-       
-        if(e.target.id!=='textContent')
-        {
-            if((e.key==='s' || e.key==='S') && e.shiftKey)
-                $('#save').click()
-            
-            if((e.key==='z' || e.key==='Z') && e.ctrlKey)
-                $('#undo').click()
-            
-            if((e.key==='p' || e.key==='P') && !e.shiftKey)
-                $('#pencil').click()
-            
-            if((e.key==='l' || e.key==='L') && !e.shiftKey)
-                $('#line').click()
-            
-            if((e.key==='l' || e.key==='L') && !e.shiftKey)
-                $('#line').click()
-            
-            if(e.ctrlKey && !$('input[name=join]').is(':checked'))
-                $('#ljoin').click()
-            
-            // else $('#ljoin').click()
-            if((e.key==='h' || e.key==='H') && !e.shiftKey)
-                $('#shape').click()
-            
-            if((e.key==='t' || e.key==='T') && !e.shiftKey)
-                $('#text').click()
-            
-            if((e.key==='i' || e.key==='I') && !e.shiftKey)
-                $('#images').click()
-            
-            if((e.key==='s' || e.key==='S') && !e.shiftKey)
-                $('#select').click()
-                // alert(ctrl)
-            
-            if((e.key==='c' || e.key==='C') && !e.shiftKey)
-                $('#colors').click()
-            
-            if((e.key==='Delete') && !e.shiftKey)
-               $('#clear').click()
-            
+    $(document).on('keydown', e => {
 
-            if((e.key==='g' || e.key==='G') && !e.ctrlKey)
+        if (e.target.id !== 'textContent') {
+            if ((e.key === 's' || e.key === 'S') && e.shiftKey)
+                $('#save').click()
+
+            if ((e.key === 'z' || e.key === 'Z') && e.ctrlKey)
+                $('#undo').click()
+
+            if ((e.key === 'p' || e.key === 'P') && !e.shiftKey)
+                $('#pencil').click()
+
+            if ((e.key === 'l' || e.key === 'L') && !e.shiftKey)
+                $('#line').click()
+
+            if ((e.key === 'l' || e.key === 'L') && !e.shiftKey)
+                $('#line').click()
+
+            if (e.ctrlKey && !$('input[name=join]').is(':checked'))
+                $('#ljoin').click()
+
+            // else $('#ljoin').click()
+            if ((e.key === 'h' || e.key === 'H') && !e.shiftKey)
+                $('#shape').click()
+
+            if ((e.key === 't' || e.key === 'T') && !e.shiftKey)
+                $('#text').click()
+
+            if ((e.key === 'i' || e.key === 'I') && !e.shiftKey)
+                $('#images').click()
+
+            if ((e.key === 's' || e.key === 'S') && !e.shiftKey)
+                $('#select').click()
+            // alert(ctrl)
+
+            if ((e.key === 'c' || e.key === 'C') && !e.shiftKey)
+                $('#colors').click()
+
+            if ((e.key === 'Delete') && !e.shiftKey)
+                $('#clear').click()
+
+
+            if ((e.key === 'g' || e.key === 'G') && !e.ctrlKey)
                 $('#showImgBtn').click()
-            
-            if((e.key==='Escape') && !e.ctrlKey)
+
+            if ((e.key === 'Escape') && !e.ctrlKey)
                 $('#close').click()
-            
+
         }
     })
 

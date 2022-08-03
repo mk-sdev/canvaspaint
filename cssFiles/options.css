@@ -1,19 +1,42 @@
 /* the rest is in the main css file */
 
-
+.brp1 #handle-left{
+    position: absolute;
+    display: block;
+    /* display: inline-block; */
+    right: 0px;
+    top: 0px;
+    width: 30px;
+    height: 100%;
+    background-color: rgb(32, 32, 32);
+    z-index: 1000000000;
+    writing-mode: vertical-lr;
+    text-align: center;
+    line-height: 30px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+#handle-left, .brp4 #handle-left{
+    display: none;
+    }
 .brp1 #options {
     /* background-color: brown; */
-    margin: auto;
-    overflow-y: hidden;
+    /* margin: auto;
+    overflow-y: hidden; */
+position: absolute;
+top: 70px;
+left: -240px;
+z-index: 10
     /* margin-top: 30px; */
     /* background-color: brown; */
 }
-
+.brp4 #options{
+    top: -65px
+}
 /* .brp1 #imagesOptions {
     height: 320px !important;
     /* background-color: blue; */
 /* }*/
-
+/* 
 .brp1 #download1 {
     display: block;
     position: absolute;
@@ -22,39 +45,31 @@
     font-size: 150%;
     border: 1.5px solid silver;
     border-radius: 5px;
-    /* color: red !important; */
     font-family: arial;
     text-align: center;
     background-color: rgb(31, 31, 31);
     left: 50%;
     transform: translate(-50%);
     bottom: 5px;
-}
-
-.brp1 .Options {
-    overflow-y: auto;
-    /* background-color: aquamarine; */
-    /* height: 320px; */
-    height: calc(90% - 35px);
-    padding-right: 3px;
-    /* width: 100%; */
-}
+} */
 
 
 
 
 
 
+
+/* 
 .brp2 #lineOptions {
     width: 80%;
     padding-right: 20px
-}
+} */
 
-.brp3 #lineOptions {
+/* .brp3 #lineOptions {
     width: 100%;
     padding-right: 0
-}
-
+} */
+/* 
 .brp2 #radiosLine {
     max-width: 100px;
 }
@@ -71,7 +86,7 @@
 
 .brp2 #lineColor {
     max-width: 200px
-}
+} */
 
 
 
@@ -82,11 +97,11 @@
     width: 400px !important;
 }
 
-.brp5 #lineColor,
+/* .brp5 #lineColor,
 .br4 #lineColor,
 .brp3 #lineColor {
     padding-left: 0 !important
-}
+} */
 
 .brp6 #lineColor {
     padding-left: 20px
@@ -132,60 +147,55 @@
 
 
 
-.brp2 #options {
+/* .brp2 #options {
     width: 95% !important
-}
+} */
 
-.brp2 #pencilOptions {
+/* .brp2 #pencilOptions {
     width: 75%
-}
+} */
 
 .brp6 #pencilOptions {
     width: 100%;
 }
 
-.brp3 #options {
-    width: auto !important;
-    /* background: red; */
-    height: 65px !important
-}
 
-.brp3 #pencilOptions {
+
+/* .brp3 #pencilOptions {
     width: auto
-}
+} */
 
 
 
 
 
-.brp2 #pencilWidth {
+/* .brp2 #pencilWidth {
     width: fit-content
-}
+} */
 
-.brp2 #options {
-    /* background-color: brown; */
+/* .brp2 #options {
     display: flex;
     width: 100%;
     height: 90px;
     justify-content: center;
     align-items: center;
-}
+} */
 
-.brp2 #options::-webkit-scrollbar {
+/* .brp2 #options::-webkit-scrollbar {
     display: none;
-}
+} */
 
-.brp2 #options {
-    -ms-overflow-style: none;
+/* .brp2 #options { */
+    /* -ms-overflow-style: none; */
     /* IE and Edge */
-    scrollbar-width: none;
+    /* scrollbar-width: none; */
     /* Firefox */
-    overflow-x: auto;
+    /* overflow-x: auto; */
     /* width: 100%; */
     /* background-color: brown; */
-}
+/* } */
 
-.brp2 .Options {
+/* .brp2 .Options {
     width: 100%;
     height: 100%;
     flex-direction: row;
@@ -194,57 +204,52 @@
     overflow-y: hidden;
     white-space: nowrap;
     align-items: center;
-    /* flex-basis: 100% */
-    /* background-color: blueviolet; */
-}
+   
+} */
 
 
-.brp2 .Options>div {
+/* .brp2 .Options>div {
     margin-left: 45px;
-    /* width: 25vw; */
     display: flex;
-    /* width: fit-content !important; */
     justify-content: center;
     flex-direction: column;
-}
-
+} */
+/* 
 .brp2 .Options>div:last-of-type {
     margin-right: 0%
 }
 
 .brp2 .Options>div:first-of-type {
     margin-left: 0%
-}
+} */
 
 .brp2 #download1 {
     display: none;
 }
-
+/* 
 .brp2 #textOptions {
     height: 100%;
     overflow-y: hidden
-}
+} */
 
-.brp2 #showImgBtn {
+/* .brp2 #showImgBtn {
     width: fit-content;
     background-color: black !important;
     margin: auto;
-    /* display: block; */
-}
+} */
 
 
-.brp2 input[type=range] {
+/* .brp2 input[type=range] {
     width: 200px
 }
 
 .brp2 span,
 .brp2 #shapeOptions>#styleShape,
 .brp2 #styleText {
-    /* margin-top: -7%; */
     font-size: 20px;
     font-family: arial
-}
-
+} */
+/* 
 .brp2 #styleShape>div,
 .brp2 #styleText>div {
     margin-right: 0%;
@@ -269,22 +274,19 @@
 
 .brp2 #textContent::-webkit-scrollbar {
     display: none;
-}
+} */
 
-.brp2 #textContent {
+/* .brp2 #textContent {
     -ms-overflow-style: none;
-    /* IE and Edge */
     scrollbar-width: none;
-    /* Firefox */
-    /* background-color: blue; */
-}
+} */
 
-.brp2 #styleShape input,
+/* .brp2 #styleShape input,
 .brp2 #styleText input,
 .brp2 #joinDiv input {
     margin-right: 30%;
     margin-top: 6px
-}
+} */
 
 
 
