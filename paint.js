@@ -9,8 +9,24 @@ $(window).load(function () {
 
 $(document).ready(function () {
 
+    $('#zoomable').on('mousedown', e=>{
 
+        if(e.button==2){
+            $('#hiddenMenu').css('display', 'block')
+            $('#hiddenMenu').css('left', `${e.pageX+10}px`)
+            $('#hiddenMenu').css('top', `${e.pageY+10}px`)
+        }
+        // e.preventDefault()
 
+    })
+$('BODY').on('click', e=>{
+    if($('#hiddenMenu').css('display')==='block'  )
+    setTimeout(()=>{
+        $('#hiddenMenu').css('display', 'none')
+
+    }, 10)
+
+})
     //e.log(c, ctx);
 
     const $c = $('canvas')
@@ -156,6 +172,8 @@ $(document).ready(function () {
     $c.on('click touchstart', () => {
         if (!$('#middle span').text().length == 0 && whichBtn !== 'text' && whichBtn !== 'select') {
             // $('#middle span').css('color', 'transparent')
+        // console.log($('#middle span').html(''))
+
             $('#middle span').html('')
 
             $('#swiper').css('color', 'silver')
@@ -863,11 +881,16 @@ $(document).ready(function () {
 
 
 
-    $('#backColor').on('change', (e) => {
+    $('#backColor').on('input change', (e) => {
         $ctx.fillStyle = $('#backColor').val()
         $ctx.fillRect(0, 0, $c.width(), $c.height())
-        undofn(e)
     })
+    $('#backColor').on('change', (e) => {
+        undofn(e)
+        console.log('a')
+    })
+
+ 
     // $('#uploaderbtn').on('change', (e)=>{
     //     let image = $('#output')
     //     image.src = URL.createObjectURL(e.target.files[0])
@@ -900,6 +923,9 @@ $(document).ready(function () {
         document.querySelector('#hr').style.display = "none"
         // document.querySelectorAll('.btn').style.color='rgba(255, 0, 0, 1)'
         window.mobile = true
+
+        $('#middle span').html('')
+        $('#middle span').css('color', 'white')
 
         let nrofchange = 0
         //chyba nie działa na safari i na pewno na ie :(
@@ -2039,6 +2065,7 @@ let g=0
         }
     })
 
+   
 
 
 });

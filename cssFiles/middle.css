@@ -1,11 +1,11 @@
-
-#wholecontainer{
+#wholecontainer {
     /* background-color: yellow; */
-height: 100vh;
-/* max-width: 1400px */
-/* overflow-x: hidden !important ; */
+    height: 100vh;
+    /* max-width: 1400px */
+    /* overflow-x: hidden !important ; */
 
 }
+
 .brp4 #wholecontainer {
     right: 0;
     left: 0;
@@ -18,14 +18,17 @@ height: 100vh;
     display: flex;
     justify-content: space-between;
 }
+
 .brp1 #q {
     display: block;
     margin-bottom: 15px;
     /* margin-top: 17px */
 }
+
 .brp2 #q {
     margin-top: 0;
 }
+
 /* .brp3 #q>div {
     margin-top: 0;
 } */
@@ -40,25 +43,32 @@ height: 100vh;
     margin: 0;
     width: calc(100vw - 540px)
 }
-.brp1 #middle, .brp2 #middle {
+
+.brp1 #middle,
+.brp2 #middle {
     width: 85vw;
 }
+
 .brp4 #middle {
     width: fit-content
 }
+
 #middle span {
     /* color: red; */
     text-align: justify;
     text-justify: inter-word;
 }
+
 .brp1 #middle {
     margin: auto;
     overflow-x: hidden;
 }
+
 .brp4 #middle {
     display: flex;
     flex-wrap: wrap-reverse;
 }
+
 .brp4 #middle span {
     display: none !important
 }
@@ -70,23 +80,34 @@ height: 100vh;
     width: 10px;
     height: 10px
 }
+
 #zoomable::-webkit-scrollbar-track {
     background-color: white;
     border-radius: 0px;
 }
+
 #zoomable::-webkit-scrollbar-thumb {
     background: grey;
     border-radius: 0px;
 }
+
 #zoomable::-webkit-scrollbar-corner {
     background-color: transparent;
 }
-.brp1 #zoomable{
-    padding-left: 7vw 
+
+#zoomable {
+    overflow: auto;
+    position: relative;
 }
-.brp2 #zoomable{
+
+.brp1 #zoomable {
+    padding-left: 7vw
+}
+
+.brp2 #zoomable {
     padding-left: 0
 }
+
 .brp4 #zoomable::-webkit-scrollbar {
     width: 0;
     height: 0
@@ -101,13 +122,18 @@ canvas {
     box-sizing: border-box;
     background-color: white;
     cursor: crosshair;
+    position: relative;
+    margin: auto
 }
+
 canvas:hover {
     cursor: crosshair;
 }
+
 .brp2 canvas {
     margin-top: 7px !important;
 }
+
 .brp4 canvas {
     margin-top: 0px;
     border: 0;
@@ -122,9 +148,11 @@ canvas:hover {
     margin-top: 10px;
     color: silver
 }
+
 #swiper {
     display: none
 }
+
 .brp4 #swiper {
     display: block;
     position: fixed;
@@ -138,9 +166,11 @@ canvas:hover {
     color: silver;
     /* background-color: brown; */
 }
+
 .brp5 #swiper {
     font-size: 13px
 }
+
 .fa-arrow-left-long,
 .fa-arrow-right-long {
     color: silver;
