@@ -46,9 +46,9 @@ html {
     transform: scaleX(1)
 }
 
-.brp3 #showImgBtn:hover::before {
+/* .brp3 #showImgBtn:hover::before {
     transform: scaleX(0)
-}
+} */
 
 
 
@@ -237,32 +237,6 @@ input[type=checkbox] {
 }
 
 
-#download,
-#download1 {
-    position: relative;
-    transition: all 0.5s;
-    font-family: 'Verdana', 'Arial Narrow', Arial, sans-serif;
-    cursor: pointer;
-}
-
-#download {
-    width: 70% !important
-}
-
-#download span,
-#download1 span {
-    cursor: pointer;
-    display: inline-block;
-    position: relative;
-    transition: 0.5s;
-    color: ivory;
-}
-
-#download1 {
-    margin-bottom: 10px;
-    width: 75% !important
-}
-
 .fa-arrow-down::before {
     content: none !important
 }
@@ -279,43 +253,7 @@ input[type=checkbox] {
     transition: 0.5s;
 }
 
-#download:hover span,
-#download1:hover span {
-    padding-right: 25px;
-}
 
-#download:hover span::after,
-#download1:hover span::after {
-    opacity: 1;
-    right: 0;
-}
-
-#download {
-    height: 50px !important;
-    width: 100px;
-    font-size: 150%;
-    border: 1.5px solid silver;
-    font-family: 'Verdana', 'Arial Narrow', Arial, sans-serif;
-    text-align: center;
-    background-color: rgb(33, 33, 33);
-    border-radius: 5px;
-    margin-left: 7.5px;
-    flex-shrink: 1;
-}
-
-#download {
-    min-height: 50px;
-    max-height: 100px;
-    margin-left: 50%;
-    margin-top: 5px;
-    transform: translate(-50%);
-    width: fit-content
-}
-
-#download1 {
-    display: none;
-    border-radius: 3px;
-}
 
 
 
@@ -468,9 +406,7 @@ hr {
 }
 
 
-.brp1 #download {
-    display: none;
-}
+
 
 
 .test {
@@ -479,9 +415,7 @@ hr {
 }
 
 
-.brp2 hr {
-    display: none;
-}
+
 
 .brp2 #rpdiv {
     width: 200px
@@ -503,20 +437,7 @@ hr {
 }
 
 
-.brp2 #download {
-    height: 70%;
-    width: 1vw;
-    font-size: 150%;
-    border: 2px solid silver;
-    color: white;
-    font-family: arial;
-    text-align: center;
-    background-color: black;
-    min-width: 100px;
-    margin-left: 7.5px;
-    flex-shrink: 1;
-    margin-top: 5px;
-}
+
 
 
 .brp4 body {
@@ -526,8 +447,55 @@ hr {
 
 
 
+#download span{
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+    color: ivory;
+}
 
+#download:hover span{
+    padding-right: 25px;
+}
 
+#download:hover span::after {
+    opacity: 1;
+    right: 0;
+}
+
+#download {
+    height: 50px !important;
+    /* width: 100px; */
+    font-size: 150%;
+    border: 1.5px solid silver;
+    font-family: 'Verdana', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+    background-color: rgb(33, 33, 33);
+    border-radius: 5px;
+    /* margin-left: 7.5px; */
+    flex-shrink: 1;
+
+    /* min-height: 50px;
+    max-height: 100px;
+    margin-left: 50%;
+    margin-top: 5px; */
+    transform: translate(-50%);
+    /* width: fit-content; */
+
+    position: fixed;
+    bottom: 10px;
+    right: -70px;
+    transition: all 0.5s;
+    font-family: 'Verdana', 'Arial Narrow', Arial, sans-serif;
+    cursor: pointer;
+
+    width: 170px !important
+}
+
+.brp2 #download {
+   display: none;
+}
 
 
 

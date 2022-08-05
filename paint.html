@@ -156,7 +156,8 @@
                     <!-- <div class="testdiv" ></div> -->
 
                     <div id="lineWidth">
-                        <span><b>Width</b></span>
+                        <span><b>Width</b>
+                            <input type="number" style="width: 50px; color:black" value="5" min="1" max="50" id="lineWidthLinelNr"></span>
                         <input type="range" id="lineWidthLine" value="5" maxvalue="50"></div>
                     <hr>
                     <div id="lineColor">
@@ -214,10 +215,10 @@
                         <span><b>Shape</b></span>
 
                         <div id="radiosShape">
-                            <label id="labelShapeSquare" class="labelShape">rectangle&nbsp;
+                            <label id="labelShapeSquare" title="ctrl + R" class="labelShape">rectangle&nbsp;
                                 <input type="radio" name="shape" id="square" class="radioShape" value="square"
                                     checked></label>
-                            <label id="labelShapeCircle" class="labelShape">&nbsp;circle
+                            <label id="labelShapeCircle" title="ctrl + E" class="labelShape">&nbsp;circle
                                 <input type="radio" name="shape" id="circle" class="radioShape" value="circle"></label>
                         </div>
                     </div>
@@ -380,7 +381,7 @@
 
                     <div>
                         <span><b>Fill canvas</b></span>
-                        <div><input type="color" id="backColor"></div>
+                        <div><input type="color" id="backColor" title="ctrl + F"></div>
                     </div>
                     <hr>
 
@@ -458,13 +459,13 @@
                         <span><b>Mode</b></span>
                         <div id="modeDiv" style="width: fit-content">
 
-                            <label id="labelCut" class="labelSelect">cut
+                            <label id="labelCut" class="labelSelect" title="ctrl + X">cut
                                 <input type="radio" class="radioSelect" id="radioCut" name="radioCut" value="cut"
                                     checked></label>
-                            <label id="labelCopy" class="labelSelect">&nbsp;copy&nbsp;
+                            <label id="labelCopy" title="ctrl + C" class="labelSelect">&nbsp;copy&nbsp;
                                 <input type="radio" class="radioSelect" id="radioCopy" name="radioCopy"
                                     value="copy"></label>
-                            <label id="labelDelete" class="labelSelect">delete
+                            <label id="labelDelete" title="ctrl + Delete" class="labelSelect">delete
                                 <input type="radio" class="radioSelect" id="radioDelete" name="radioDelete"
                                     value="delete" id="radioDelete"></label>
                         </div>
@@ -475,8 +476,8 @@
 
 
                 <!-- <div id="rightar" class="arrow arrow-right" style="background: blue; position: absolute; width: fit-content; height: 100px; right: -10px">-----</div> -->
-
-                <button id="download1"><span id='ds1' class="font-awesome-icons fa-arrow-down">Download</span></button>
+<!-- 
+                <button id="download1"><span id='ds1' class="font-awesome-icons fa-arrow-down">Download</span></button> -->
             </div>
 
             <div id="middle">
@@ -486,7 +487,7 @@
                 <canvas id="canvas"  style="position: relative; margin: auto" oncontextmenu="return false""></canvas>
             </div>
 
-                <span style="display: table; margin: 0 auto; font-size: 15px;">&nbsp;</span>
+                <span style="display: table; margin: 0 auto; font-size: 15px;">Right click on the canvas to toggle the hidden menu. Press ctrl and scroll to zoom in/out.</span>
             </div>
             <div id="swiper"> <div><i class="fa-solid fa-arrow-left-long"></i> swipe here <i class="fa-solid fa-arrow-right-long"></i></div></div>
             <div id="right">
@@ -499,7 +500,7 @@
                 <div id="handle-right">Drafts</div>
 
                 <b id="closeright">close</b>
-                <!-- <button id="download"><span id="ds" class="font-awesome-icons fa-arrow-down">Download</span></button> -->
+            
 
             </div>
         </div>
@@ -507,7 +508,7 @@
     </div>
 
     <!-- <img  id="output"/> -->
-
+    <button id="download"><span id="ds" class="font-awesome-icons fa-arrow-down">Download</span></button>
 
 
     <!-- The Modal -->

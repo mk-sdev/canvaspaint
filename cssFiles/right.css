@@ -5,7 +5,7 @@
     height: fit-content;
     overflow-y: hidden;
     right: 0;
-    transition: right .7s !important;
+    transition: right .7s;
     /* display: none; */
 }
 .brp1 #right,
@@ -49,9 +49,9 @@
     -moz-box-shadow: inset 0px 0px 50px 42px rgba(32, 32, 32, 1);
     box-shadow: inset 0px 0px 50px 42px rgba(32, 32, 32, 1);
 }
-.brp3 #savedImages {
+/* .brp3 #savedImages {
     right: auto;
-}
+} */
 .brp4 #savedImages {
     height: 150%;
     position: relative;
@@ -83,9 +83,9 @@
     width: 90%;
     text-align: center;
 }
-.brp3 #savedImages span {
+/* .brp3 #savedImages span {
     font-size: 90% !important;
-}
+} */
 .brp4 #savedImages span {
     display: inline-block;
     width: 90%;
@@ -153,6 +153,9 @@
 }
 #handle-right,
 .brp4 #handle-right {
+    display: none
+}
+#right:hover #handle-right{
     display: none
 }
 

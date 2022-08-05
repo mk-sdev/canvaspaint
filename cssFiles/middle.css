@@ -1,6 +1,6 @@
 
 #wholecontainer{
-    background-color: yellow;
+    /* background-color: yellow; */
 height: 100vh;
 /* max-width: 1400px */
 /* overflow-x: hidden !important ; */
@@ -21,14 +21,14 @@ height: 100vh;
 .brp1 #q {
     display: block;
     margin-bottom: 15px;
-    margin-top: 17px
+    /* margin-top: 17px */
 }
 .brp2 #q {
     margin-top: 0;
 }
-.brp3 #q>div {
+/* .brp3 #q>div {
     margin-top: 0;
-}
+} */
 .brp4 #q {
     margin-bottom: 0
 }
@@ -81,6 +81,12 @@ height: 100vh;
 #zoomable::-webkit-scrollbar-corner {
     background-color: transparent;
 }
+.brp1 #zoomable{
+    padding-left: 7vw 
+}
+.brp2 #zoomable{
+    padding-left: 0
+}
 .brp4 #zoomable::-webkit-scrollbar {
     width: 0;
     height: 0
@@ -130,6 +136,7 @@ canvas:hover {
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
     color: silver;
+    /* background-color: brown; */
 }
 .brp5 #swiper {
     font-size: 13px

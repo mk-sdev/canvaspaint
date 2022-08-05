@@ -1,5 +1,5 @@
-// dodawanie zdjeć, poprawić download,  disable landscape mode, tools cień, uniemożliwic zoomowanie, poprawić pod wzgędem stylistycznym, dodać span przy rendżach, canvas równo po środku, transition bocnego menu po rozszerzaniu, uporządkować kod, change orientation
-//=== zamiast ==, usunąć zbędne komentarze, lazy loading obrazkow
+// dodawanie zdjeć, poprawić download,  tools cień, poprawić pod wzgędem stylistycznym, dodać span przy rendżach, transition bocnego menu po rozszerzaniu,  change orientation
+//=== zamiast ==, usunąć zbędne komentarze, lazy loading obrazkow, canvas na elastycznych i menu boczne
 $(window).load(function () {
     // PAGE IS FULLY LOADED  
     // FADE OUT YOUR OVERLAYING DIV
@@ -116,10 +116,10 @@ $(document).ready(function () {
         // $('#uploadspan').css('display', 'none')
         savedimg[j] = $(`<image src="${$('#uploadImage').val()}"  id="imageUploaded${j}" class="img imgUploaded" crossorigin='anonymous' onerror="$('#imageUploaded${j}').remove();  " />`)
 
-        $('#middle span').html('If the address is proper, you should see your image in images > gallery > uploaded')
+        $('#middle span').html('If the address is proper, you should see your image in images > gallery > uploaded.')
         $('#middle span').css('color', 'white')
 
-        $('#swiper').html('If the address is proper, you should see your image in images > gallery > uploaded')
+        $('#swiper').html('If the address is proper, you should see your image in images > gallery > uploaded.')
         $('#swiper').css('color', 'white')
 
         $('#uploadedImagesDiv').prepend(savedimg[j])
@@ -144,7 +144,7 @@ $(document).ready(function () {
         undofn(e)
         // console.log('czyszczę', $c.width());
         isLine = false
-        $('#middle span').html('You cleared the canvas. You can undo it by clicking the undo button.')
+        $('#middle span').html('You cleared the canvas. You can undo it by pressing ctrl + Z.')
         $('#middle span').css('color', 'white')
 
         $('#swiper').html('You cleared the canvas. You can undo it by clicking the undo button.')
@@ -1388,6 +1388,11 @@ $(document).ready(function () {
                 $ctx.fillRect(x, y, width, height)
                 $ctx.closePath()
                 //console.log('delete');
+                $('#middle span').html('You deleted part of your canvas. You can undo it by pressing ctrl + Z.')
+                $('#middle span').css('color', 'white')
+
+                $('#swiper').html('You deleted part of your canvas. You can undo it by clicking the undo button.')
+                $('#swiper').css('color', 'white')
 
             } else if ($('#radioCut').is(':checked') || $('#radioCopy').is(':checked')) {
                 if ($('#radioCut').is(':checked')) {
@@ -1420,11 +1425,11 @@ $(document).ready(function () {
                 // $('body').append(canvas2)
                 $('#selected').prepend(clippedimg[k])
                 // window.imagee=clippedimg[k]
-                $('#middle span').html('Visit images > gallery > selected to use the selected area')
+                $('#middle span').html('Visit images > gallery > selected to use the selected area.')
                 $('#middle span').css('color', 'white')
 
 
-                $('#swiper').html('Visit images > gallery > selected to use the selected area')
+                $('#swiper').html('Visit images > gallery > selected to use the selected area.')
                 $('#swiper').css('color', 'white')
                 k++
                 // $('#images').click()
@@ -1944,10 +1949,20 @@ $(document).ready(function () {
             $('#ljoin').click()
         }
     })
-
+let g=0
     $(document).on('keydown', e => {
 
-        if (e.target.id !== 'textContent') {
+        if (e.target.id !== 'textContent' && e.target.id !== 'uploadImage') {
+            if ((e.key === 'g' || e.key === 'G') && !e.ctrlKey){              
+                if(g%2==0){
+                $('#images').click()
+                $('#showImgBtn').click()}
+                else {
+                $('#close').click()
+                }
+               g++
+            }
+
             if ((e.key === 's' || e.key === 'S') && e.shiftKey)
                 $('#save').click()
 
@@ -1983,15 +1998,43 @@ $(document).ready(function () {
             if ((e.key === 'c' || e.key === 'C') && !e.shiftKey)
                 $('#colors').click()
 
-            if ((e.key === 'Delete') && !e.shiftKey)
+            if ((e.key === 'Delete') && !e.shiftKey && !e.ctrlKey)
                 $('#clear').click()
-
-
-            if ((e.key === 'g' || e.key === 'G') && !e.ctrlKey)
-                $('#showImgBtn').click()
 
             if ((e.key === 'Escape') && !e.ctrlKey)
                 $('#close').click()
+
+            if ((e.key === 'r' || e.key==='R') && !e.ctrlKey){
+                $('#shape').click()
+                $('#labelShapeSquare').click()
+                //don't know why but thid needs to be doubled, otherwise it won't work
+                $('#labelShapeSquare').click()
+            }
+            if ((e.key === 'e' || e.key==='E') && !e.ctrlKey){
+                $('#shape').click()
+                $('#labelShapeCircle').click()
+                //don't know why but thid needs to be doubled, otherwise it won't work
+                $('#labelShapeCircle').click()
+            }
+            if ((e.key === 'c' || e.key === 'C') && e.ctrlKey && !e.shiftKey){
+                $('#select').click()
+                //dont'know why but the select Option jumps every time 
+            $('#labelCopy').click()
+            }
+            if ((e.key === 'x' || e.key === 'X') && e.ctrlKey){
+                $('#select').click()
+            $('#labelCut').click()
+            }
+            if ((e.key === 'f' || e.key === 'F') && e.ctrlKey){
+                $('#colors').click()
+            $('#backColor').click()
+            e.preventDefault()
+            }
+            if ((e.key === 'Delete') && e.ctrlKey){
+                $('#select').click()
+            $('#labelDelete').click()
+            }
+       
 
         }
     })

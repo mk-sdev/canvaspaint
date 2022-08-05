@@ -46,7 +46,7 @@ else
 //     c.height = conh * .85
 
 if (conw <= 555)
-    c.height = window.innerHeight - 140
+    c.height = window.innerHeight - 125
 else if (conw > 555 && conw <= 1100)
     c.height = window.innerHeight * .69
 else c.height = window.innerHeight * .75
@@ -129,9 +129,9 @@ x1.addListener(myFunction1)
 //////////
 function myFunction2(x) {
     if (x.matches) {
-        // document.querySelector('html').classList.add("brp3")
+        document.querySelector('html').classList.add("brp3")
     } else {
-        // document.querySelector('html').classList.remove("brp3")
+        document.querySelector('html').classList.remove("brp3")
     }
 }
 
@@ -445,48 +445,62 @@ document.querySelector('#wholecontainer').addEventListener('wheel', function (e)
     }
     return;
 })
-//////inputs type number'
-const pencilRange  = document.querySelector('#lineWidthPencil')
-const pencilNr = document.querySelector('#lineWidthPencilNr')
-pencilRange.addEventListener('input', ()=>{
-    pencilNr.value=pencilRange.value
-})
-var invalidChars = [
-    "-",
-    "+",
-    "e",
-  ];
-  pencilNr.addEventListener("keydown", function(e) {
-    if (invalidChars.includes(e.key)) {
-      e.preventDefault();
-    }
-  });
-pencilNr.addEventListener('input', e=>{
-// alert(pencilNr.max)
-if(pencilNr.value>Number(pencilNr.max))
-pencilNr.value=50
-if(pencilNr.value<0)
-pencilNr.value=1
+//////inputs type number
 
-    pencilRange.value=pencilNr.value
 
-    if(pencilNr.value=='')
-    pencilRange.value=1
-    // alert(e.target.value)
-})
-///////////////
+
+
+// const numbers  = document.querySelectorAll('input[type=number]')
+// console.log('inputy: ', numbers[0])
+// const ranges = document.querySelector('#lineWidthPencilNr').parentElement.nextElementSibling
+// console.log('rodzic', ranges);
+
+// pencilRange.addEventListener('input', (e)=>{
+//     pencilNr.value=pencilRange.value
+// })
+// var invalidChars = [
+//     "-",
+//     "+",
+//     "e",
+//   ];
+//   pencilNr.addEventListener("keydown", function(e) {
+//     if (invalidChars.includes(e.key)) {
+//       e.preventDefault();
+//     }
+//   });
+// pencilNr.addEventListener('input', e=>{
+// // alert(pencilNr.max)
+// if(pencilNr.value>Number(pencilNr.max))
+// pencilNr.value=50
+// if(pencilNr.value<0)
+// pencilNr.value=1
+
+//     pencilRange.value=pencilNr.value
+
+//     if(pencilNr.value=='')
+//     pencilRange.value=1
+//     // alert(e.target.value)
+// })
+
+
+
+
+
+
+
+/////////////// opening navs
 
 document.querySelector('#options').addEventListener('mouseenter', e=>{
     if(document.querySelector('html').classList.contains('brp1')){
     e.target.style.left='0px'
-    e.target.style.direction='ltr'
+    e.target.style.overflow='auto'
     }
  
 })
 document.querySelector('#options').addEventListener('mouseleave', e=>{
     if(document.querySelector('html').classList.contains('brp1')){
     e.target.style.left='-240px'
-    e.target.style.direction='rtl'
+    e.target.style.overflow='hidden'
 e.target.scrollTop=0
     }
 })
