@@ -119,7 +119,7 @@
 /* Add Zoom Animation */
 .animate {
     -webkit-animation: animatezoom 0.4s;
-    animation: animatezoom 0.4s
+    animation: animatezoom .4s
 }
 
 @-webkit-keyframes animatezoom {

@@ -1,3 +1,14 @@
+
+// window.addEventListener("load", event => {
+//     var image = document.querySelector('#img1');
+//     var isLoaded = image.complete && image.naturalHeight !== 0;
+//     // alert(isLoaded);
+// });
+
+// document.querySelector('#showImgBtn').addEventListener('click', e=>{
+//     document.querySelector('#img2').style.display='block'
+// })
+
 //disable landscape mode
 screen.orientation.lock("landscape")
 //changing the tabicon depending on the browser theme
@@ -27,19 +38,25 @@ let conh = window.getComputedStyle(con).height.replace('px', '')
 
 
 //setting the canvas size
-let c = document.querySelector('CANVAS');
+let c = document.querySelector('#canvas');
+// let cA = document.querySelector('#canvasA');
 let ctx = c.getContext('2d')
 c.siteRoot = $('.site-root').val();
 ctx.siteRoot = $('.site-root').val();
 
-if (conw <= 1200 && conw > 900)
+if (conw <= 1200 && conw > 900){
     c.width = conw * .65
+    // cA.width = conw * .65
+}
 else
-if (conw <= 900)
+if (conw <= 900){
     c.width = conw * .95
-else
+    // cA.width = conw * .95
+}
+else{
     c.width = conw -550
-
+    // cA.width = conw -550
+}
 // if (conw <= 555)
 //     c.height = conh * .6
 // else
@@ -51,7 +68,11 @@ else if (conw > 555 && conw <= 1100)
     c.height = window.innerHeight * .69
 else c.height = window.innerHeight * .75
 
-
+// if (conw <= 555)
+//     cA.height = window.innerHeight - 125
+// else if (conw > 555 && conw <= 1100)
+//     cA.height = window.innerHeight * .69
+// else cA.height = window.innerHeight * .75
 
 //console.log('aaaa', window.innerWidth, );
 const middle=document.querySelector('#middle')
@@ -450,38 +471,49 @@ document.querySelector('#wholecontainer').addEventListener('wheel', function (e)
 
 
 
-// const numbers  = document.querySelectorAll('input[type=number]')
+const numbers  = document.querySelectorAll('input[type=number]')
 // console.log('inputy: ', numbers[0])
-// const ranges = document.querySelector('#lineWidthPencilNr').parentElement.nextElementSibling
+let ranges=[]
+for(let i=0; i<numbers.length; i++){
+ ranges[i] = numbers[i].parentElement.nextElementSibling
 // console.log('rodzic', ranges);
+}
 
-// pencilRange.addEventListener('input', (e)=>{
-//     pencilNr.value=pencilRange.value
-// })
-// var invalidChars = [
-//     "-",
-//     "+",
-//     "e",
-//   ];
-//   pencilNr.addEventListener("keydown", function(e) {
-//     if (invalidChars.includes(e.key)) {
-//       e.preventDefault();
-//     }
-//   });
-// pencilNr.addEventListener('input', e=>{
-// // alert(pencilNr.max)
-// if(pencilNr.value>Number(pencilNr.max))
-// pencilNr.value=50
-// if(pencilNr.value<0)
-// pencilNr.value=1
+for(let i=0; i<ranges.length; i++){
+ranges[i].addEventListener('input', (e)=>{
+    numbers[i].value=ranges[i].value
+})
+}
 
-//     pencilRange.value=pencilNr.value
+var invalidChars = [
+    // "-",
+    "+",
+    "e",
+  ];
 
-//     if(pencilNr.value=='')
-//     pencilRange.value=1
-//     // alert(e.target.value)
-// })
+  for(let i=0; i<numbers.length; i++){
+  numbers[i].addEventListener("keydown", function(e) {
+    if (invalidChars.includes(e.key)) {
+      e.preventDefault();
+    }
+  });
+}
 
+for(let i=0; i<numbers.length; i++){
+numbers[i].addEventListener('input', e=>{
+// alert(pencilNr.max)
+if(numbers[i].value>Number(numbers[i].max))
+numbers[i].value=Number(numbers[i].max)
+if(numbers[i].value<Number(numbers[i].min))
+numbers[i].value=Number(numbers[i].min)
+
+    ranges[i].value=numbers[i].value
+
+    if(numbers[i].value=='')
+    ranges[i].value=Number(numbers[i].min)
+    // alert(e.target.value)
+})
+}
 
 
 
@@ -502,6 +534,7 @@ document.querySelector('#options').addEventListener('mouseleave', e=>{
     e.target.style.left='-240px'
     e.target.style.overflow='hidden'
 e.target.scrollTop=0
+// alert('a')
     }
 })
 //

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
 
 <head>
 
@@ -86,7 +86,7 @@
             </button>
             <button title='H' id="shape" class="btn">
                 <!-- <i class="fa-solid fa-shapes"></i> -->
-                <i class="fa-regular fa-square" style="transform: rotate(7deg)"></i>
+                <i class="fa-regular fa-square" style="transform: rotate(0deg)"></i>
                 <!-- <i class="fa-regular fa-square"></i>
             <i class="fa-regular fa-circle" style="margin-left: -25px"></i> -->
 
@@ -124,7 +124,7 @@
                     <!-- <div class="testdiv" ></div> -->
                     <div id="pencilWidth">
                         <span><b>Width: </b>
-                            <input type="number" style="width: 50px; color:black" value="5" min="1" max="50" id="lineWidthPencilNr">
+                            <input type="number" value="5" min="1" max="50" id="lineWidthPencilNr">
                         </span>
                         <input type="range" id="lineWidthPencil" value="5" min=1 max="50"></div>
                     <hr>
@@ -156,9 +156,9 @@
                     <!-- <div class="testdiv" ></div> -->
 
                     <div id="lineWidth">
-                        <span><b>Width</b>
-                            <input type="number" style="width: 50px; color:black" value="5" min="1" max="50" id="lineWidthLinelNr"></span>
-                        <input type="range" id="lineWidthLine" value="5" maxvalue="50"></div>
+                        <span><b>Width: </b>
+                            <input type="number" value="5" min="1" max="50" id="lineWidthLineNr"></span>
+                        <input type="range" id="lineWidthLine" value="5" min="1" max="50"></div>
                     <hr>
                     <div id="lineColor">
                         <span><b>Color</b></span>
@@ -246,9 +246,11 @@
                     </div>
                     <hr>
                     <div>
-                        <span><b>Stroke width</b></span>
+                        <span><b>Stroke width: </b>
+                            <input type="number" value="5" min="1" max="50" id="lineWidthShapeNr">
+                        </span>
 
-                        <input type="range" id="lineWidthShape" value="5" minvalue='1' maxvalue="50">
+                        <input type="range" id="lineWidthShape" value="5" min='1' max="50">
                     </div>
 
                     <!-- <div class="radiosShape">
@@ -287,7 +289,9 @@
                     </div>
 
                     <hr>
-                    <div><span><b>Font size</b></span>
+                    <div><span><b>Font size: </b>
+                        <input type="number" value="50" min="1" max="200" id="textSizeNr">
+                    </span>
                         <input type="range" id="textSize" value="50" min='1' max="200"></div>
                     <hr>
                     <div id="styleText">
@@ -316,8 +320,10 @@
                         <div> <input type="color" id="colorStrokeText"></div>
                     </div>
                     <hr>
-                    <div><span><b>Width of stroke</b></span>
-                        <input type="range" id="textStrokeWidth" value="1" minvalue='1' maxvalue="10"></div>
+                    <div><span><b>Width of stroke: </b>
+                        <input type="number" value="5" min="1" max="10"  style="width: 40px; font-size: 17px" id="textStrokeWidthNr">
+                    </span>
+                        <input type="range" id="textStrokeWidth" value="1" min='1' max="10"></div>
                     <hr>
                     <div><span><b>Style</b></span>
                         <div id="radiosText">
@@ -361,7 +367,8 @@
 
                     <!-- <label id="uploader1"><input type="text" id="uploaderbtn1" style="color: black;">upload</label> -->
                     <!-- <hr> -->
-                    <div><span><b>Image size</b></span>
+                    <div><span><b>Image size: </b> <input type="number" value="-3" min="-10" max="10" step="0.1" id="imageSizeNr">
+                    </span>
                         <input type="range" id="imageSize" value="-3" max="10" min="-10" step="0.1"
                             style="margin-left: auto; margin-right: auto"></div>
                     <hr>
@@ -401,19 +408,25 @@
 
 
                     <hr>
-                    <div id="reddiv"><span><b>Red</b></span>
+                    <div id="reddiv"><span><b>Red: </b> <input type="number" style="width: 60px" value="127" min="0" max="255" id="redNr">
+                    </span>
                         <input type="range" id="red" value="127" max="255" min="0"
                             style="margin-left: auto; margin-right: auto"></div>
 
-                    <div id="greendiv"><span><b>Green</b></span>
+                    <div id="greendiv"><span><b>Green: </b> <input type="number" style="width: 60px"  value="127" min="0" max="255" id="greenNr">
+                    </span>
                         <input type="range" id="green" value="127" max="255" min="0"
                             style="margin-left: auto; margin-right: auto"></div>
 
-                    <div id="bluediv"><span><b>Blue</b></span>
+                    <div id="bluediv"><span><b>Blue: </b>
+                        <input type="number" style="width: 60px"  value="127" min="0" max="255" id="blueNr">
+                    </span>
                         <input type="range" id="blue" value="127" max="255" min="0"
                             style="margin-left: auto; margin-right: auto"></div>
                     <hr>
-                    <div id="lightdiv"><span><b>Lightness</b></span>
+                    <div id="lightdiv"><span><b>Lightness: </b>
+                        <input type="number" style="width: 60px"  value="127" min="0" max="255" id="lightnessNr">
+                    </span>
                         <input type="range" id="lightness" value="127" max="255" min="0"
                             style="margin-left: auto; margin-right: auto"></div>
                     <!-- <hr>
@@ -482,9 +495,13 @@
 
             <div id="middle">
 
-             <div id="zoomable">
+             <div id="zoomable" oncontextmenu="return false">
              
-                <canvas id="canvas"  oncontextmenu="return false""></canvas>
+                <!-- <div id="outercanvas" style="width: fit-content;"> -->
+                <canvas id="canvas"  oncontextmenu="return false"></canvas>
+            <!-- </div> -->
+
+                <!-- <canvas id="canvasA"  oncontextmenu="return false" style="position: absolute; z-index: 5; left: 0; opacity: .5; background-color: red; top: 0px;"></canvas> -->
             </div>
 
                 <span style="display: table; margin: 0 auto; font-size: 15px;">Right click on the canvas to toggle the hidden menu. Press ctrl and scroll to zoom in/out.</span>
@@ -532,7 +549,7 @@
     </div>
 
     <!-- The Modal -->
-    <div id="id01" class="modal">
+    <div id="id01" class="modal" defer>
         <span title="Escape" id="close">&times;</span>
 
         <!-- Modal Content -->
@@ -546,44 +563,73 @@
                 <button class="tablink" id="tablink4">Selected</button>
             </div>
             <!-- <button class="tablink" onclick="openTab('Oslo', this, 'orange')">Oslo</button> -->
-
+<!-- <div style="width: 100%; height: 100%; background: black; position: absolute; z-index: 999; opacity: .2 "></div> -->
             <div id="tabCon1" class="tabcontent">
 
                 <div id="imagesDiv" class="galleryDiv">
 
-                    <img crossorigin="anonymous" src="./images/photos/doggo.png" alt="doggo" id="img1"
+                    <img loading="lazy" crossorigin="anonymous" src="./images/photos/doggo.png" alt="doggo" id="img1"
+                        class="img photo">                   
+                    <img loading="lazy" crossorigin="anonymous" src="./images/photos/programming.png" alt="programming" id="img2"
                         class="img photo">
-                    <img crossorigin="anonymous" src="./images/photos/programming.png" alt="programming" id="img2"
+                    <img loading="lazy" crossorigin="anonymous" src="./images/photos/stockGuy.png" alt='stock guy' id="img3"
                         class="img photo">
-                    <img crossorigin="anonymous" src="./images/photos/stockGuy.png" alt='stock guy' id="img3"
+                    <img loading="lazy" crossorigin="anonymous" src="./images/photos/tree.png" alt='tree' id="img4" class="img photo">
+                    <img loading="lazy" crossorigin="anonymous" src="./images/photos/balloons.png" alt='balloons' id="img5"
                         class="img photo">
-                    <img crossorigin="anonymous" src="./images/photos/tree.png" alt='tree' id="img4" class="img photo">
-                    <img crossorigin="anonymous" src="./images/photos/balloons.png" alt='balloons' id="img5"
+                    <img loading="lazy" crossorigin="anonymous" src="./images/photos/mountain.png" alt='mountain' id="img6"
                         class="img photo">
-                    <img crossorigin="anonymous" src="./images/photos/mountain.png" alt='mountain' id="img6"
+                    <img loading="lazy" crossorigin="anonymous" src="./images/photos/earth.png" alt='earth' id="img7"
                         class="img photo">
-                    <img crossorigin="anonymous" src="./images/photos/earth.png" alt='earth' id="img7"
+                    <img loading="lazy" crossorigin="anonymous" src="./images/photos/xavier.png" alt='xavier' id="img8"
                         class="img photo">
-                    <img crossorigin="anonymous" src="./images/photos/xavier.png" alt='xavier' id="img8"
-                        class="img photo">
-                    <img crossorigin="anonymous" src="./images/photos/deer.png" alt='deer' id="img9" class="img photo">
+                    <img loading="lazy" crossorigin="anonymous" src="./images/photos/deer.png" alt='deer' id="img9" class="img photo">
 
-
+                   
                 </div>
+                <script type="text/javascript">
+                    function showLoader(){
+                        $('#imagesDiv').LoadingOverlay("show", {
+                            background: "rgba(0, 0, 0, 0)",
+                            imageColor: 'white',
+                            // imageClass: "imgtest",
+                            text: 'Loading...',
+                            textClass: 'test',
+                            textResizeFactor: '.25',
+                        });                                        
+                    }
+        
+                        showLoader()
+
+             
+                </script>
             </div>
 
             <div id="tabCon2" class="tabcontent">
                 <div id="objectsDiv" class="galleryDiv">
-                    <img crossorigin="anonymous" src="./images/objects/dymek.png" alt="speech bubble" id="obj1"
+                    <img loading="lazy" crossorigin="anonymous" src="./images/objects/dymek.png" alt="speech bubble" id="obj1"
                         class="img obj">
-                    <img crossorigin="anonymous" src="./images/objects/heart.png" alt="heart" id="obj2" class="img obj">
-                    <img crossorigin="anonymous" src="./images/objects/arrow.png" alt="arrow" id="obj3" class="img obj">
-                    <img crossorigin="anonymous" src="./images/objects/star.png" alt="star" id="obj4" class="img obj">
-                    <img crossorigin="anonymous" src="./images/objects/leaf.png" alt="leaf" id="obj5" class="img obj">
-                    <img crossorigin="anonymous" src="./images/objects/sun.png" alt="sun" id="obj6" class="img obj">
+                    <img loading="lazy" crossorigin="anonymous" src="./images/objects/heart.png" alt="heart" id="obj2" class="img obj">
+                    <img loading="lazy" crossorigin="anonymous" src="./images/objects/arrow.png" alt="arrow" id="obj3" class="img obj">
+                    <img loading="lazy" crossorigin="anonymous" src="./images/objects/star.png" alt="star" id="obj4" class="img obj">
+                    <img loading="lazy" crossorigin="anonymous" src="./images/objects/leaf.png" alt="leaf" id="obj5" class="img obj">
+                    <img loading="lazy" crossorigin="anonymous" src="./images/objects/sun.png" alt="sun" id="obj6" class="img obj">
 
                 </div>
+                <script type="text/javascript">
+                    function showLoader1(){
+                        $('#objectsDiv').LoadingOverlay("show", {
+                            background: "rgba(0, 0, 0, 0)",
+                            imageColor: 'white',
+                            text: 'Loading...',
+                            textClass: 'test',
+                            textResizeFactor: '.25',
+                        });                                        
+                    }
+                  
+                        showLoader1()
 
+                </script>
             </div>
 
             <div id="tabCon3" class="tabcontent">

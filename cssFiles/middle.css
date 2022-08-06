@@ -100,13 +100,13 @@
     position: relative;
 }
 
-.brp1 #zoomable {
+/* .brp1 #zoomable {
     padding-left: 7vw
 }
 
 .brp2 #zoomable {
     padding-left: 0
-}
+} */
 
 .brp4 #zoomable::-webkit-scrollbar {
     width: 0;

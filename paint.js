@@ -1,10 +1,14 @@
-// dodawanie zdjeć, poprawić download,  tools cień, poprawić pod wzgędem stylistycznym, dodać span przy rendżach, transition bocnego menu po rozszerzaniu,  change orientation
+// dodawanie zdjeć, poprawić download,  tools cień, poprawić pod wzgędem stylistycznym, transition bocnego menu po rozszerzaniu,  change orientation, hiddenMenu, canvas nie jest po środku na brp1 czy tam 2
 //=== zamiast ==, usunąć zbędne komentarze, lazy loading obrazkow, canvas na elastycznych i menu boczne
 $(window).load(function () {
     // PAGE IS FULLY LOADED  
     // FADE OUT YOUR OVERLAYING DIV
 
     $('#beforeload').fadeOut();
+  
+        // console.log('loaded');
+        $('#beforeload').LoadingOverlay("hide", true)
+      
 });
 
 $(document).ready(function () {
@@ -71,6 +75,11 @@ $('BODY').on('click', e=>{
             $('#green').attr('value', `127`)
             $('#blue').attr('value', `127`)
             $('#lightness').attr('value', `127`)
+
+            $('#redNr').val(127)
+            $('#greenNr').attr('value', `127`)
+            $('#blueNr').attr('value', `127`)
+            $('#lightnessNr').attr('value', `127`)
             //tutaj jeszcze poustawiać wszystko na 127
         } else {
             index -= 1
@@ -89,7 +98,10 @@ $('BODY').on('click', e=>{
             $('#blue').val(ranges_array[index].blue)
             $('#lightness').val(ranges_array[index].light)
 
-
+            $('#redNr').val(ranges_array[index].red)
+            $('#greenNr').val(ranges_array[index].green)
+            $('#blueNr').val(ranges_array[index].blue)
+            $('#lightnessNr').val(ranges_array[index].light)
 
         }
         //console.log(index, restore_array)
@@ -173,7 +185,9 @@ $('BODY').on('click', e=>{
         if (!$('#middle span').text().length == 0 && whichBtn !== 'text' && whichBtn !== 'select') {
             // $('#middle span').css('color', 'transparent')
         // console.log($('#middle span').html(''))
+console.log($('#middle span:contains("Right")'))
 
+if( $("#middle > span").text().indexOf('Right') < 0)
             $('#middle span').html('')
 
             $('#swiper').css('color', 'silver')
@@ -247,7 +261,7 @@ $('BODY').on('click', e=>{
 
         // console.log('wwwwww', e.target.id);
         //console.log('ss', e.target.id.slice(0, 14));
-        if (e.target.id.slice(0, 7) == 'tablink') {
+        if (e.target.id.slice(0, 7) === 'tablink') {
             for (let i = 1; i <= $(".tablink").length; i++) {
                 $(`#tabCon${i}`).css('display', 'none')
                 // $('.galleryDiv').eq(i-1).css('display', 'none')
@@ -316,9 +330,20 @@ $('BODY').on('click', e=>{
 
     })
 
+
+let isFirst = true
     $('#showImgBtn').on('click', (e) => {
         $('#id01').css('display', 'block');
+
+        if(isFirst)
+        setTimeout(()=>{
+            $("#tablink1").click();
+        }, 100)
+        else 
         $("#tablink1").click();
+
+isFirst=false
+
     })
 
     const modal = $('#id01')
@@ -777,7 +802,7 @@ $('BODY').on('click', e=>{
     //    })
     // }
 
-    let box, x;
+   
 
 
     $('#pencil').on('click', () => {
@@ -791,7 +816,7 @@ $('BODY').on('click', e=>{
         whichBtn = 'pencil'
 
 
-        box = $('#pencilOptions')
+       
     })
 
 
@@ -805,7 +830,7 @@ $('BODY').on('click', e=>{
 
         $('#lineOptions').css('display', 'flex')
         whichBtn = 'line'
-        box = $('#lineOptions')
+       
 
 
     })
@@ -819,7 +844,7 @@ $('BODY').on('click', e=>{
 
         $('#shapeOptions').css('display', 'flex')
         whichBtn = 'shape'
-        box = $('#shapeOptions')
+     
 
     })
     $('#text').on('click', () => {
@@ -837,8 +862,9 @@ $('BODY').on('click', e=>{
 
         $('#textOptions').get(0).scrollTop = 0
         whichBtn = 'text'
-        box = $('#textOptions')
+   
 
+   
     })
 
 
@@ -851,7 +877,7 @@ $('BODY').on('click', e=>{
             $('#colorsOptions').slideDown(200)
         $('#colorsOptions').css('display', 'flex')
         whichBtn = 'colors'
-        box = $('#colorsOptions')
+      
 
     })
     $('#select').on('click', () => {
@@ -875,7 +901,7 @@ $('BODY').on('click', e=>{
             $('#imagesOptions').slideDown(200)
         $('#imagesOptions').css('display', 'flex')
         whichBtn = 'images'
-        box = $('#imagesOptions')
+       
     })
 
 
@@ -1954,33 +1980,18 @@ $('BODY').on('click', e=>{
 
 
 
-    $(".arrow").click(function () {
-        if ($(this).hasClass("arrow-right")) {
-            x = ((box.width() / 2)) + box.scrollLeft();
-            box.animate({
-                scrollLeft: x,
-            })
-        } else {
-            x = ((box.width() / 2)) - box.scrollLeft();
-            box.animate({
-                scrollLeft: -x,
-            })
-        }
-    })
-
-
     /////keyboard shortcuts
     $(document).on('keyup', e => {
         if (!e.ctrlKey && $('input[name=join]').is(':checked')) {
             $('#ljoin').click()
         }
     })
-let g=0
+// let g=0
     $(document).on('keydown', e => {
 
         if (e.target.id !== 'textContent' && e.target.id !== 'uploadImage') {
             if ((e.key === 'g' || e.key === 'G') && !e.ctrlKey){              
-                if(g%2==0){
+                if($('.modal').css('display')==='none'){
                 $('#images').click()
                 $('#showImgBtn').click()}
                 else {
@@ -2065,7 +2076,36 @@ let g=0
         }
     })
 
-   
+    // $('#showImgBtn').on('click', e=>{
+     
+    //     function showLoader(){
+    //         $('#imagesDiv').LoadingOverlay("show", {
+    //             background: "rgba(0, 0, 0, 0)",
+    //             imageColor: 'white',
+    //             text: 'Loading...',
+    //             textClass: 'test',
+    //             textResizeFactor: '.25',
+    //         });                                        
+    //     }
+    //     setTimeout(()=>{
+    //         showLoader()
+
+    //     }, 50)
+
+    // })
+
+
+    $("#img1").load(function(){
+        console.log('loaded');
+            $('#imagesDiv').LoadingOverlay("hide", true)
+      });
+
+
+
+      $("#obj1").load(function(){
+        console.log('loaded');
+        $('#objectsDiv').LoadingOverlay("hide", true)
+      });
 
 
 });
