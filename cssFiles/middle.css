@@ -98,6 +98,8 @@
 #zoomable {
     overflow: auto;
     position: relative;
+    display: flex;
+    justify-content: space-around;
 }
 
 /* .brp1 #zoomable {

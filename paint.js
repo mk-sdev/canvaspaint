@@ -1,21 +1,21 @@
-// dodawanie zdjeć, poprawić download,  tools cień, poprawić pod wzgędem stylistycznym, transition bocnego menu po rozszerzaniu,  change orientation, hiddenMenu, canvas nie jest po środku na brp1 czy tam 2
-//=== zamiast ==, usunąć zbędne komentarze, lazy loading obrazkow, canvas na elastycznych i menu boczne
+// dodawanie zdjeć, poprawić download, poprawić pod wzgędem stylistycznym, transition bocnego menu po rozszerzaniu, hiddenMenu, 
+//=== zamiast ==, usunąć zbędne komentarze, 
 $(window).load(function () {
     // PAGE IS FULLY LOADED  
     // FADE OUT YOUR OVERLAYING DIV
 
     $('#beforeload').fadeOut();
-  
-        // console.log('loaded');
-        $('#beforeload').LoadingOverlay("hide", true)
-      
+
+    // console.log('loaded');
+    $('#beforeload').LoadingOverlay("hide", true)
+
 });
 
 $(document).ready(function () {
 
-    $('#zoomable').on('mousedown', e=>{
+    $('#zoomable').on('mousedown', e => {
 
-        if(e.button==2){
+        if (e.button == 2) {
             $('#hiddenMenu').css('display', 'block')
             $('#hiddenMenu').css('left', `${e.pageX+10}px`)
             $('#hiddenMenu').css('top', `${e.pageY+10}px`)
@@ -23,14 +23,14 @@ $(document).ready(function () {
         // e.preventDefault()
 
     })
-$('BODY').on('click', e=>{
-    if($('#hiddenMenu').css('display')==='block'  )
-    setTimeout(()=>{
-        $('#hiddenMenu').css('display', 'none')
+    $('BODY').on('click', e => {
+        if ($('#hiddenMenu').css('display') === 'block')
+            setTimeout(() => {
+                $('#hiddenMenu').css('display', 'none')
 
-    }, 10)
+            }, 10)
 
-})
+    })
     //e.log(c, ctx);
 
     const $c = $('canvas')
@@ -184,11 +184,11 @@ $('BODY').on('click', e=>{
     $c.on('click touchstart', () => {
         if (!$('#middle span').text().length == 0 && whichBtn !== 'text' && whichBtn !== 'select') {
             // $('#middle span').css('color', 'transparent')
-        // console.log($('#middle span').html(''))
-console.log($('#middle span:contains("Right")'))
+            // console.log($('#middle span').html(''))
+            console.log($('#middle span:contains("Right")'))
 
-if( $("#middle > span").text().indexOf('Right') < 0)
-            $('#middle span').html('')
+            if ($("#middle > span").text().indexOf('Right') < 0)
+                $('#middle span').html('')
 
             $('#swiper').css('color', 'silver')
             $('#swiper').html('<div><i class="fa-solid fa-arrow-left-long"></i> swipe here <i class="fa-solid fa-arrow-right-long"></i></div>')
@@ -331,18 +331,18 @@ if( $("#middle > span").text().indexOf('Right') < 0)
     })
 
 
-let isFirst = true
+    let isFirst = true
     $('#showImgBtn').on('click', (e) => {
         $('#id01').css('display', 'block');
 
-        if(isFirst)
-        setTimeout(()=>{
+        if (isFirst)
+            setTimeout(() => {
+                $("#tablink1").click();
+            }, 100)
+        else
             $("#tablink1").click();
-        }, 100)
-        else 
-        $("#tablink1").click();
 
-isFirst=false
+        isFirst = false
 
     })
 
@@ -802,7 +802,7 @@ isFirst=false
     //    })
     // }
 
-   
+
 
 
     $('#pencil').on('click', () => {
@@ -816,7 +816,7 @@ isFirst=false
         whichBtn = 'pencil'
 
 
-       
+
     })
 
 
@@ -830,7 +830,7 @@ isFirst=false
 
         $('#lineOptions').css('display', 'flex')
         whichBtn = 'line'
-       
+
 
 
     })
@@ -844,7 +844,7 @@ isFirst=false
 
         $('#shapeOptions').css('display', 'flex')
         whichBtn = 'shape'
-     
+
 
     })
     $('#text').on('click', () => {
@@ -862,9 +862,9 @@ isFirst=false
 
         $('#textOptions').get(0).scrollTop = 0
         whichBtn = 'text'
-   
 
-   
+
+
     })
 
 
@@ -877,7 +877,7 @@ isFirst=false
             $('#colorsOptions').slideDown(200)
         $('#colorsOptions').css('display', 'flex')
         whichBtn = 'colors'
-      
+
 
     })
     $('#select').on('click', () => {
@@ -901,7 +901,7 @@ isFirst=false
             $('#imagesOptions').slideDown(200)
         $('#imagesOptions').css('display', 'flex')
         whichBtn = 'images'
-       
+
     })
 
 
@@ -916,7 +916,7 @@ isFirst=false
         console.log('a')
     })
 
- 
+
     // $('#uploaderbtn').on('change', (e)=>{
     //     let image = $('#output')
     //     image.src = URL.createObjectURL(e.target.files[0])
@@ -941,6 +941,7 @@ isFirst=false
     //////////////////////////////////////////////////////////////
 
     const ua = navigator.userAgent;
+
     //true if on mobile
     window.mobile = false
     if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua) ||
@@ -954,18 +955,30 @@ isFirst=false
         $('#middle span').css('color', 'white')
 
         let nrofchange = 0
+      
+
         //chyba nie działa na safari i na pewno na ie :(
         screen.orientation.addEventListener("change", e => {
+            e.returnValue = 'You have unsaved changes.';
+            // alert(navigator.userAgent)
 
             nrofchange++
+         
+            if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(navigator.userAgent) ||
+        /Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(navigator.userAgent))
+            {
             if (nrofchange % 2 == 1) {
                 document.querySelector('#orientation').style.display = 'block'
                 document.querySelector('#wholecontainer').style.display = 'none'
-
-            } else {
+            }
+            else{
+                document.querySelector('#orientation').style.display = 'none'
+                document.querySelector('#wholecontainer').style.display = 'block'
+            }}else{
                 document.querySelector('#orientation').style.display = 'none'
                 document.querySelector('#wholecontainer').style.display = 'block'
             }
+        
 
         });
 
@@ -1076,8 +1089,7 @@ isFirst=false
         if (whichBtn == 'line' && e.button !== 1 && e.button !== 2) {
             isLine = true
             //isJoin = true
-            if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua) ||
-                /Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
+            if (window.mobile) {
                 let touch = e.originalEvent.touches[0]
                 var x = touch.pageX;
                 var y = touch.pageY;
@@ -1114,8 +1126,7 @@ isFirst=false
             let imgData = $(this).data('imgData')
             //console.log('imgdata', imgData);
 
-            if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua) ||
-                /Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
+            if (window.mobile) {
 
 
                 let touch = e.originalEvent.touches[0]
@@ -1297,8 +1308,7 @@ isFirst=false
 
 
 
-            if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua) ||
-                /Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
+            if (window.mobile) {
                 let touch = e.originalEvent.touches[0]
                 var x = touch.pageX;
                 var y = touch.pageY;
@@ -1334,8 +1344,7 @@ isFirst=false
         if (isSelect && whichBtn == 'select') {
             let imgData = $(this).data('imgData')
 
-            if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua) ||
-                /Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
+            if (window.mobile) {
                 let touch = e.originalEvent.touches[0]
                 var x = touch.pageX;
                 var y = touch.pageY;
@@ -1608,8 +1617,7 @@ isFirst=false
 
 
 
-            if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua) ||
-                /Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
+            if (window.mobile) {
                 let touch = e.originalEvent.touches[0]
                 var x = touch.pageX;
                 var y = touch.pageY;
@@ -1645,8 +1653,7 @@ isFirst=false
         if (isShape && whichBtn == 'shape') {
             let imgData = $(this).data('imgData')
 
-            if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua) ||
-                /Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
+            if (window.mobile) {
                 let touch = e.originalEvent.touches[0]
                 var x = touch.pageX;
                 var y = touch.pageY;
@@ -1844,8 +1851,7 @@ isFirst=false
             $ctx.beginPath();
 
 
-            if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua) ||
-                /Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
+            if (window.mobile) {
                 let touch = e.originalEvent.touches[0]
 
                 var x = touch.pageX;
@@ -1878,8 +1884,7 @@ isFirst=false
 
 
 
-            if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua) ||
-                /Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
+            if (window.mobile) {
                 let touch = e.originalEvent.touches[0]
                 var x = touch.pageX;
                 var y = touch.pageY;
@@ -1986,18 +1991,18 @@ isFirst=false
             $('#ljoin').click()
         }
     })
-// let g=0
+    // let g=0
     $(document).on('keydown', e => {
 
         if (e.target.id !== 'textContent' && e.target.id !== 'uploadImage') {
-            if ((e.key === 'g' || e.key === 'G') && !e.ctrlKey){              
-                if($('.modal').css('display')==='none'){
-                $('#images').click()
-                $('#showImgBtn').click()}
-                else {
-                $('#close').click()
+            if ((e.key === 'g' || e.key === 'G') && !e.ctrlKey) {
+                if ($('.modal').css('display') === 'none') {
+                    $('#images').click()
+                    $('#showImgBtn').click()
+                } else {
+                    $('#close').click()
                 }
-               g++
+                g++
             }
 
             if ((e.key === 's' || e.key === 'S') && e.shiftKey)
@@ -2041,43 +2046,43 @@ isFirst=false
             if ((e.key === 'Escape') && !e.ctrlKey)
                 $('#close').click()
 
-            if ((e.key === 'r' || e.key==='R') && !e.ctrlKey){
+            if ((e.key === 'r' || e.key === 'R') && !e.ctrlKey) {
                 $('#shape').click()
                 $('#labelShapeSquare').click()
                 //don't know why but thid needs to be doubled, otherwise it won't work
                 $('#labelShapeSquare').click()
             }
-            if ((e.key === 'e' || e.key==='E') && !e.ctrlKey){
+            if ((e.key === 'e' || e.key === 'E') && !e.ctrlKey) {
                 $('#shape').click()
                 $('#labelShapeCircle').click()
                 //don't know why but thid needs to be doubled, otherwise it won't work
                 $('#labelShapeCircle').click()
             }
-            if ((e.key === 'c' || e.key === 'C') && e.ctrlKey && !e.shiftKey){
+            if ((e.key === 'c' || e.key === 'C') && e.ctrlKey && !e.shiftKey) {
                 $('#select').click()
                 //dont'know why but the select Option jumps every time 
-            $('#labelCopy').click()
+                $('#labelCopy').click()
             }
-            if ((e.key === 'x' || e.key === 'X') && e.ctrlKey){
+            if ((e.key === 'x' || e.key === 'X') && e.ctrlKey) {
                 $('#select').click()
-            $('#labelCut').click()
+                $('#labelCut').click()
             }
-            if ((e.key === 'f' || e.key === 'F') && e.ctrlKey){
+            if ((e.key === 'f' || e.key === 'F') && e.ctrlKey) {
                 $('#colors').click()
-            $('#backColor').click()
-            e.preventDefault()
+                $('#backColor').click()
+                e.preventDefault()
             }
-            if ((e.key === 'Delete') && e.ctrlKey){
+            if ((e.key === 'Delete') && e.ctrlKey) {
                 $('#select').click()
-            $('#labelDelete').click()
+                $('#labelDelete').click()
             }
-       
+
 
         }
     })
 
     // $('#showImgBtn').on('click', e=>{
-     
+
     //     function showLoader(){
     //         $('#imagesDiv').LoadingOverlay("show", {
     //             background: "rgba(0, 0, 0, 0)",
@@ -2095,17 +2100,17 @@ isFirst=false
     // })
 
 
-    $("#img1").load(function(){
+    $("#img1").load(function () {
         console.log('loaded');
-            $('#imagesDiv').LoadingOverlay("hide", true)
-      });
+        $('#imagesDiv').LoadingOverlay("hide", true)
+    });
 
 
 
-      $("#obj1").load(function(){
+    $("#obj1").load(function () {
         console.log('loaded');
         $('#objectsDiv').LoadingOverlay("hide", true)
-      });
+    });
 
 
 });

@@ -10,7 +10,13 @@
 // })
 
 //disable landscape mode
-screen.orientation.lock("landscape")
+// screen.orientation.lock("landscape")
+window.screen.orientation
+    .lock("portrait")
+    .then(
+        success => console.log(success),
+        failure => console.log(failure)
+    )
 //changing the tabicon depending on the browser theme
 const faviconTag = document.getElementById("faviconTag");
 const isDark = window.matchMedia("(prefers-color-scheme: dark)");
@@ -79,11 +85,11 @@ const middle=document.querySelector('#middle')
 // middle.style.width = `${c.width+10}px`
 
 //message before closing the tab
-// addEventListener('beforeunload', function (event) {
+addEventListener('beforeunload', function (event) {
 
-//     event.returnValue = 'You have unsaved changes.';
+    event.returnValue = 'You have unsaved changes.';
 
-// });
+});
 
 
 
