@@ -298,19 +298,23 @@ $(document).ready(function () {
         for (let i = 0; i < 3; i++) {
             if ($('.radioPencil').eq(i).is(':checked')) {
                 $('.labelPencil').eq(i).css('color', 'white')
-            } else $('.labelPencil').eq(i).css('color', 'grey')
+            } else {$('.labelPencil').eq(i).css('color', 'grey')
+            $('.labelPencil').eq(i).css('textShadow', 'none')}
 
             if ($('.radioLine').eq(i).is(':checked')) {
                 $('.labelLine').eq(i).css('color', 'white')
-            } else $('.labelLine').eq(i).css('color', 'grey')
+            }else {$('.labelLine').eq(i).css('color', 'grey')
+            $('.labelLine').eq(i).css('textShadow', 'none')}
 
             if ($('.radioShape').eq(i).is(':checked')) {
                 $('.labelShape').eq(i).css('color', 'white')
-            } else $('.labelShape').eq(i).css('color', 'grey')
+            } else{ $('.labelShape').eq(i).css('color', 'grey')
+            $('.labelShape').eq(i).css('textShadow', 'none')}
 
             if ($('.radioText').eq(i).is(':checked')) {
                 $('.labelText').eq(i).css('color', 'white')
-            } else $('.labelText').eq(i).css('color', 'grey')
+            } else {$('.labelText').eq(i).css('color', 'grey')
+            $('.labelText').eq(i).css('textShadow', 'none')}
 
             // if ($('.radioColors').eq(i).is(':checked')) {
             //     $('.labelColors').eq(i).css('color', 'white')
@@ -1384,21 +1388,25 @@ $(document).ready(function () {
 
             $("#radioCut").prop("checked", false);
             $("#labelCut").css('color', 'grey')
+            $("#labelCut").css('textShadow', 'none')
 
             $("#radioDelete").prop("checked", false);
             $("#labelDelete").css('color', 'grey')
+            $("#labelDelete").css('textShadow', 'none')
 
             //alert('copy')
         }
         if (id == 'labelCut') {
             $("#radioCopy").prop("checked", false);
             $("#labelCopy").css('color', 'grey')
+            $("#labelCopy").css('textShadow', 'none')
 
             $("#radioCut").prop("checked", true);
             $("#labelCut").css('color', 'white')
 
             $("#radioDelete").prop("checked", false);
             $("#labelDelete").css('color', 'grey')
+            $("#labelDelete").css('textShadow', 'none')
 
             //alert('cut')
 
@@ -1409,9 +1417,11 @@ $(document).ready(function () {
 
             $("#radioCut").prop("checked", false);
             $("#labelCut").css('color', 'grey')
+            $("#labelCut").css('textShadow', 'none')
 
             $("#radioCopy").prop("checked", false);
             $("#labelDelete").css('color', 'white')
+            $("#labelDelete").css('textShadow', 'none')
 
             // alert('delete')
 

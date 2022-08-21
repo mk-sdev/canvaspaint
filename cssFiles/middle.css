@@ -16,11 +16,11 @@
 #q {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .brp1 #q {
-    display: block;
+    /* display: block; */
     margin-bottom: 15px;
     /* margin-top: 17px */
 }

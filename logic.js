@@ -51,7 +51,8 @@ c.siteRoot = $('.site-root').val();
 ctx.siteRoot = $('.site-root').val();
 
 if (conw <= 1200 && conw > 900){
-    c.width = conw * .65
+    //wcześneiej tu było .65
+    c.width = conw * .85
     // cA.width = conw * .65
 }
 else
@@ -398,15 +399,18 @@ document.querySelector('#options').addEventListener('touchend', e => {
 
 
 document.getElementById('middle').addEventListener('touchend', () => {
+
+    if($('html').hasClass('brp4')){
     $('#right').css('transition', '.1s ease-out')
     $('#right').css('left', `100%`)
     $("#right").data("closed", true);
     $("#right").data("opened", false);
+    }
 })
 document.querySelector('#right').addEventListener('click', (e) => {
 
 
-    if (e.target.id.slice(0, 14) === 'imageConverted' || e.target.id.slice(0, 14) === 'closeright') {
+    if ((e.target.id.slice(0, 14) === 'imageConverted' || e.target.id.slice(0, 14) === 'closeright') && $('html').hasClass('brp4')) {
         $('#right').css('transition', '.1s ease-out')
         $('#right').css('left', `100%`)
         $("#right").data("closed", true);
@@ -545,10 +549,25 @@ e.target.scrollTop=0
 })
 //
 document.querySelector('#right').addEventListener('mouseenter', e=>{
-    if(document.querySelector('html').classList.contains('brp1'))
+    if(document.querySelector('html').classList.contains('brp1')){
     e.target.style.right='0px'
+    e.target.style.transition='right .7s'}
+
 })
 document.querySelector('#right').addEventListener('mouseleave', e=>{
-    if(document.querySelector('html').classList.contains('brp1'))
+    if(document.querySelector('html').classList.contains('brp1')){
     e.target.style.right='-240px'
+    e.target.style.transition='right .7s'}
+
 })
+window.addEventListener("resize", e=>{
+    if($('body').css('width').replace('px','')>1200){
+        $('#options').css('left','0')
+        $('#right').css('right','0')
+    }else{
+        $('#options').css('left','-240px')
+        $('#right').css('right','-240px')
+
+    }
+    
+});

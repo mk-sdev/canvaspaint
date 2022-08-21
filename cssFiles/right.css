@@ -2,11 +2,13 @@
     width: 270px;
     /* background-color: red; */
     border-radius: 0px 0px 0px 15px;
+    background-color: rgb(49, 49, 49);
     height: fit-content;
     overflow-y: hidden;
     right: 0;
     transition: right .7s;
     /* display: none; */
+    position: fixed
 }
 .brp1 #right,
 .brp2 #right {
@@ -18,7 +20,7 @@
 .brp4 #right {
     transition: none;
     top: 0;
-   
+   background-color: transparent;
     display: block;
     position: fixed;
     z-index: 11;

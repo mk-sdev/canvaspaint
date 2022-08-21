@@ -47,10 +47,6 @@
                 text: 'Loading...',
                 textClass: 'test',
                 textResizeFactor: '.25',
-                // textAnimation: '3000ms pulse'
-                // textColor: 'white',
-                
-                // imageAnimation: '4000ms pulse'
             });
             setTimeout(function(){
     $('#beforeload').LoadingOverlay("text", "This takes a bit more than I expected...");
@@ -62,7 +58,7 @@
 
 
 
-    <div id="orientation"><p style="height: 20px">Please go back to the previous orientation mode</p>
+    <div id="orientation"><div>Please go back to the previous orientation mode</div>
         <img src="images/pencil-solid.png" alt="" style="opacity: .2; height: 100vh; position: absolute; top: 0; transform: translate(-10%, 0);">
     </div>
     <!-- <div id="honeycomb">wdwd</div> -->
@@ -312,15 +308,15 @@
 
                     <hr>
                     <!-- <input type="range" id="lineWidthLine" value="5" maxvalue="50"> -->
-                    <div><span><b>Color fill</b></span>
+                    <div><span><b>Fill color</b></span>
                         <div><input type="color" id="colorFillText"></div>
                     </div>
                     <hr>
-                    <div><span><b>Color stroke</b></span>
+                    <div><span><b>Stroke color</b></span>
                         <div> <input type="color" id="colorStrokeText"></div>
                     </div>
                     <hr>
-                    <div><span><b>Width of stroke: </b>
+                    <div><span><b>Stroke width: </b>
                         <input type="number" value="5" min="1" max="10"  style="width: 40px; font-size: 17px" id="textStrokeWidthNr">
                     </span>
                         <input type="range" id="textStrokeWidth" value="1" min='1' max="10"></div>
@@ -375,10 +371,10 @@
 
                     <div><span><b>Upload an image</b></span><input type="text" id="uploadImage"
                             placeholder="paste image address"></div>
-                    <hr>
+                    <!-- <hr>
 
                     <div><label><input type='file' style='background: yellow; width: 100px; height: 50px' /><span>choose
-                                file</span></label></div>
+                                file</span></label></div> -->
 
 
                 </div>
@@ -504,7 +500,7 @@
                 <!-- <canvas id="canvasA"  oncontextmenu="return false" style="position: absolute; z-index: 5; left: 0; opacity: .5; background-color: red; top: 0px;"></canvas> -->
             </div>
 
-                <span style="display: table; margin: 0 auto; font-size: 15px;">Right click on the canvas to toggle the hidden menu. Press ctrl and scroll to zoom in/out.</span>
+                <span style="display: table; margin: 0 auto; font-size: 15px;"> Press ctrl and scroll to zoom in/out.</span>
             </div>
             <div id="swiper"> <div><i class="fa-solid fa-arrow-left-long"></i> swipe here <i class="fa-solid fa-arrow-right-long"></i></div></div>
             <div id="right">
@@ -527,7 +523,7 @@
     <!-- <img  id="output"/> -->
     <button id="download"><span id="ds" class="font-awesome-icons fa-arrow-down">Download</span></button>
 
-    <div id="hiddenMenu">
+    <!-- <div id="hiddenMenu">
    <div><span>&nbsp;undo</span><span>ctrl + Z&nbsp;</span></div>
    <div><span>save</span><span>ctrl + S</span></div>
    <div><span>pencil</span><span></span></div>
@@ -546,7 +542,7 @@
    <div><span>delete</span><span></span></div>
    <div><span>Fill the canvas</span><span></span></div>
    <div><span>download</span><span></span></div>
-    </div>
+    </div> -->
 
     <!-- The Modal -->
     <div id="id01" class="modal" defer>
