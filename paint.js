@@ -1,11 +1,36 @@
-//buttony, dodawanie zdjeć, color picker i tooltip dla range'y, poprawić colors,  poprawić gallery, komunikaty na dole, wysokość canvasa a wysokoś urządzenia, tablinks, 
+// dodawanie zdjeć, poprawić download, poprawić pod wzgędem stylistycznym, transition bocnego menu po rozszerzaniu, hiddenMenu, 
+//=== zamiast ==, usunąć zbędne komentarze, 
+$(window).load(function () {
+    // PAGE IS FULLY LOADED  
+    // FADE OUT YOUR OVERLAYING DIV
 
+    $('#beforeload').fadeOut();
 
+    // console.log('loaded');
+    $('#beforeload').LoadingOverlay("hide", true)
 
+});
 
 $(document).ready(function () {
 
+    $('#zoomable').on('mousedown', e => {
 
+        if (e.button == 2) {
+            $('#hiddenMenu').css('display', 'block')
+            $('#hiddenMenu').css('left', `${e.pageX+10}px`)
+            $('#hiddenMenu').css('top', `${e.pageY+10}px`)
+        }
+        // e.preventDefault()
+
+    })
+    $('BODY').on('click', e => {
+        if ($('#hiddenMenu').css('display') === 'block')
+            setTimeout(() => {
+                $('#hiddenMenu').css('display', 'none')
+
+            }, 10)
+
+    })
     //e.log(c, ctx);
 
     const $c = $('canvas')
@@ -22,41 +47,18 @@ $(document).ready(function () {
 
 
     let restore_array = []
+    let ranges_array = []
     let index = -1
     restore_array.push($ctx.getImageData(0, 0, $c.width(), $c.height()))
+    ranges_array.push({
+        red: $('#red').val(),
+        green: $('#green').val(),
+        blue: $('#blue').val(),
+        light: $('#lightness').val()
+    })
     index++
 
-
-
-
-    // const $reader = new FileReader()
-    // const $img = new Image()
-    // const uploadImage = (e)=>{
-    //     $reader.onload= function (){
-    //         $img.onload=function (){
-    //             $ctx.drawImage($img, 0, 0)
-    //         }
-    //         $img.src=reader.result
-    //     }
-    //     $reader.readAsDataURL(e.target.files[0])
-    // }
-
-    //     $('#uploaderbtn').on('click', uploadImage)
-    let j = 0;
-    let savedimg = []
-    $('#uploadImage').on('input', (e) => {
-
-
-        savedimg[j] = $(`<image src="${$('#uploadImage').val()}"  id="imageUploaded${j}" class="img imgUploaded" crossorigin='anonymous' onerror="$('#imageUploaded${j}').remove()" />`)
-
-        $('#middle span').html('If the address is proper, you should see your image in images > gallery > uploaded')
-        $('#uploadedImagesDiv').prepend(savedimg[j])
-        j++
-
-    })
-
- 
-
+    // console.log('pierwsze array', ranges_array[0])
 
 
     $('#undo').on('click', () => {
@@ -64,15 +66,101 @@ $(document).ready(function () {
 
             $ctx.fillStyle = 'white'
             $ctx.fillRect(0, 0, $c.width(), $c.height())
-            //restore_array.pop()
+
             //index = -1
+            //  $('#lineWidthPencil').attr('value', '100')
+            //alert(ranges_array[index].red)
+            // $('#red').attr('value', `12` )
+            $('#red').val(127)
+            $('#green').attr('value', `127`)
+            $('#blue').attr('value', `127`)
+            $('#lightness').attr('value', `127`)
+
+            $('#redNr').val(127)
+            $('#greenNr').attr('value', `127`)
+            $('#blueNr').attr('value', `127`)
+            $('#lightnessNr').attr('value', `127`)
+            //tutaj jeszcze poustawiać wszystko na 127
         } else {
             index -= 1
             restore_array.pop()
-            $ctx.putImageData(restore_array[index], 0, 0)
-        }
+            ranges_array.pop()
+            //alert(ranges_array[index])
 
+            $ctx.putImageData(restore_array[index], 0, 0)
+            // console.log('ppp', ranges_array[index].red, 'ppp');
+            // console.log('redvl', $('#red').val());
+
+            //z jakiegoś jebitnego powodu nie chce się ustawić 
+            // $('#red').attr('value', `${ranges_array[index].red}` )
+            $('#red').val(ranges_array[index].red)
+            $('#green').val(ranges_array[index].green)
+            $('#blue').val(ranges_array[index].blue)
+            $('#lightness').val(ranges_array[index].light)
+
+            $('#redNr').val(ranges_array[index].red)
+            $('#greenNr').val(ranges_array[index].green)
+            $('#blueNr').val(ranges_array[index].blue)
+            $('#lightnessNr').val(ranges_array[index].light)
+
+        }
         //console.log(index, restore_array)
+
+    })
+
+
+    function undofn(e, t) {
+        if (e.type != 'mouseout') {
+            restore_array.push($ctx.getImageData(0, 0, $c.width(), $c.height()))
+            // console.log(t, 't')
+            if (t === undefined)
+                t = {
+                    red: $('#red').val(),
+                    green: $('#green').val(),
+                    blue: $('#blue').val(),
+                    light: $('#lightness').val()
+                }
+            // console.log(t, 'tt')
+
+            ranges_array.push(t)
+            // console.log('push', ranges_array[index + 1], t);
+
+            index += 1
+        }
+        // console.log(index, restore_array)
+    }
+
+
+
+
+
+
+
+
+
+    let j = 0;
+    let savedimg = []
+    $('#uploadImage').on('input', (e) => {
+        // $('#uploadspan').css('display', 'none')
+        savedimg[j] = $(`<image src="${$('#uploadImage').val()}"  id="imageUploaded${j}" class="img imgUploaded" crossorigin='anonymous' onerror="$('#imageUploaded${j}').remove();  " />`)
+
+        $('#middle span').html('If the address is proper, you should see your image in images > gallery > uploaded.')
+        $('#middle span').css('color', 'white')
+
+        $('#swiper').html('If the address is proper, you should see your image in images > gallery > uploaded.')
+        $('#swiper').css('color', 'white')
+
+        $('#uploadedImagesDiv').prepend(savedimg[j])
+
+        setTimeout(() => {
+            // console.log('Dzieci', $("#uploadedImagesDiv").children().length);
+            if ($("#uploadedImagesDiv").children().length > 0) {
+                $('#uploadspan').css('display', 'none')
+            }
+
+        }, 10)
+
+        j++
 
     })
 
@@ -80,16 +168,30 @@ $(document).ready(function () {
 
         $ctx.fillStyle = 'white'
         $ctx.fillRect(0, 0, $c.width(), $c.height())
+        // $ctx.clearRect(0, 0, $c.width(), $c.height())
         undofn(e)
         // console.log('czyszczę', $c.width());
         isLine = false
-        $('#middle span').html('You cleared the canvas. You can undo it by clicking the undo button.')
+        $('#middle span').html('You cleared the canvas. You can undo it by pressing ctrl + Z.')
+        $('#middle span').css('color', 'white')
+
+        $('#swiper').html('You cleared the canvas. You can undo it by clicking the undo button.')
+        $('#swiper').css('color', 'white')
+
 
     })
-//cleaning the span below the canvas
-    $c.on('click', ()=>{
-        if(!$('#middle span').text().length == 0 && whichBtn!=='text' && whichBtn!=='select'){
-        $('#middle span').html('')
+    //cleaning the span below the canvas
+    $c.on('click touchstart', () => {
+        if (!$('#middle span').text().length == 0 && whichBtn !== 'text' && whichBtn !== 'select') {
+            // $('#middle span').css('color', 'transparent')
+            // console.log($('#middle span').html(''))
+            console.log($('#middle span:contains("Right")'))
+
+            if ($("#middle > span").text().indexOf('Right') < 0)
+                $('#middle span').html('')
+
+            $('#swiper').css('color', 'silver')
+            $('#swiper').html('<div><i class="fa-solid fa-arrow-left-long"></i> swipe here <i class="fa-solid fa-arrow-right-long"></i></div>')
         }
     })
 
@@ -128,12 +230,17 @@ $(document).ready(function () {
 
 
         i++
+        $('#middle span').css('color', 'white')
 
         $('#middle > span').html("You created a new draft! Click on it any time you want in order to display it again on the canvas.")
+
+
+        $('#swiper').html('You created a new draft! Click on it any time you want in order to display it again on the canvas.')
+        $('#swiper').css('color', 'white')
     })
 
     //let elemnt = window.dzieci
-  
+
 
     $(document).on('click', (e) => {
         //clear the input
@@ -141,26 +248,36 @@ $(document).ready(function () {
         $('#uploadImage').val('')
 
         if ($('input[name=radioCopy]').is(':checked')) {
-            console.log('copy');
+            // console.log('copy');
         }
         if ($('input[name=radioDelete]').is(':checked')) {
-            console.log('Delete');
+            //  console.log('Delete');
         }
         if ($('input[name=radioCut]').is(':checked')) {
-            console.log('Cut');
+            // console.log('Cut');
         }
 
 
 
-        console.log('wwwwww',e.target.id);
+        // console.log('wwwwww', e.target.id);
         //console.log('ss', e.target.id.slice(0, 14));
-        if (e.target.id.slice(0, 7) == 'tablink') {
+        if (e.target.id.slice(0, 7) === 'tablink') {
             for (let i = 1; i <= $(".tablink").length; i++) {
                 $(`#tabCon${i}`).css('display', 'none')
+                // $('.galleryDiv').eq(i-1).css('display', 'none')
+                // $('.galleryDiv_').eq(0).css('display', 'none')
+                $('.modal-content > div > div').css('display', 'none')
             }
         }
-        $(`#tabCon${e.target.id.slice(7,8)}`).slideDown(200)
+        // $(`#tabCon${e.target.id.slice(7,8)}`).slideDown(200)
         $(`#tabCon${e.target.id.slice(7,8)}`).css('display', 'block')
+
+        // $('.galleryDiv').eq(e.target.id.slice(7,8) -1).slideDown(200)
+        $('.modal-content > div > div').slideDown(200)
+        $('.modal-content > div > div').css('display', 'grid')
+
+        // $('.galleryDiv').eq(e.target.id.slice(7,8) -1).css('display', 'grid')
+
 
 
 
@@ -170,7 +287,7 @@ $(document).ready(function () {
             $ctx.drawImage(image, 0, 0)
             undofn(e)
         }
-        if (e.target.id == 'download' || e.target.id == 'download1' || e.target.id == 'download2' || e.target.id=='ds' || e.target.id=='ds1' || e.target.id=='di2') {
+        if (e.target.id == 'download' || e.target.id == 'download1' || e.target.id == 'download2' || e.target.id == 'ds' || e.target.id == 'ds1' || e.target.id == 'di2') {
             const a = document.createElement('a')
 
             a.href = $c[0].toDataURL()
@@ -181,23 +298,27 @@ $(document).ready(function () {
         for (let i = 0; i < 3; i++) {
             if ($('.radioPencil').eq(i).is(':checked')) {
                 $('.labelPencil').eq(i).css('color', 'white')
-            } else $('.labelPencil').eq(i).css('color', 'grey')
+            } else {$('.labelPencil').eq(i).css('color', 'grey')
+            $('.labelPencil').eq(i).css('textShadow', 'none')}
 
             if ($('.radioLine').eq(i).is(':checked')) {
                 $('.labelLine').eq(i).css('color', 'white')
-            } else $('.labelLine').eq(i).css('color', 'grey')
+            }else {$('.labelLine').eq(i).css('color', 'grey')
+            $('.labelLine').eq(i).css('textShadow', 'none')}
 
             if ($('.radioShape').eq(i).is(':checked')) {
                 $('.labelShape').eq(i).css('color', 'white')
-            } else $('.labelShape').eq(i).css('color', 'grey')
+            } else{ $('.labelShape').eq(i).css('color', 'grey')
+            $('.labelShape').eq(i).css('textShadow', 'none')}
 
             if ($('.radioText').eq(i).is(':checked')) {
                 $('.labelText').eq(i).css('color', 'white')
-            } else $('.labelText').eq(i).css('color', 'grey')
+            } else {$('.labelText').eq(i).css('color', 'grey')
+            $('.labelText').eq(i).css('textShadow', 'none')}
 
-            if ($('.radioColors').eq(i).is(':checked')) {
-                $('.labelColors').eq(i).css('color', 'white')
-            } else $('.labelColors').eq(i).css('color', 'grey')
+            // if ($('.radioColors').eq(i).is(':checked')) {
+            //     $('.labelColors').eq(i).css('color', 'white')
+            // } else $('.labelColors').eq(i).css('color', 'grey')
 
         }
 
@@ -209,11 +330,24 @@ $(document).ready(function () {
 
 
         }
+
+
     })
 
+
+    let isFirst = true
     $('#showImgBtn').on('click', (e) => {
         $('#id01').css('display', 'block');
-        $("#tablink1").click();
+
+        if (isFirst)
+            setTimeout(() => {
+                $("#tablink1").click();
+            }, 100)
+        else
+            $("#tablink1").click();
+
+        isFirst = false
+
     })
 
     const modal = $('#id01')
@@ -221,7 +355,7 @@ $(document).ready(function () {
     const closebtn = $('#close')
 
     $(window).click((event) => {
-        console.log(event.target.id)
+        // console.log(event.target.id)
         if (event.target.id == 'id01' || event.target.id == 'close' || event.target.id.slice(0, 3) == 'img' || event.target.id.slice(0, 13) == 'imageUploaded' || event.target.id.slice(0, 3) == 'obj' || event.target.id.slice(0, 13) == 'imageSelected') {
             modal.css('background-color', 'rgb(0,0,0,0)');
             closebtn.css('display', 'none');
@@ -292,12 +426,14 @@ $(document).ready(function () {
     })
 
 
-    $('#red').on('mousedown', (e) => {
-        $(this).data('prevValue', $('#red').val())
 
-    }).on('mouseup', (e) => {
+    $('#red').on('mousedown touchstart', (e) => {
+        $(this).data('prevValue', $('#red').val())
+        // console.log('redddd', $('#red').val())
+    }).on('input change', (e) => {
         let prevValue = $(this).data('prevValue')
         let difference = $('#red').val() - prevValue
+
         let a = $ctx.getImageData(0, 0, $c.width(), $c.height())
         const data = a.data;
         //let val = $('#red').val()
@@ -307,71 +443,195 @@ $(document).ready(function () {
             data[i + 2] = data[i + 2]; // blue
         }
         $ctx.putImageData(a, 0, 0)
-        undofn(e)
+
+    }).on('mouseup touchend', e => {
+        undofn(e, {
+            red: $('#red').val(),
+            green: $('#green').val(),
+            blue: $('#blue').val(),
+            light: $('#lightness').val()
+        })
     })
 
-    $('#green').on('mousedown', (e) => {
+    $('#green').on('mousedown touchstart', (e) => {
         $(this).data('prevValue', $('#green').val())
-
-    }).on('mouseup', (e) => {
+        // console.log('redddd', $('#red').val())
+    }).on('input change', (e) => {
         let prevValue = $(this).data('prevValue')
         let difference = $('#green').val() - prevValue
 
         let a = $ctx.getImageData(0, 0, $c.width(), $c.height())
         const data = a.data;
-        // let val = $('#green').val()
+        //let val = $('#red').val()
         for (let i = 0; i < data.length; i += 4) {
             data[i] = data[i]; // red
             data[i + 1] = data[i + 1] + difference; // green
             data[i + 2] = data[i + 2]; // blue
         }
         $ctx.putImageData(a, 0, 0)
-        undofn(e)
+
+    }).on('mouseup touchend', e => {
+        undofn(e, {
+            red: $('#red').val(),
+            green: $('#green').val(),
+            blue: $('#blue').val(),
+            light: $('#lightness').val()
+        })
     })
 
-    $('#blue').on('mousedown', (e) => {
-        $(this).data('prevValue', $('#blue').val())
 
-    }).on('mouseup', (e) => {
+
+    // $('#green').on('mousedown touchstart', (e) => {
+    //     $(this).data('prevValue', $('#green').val())
+
+    // }).on('mouseup touchend', (e) => {
+    //     let prevValue = $(this).data('prevValue')
+    //     let difference = $('#green').val() - prevValue
+
+    //     let a = $ctx.getImageData(0, 0, $c.width(), $c.height())
+    //     const data = a.data;
+    //     // let val = $('#green').val()
+    //     for (let i = 0; i < data.length; i += 4) {
+    //         data[i] = data[i]; // red
+    //         data[i + 1] = data[i + 1] + difference; // green
+    //         data[i + 2] = data[i + 2]; // blue
+    //     }
+    //     $ctx.putImageData(a, 0, 0)
+    //     undofn(e, {
+    //         red: $('#red').val(),
+    //         green: $('#green').val(),
+    //         blue: $('#blue').val(),
+    //         light: $('#lightness').val()
+    //     })
+    // })
+    $('#blue').on('mousedown touchstart', (e) => {
+        $(this).data('prevValue', $('#blue').val())
+        // console.log('redddd', $('#red').val())
+    }).on('input change', (e) => {
         let prevValue = $(this).data('prevValue')
         let difference = $('#blue').val() - prevValue
 
         let a = $ctx.getImageData(0, 0, $c.width(), $c.height())
         const data = a.data;
-        //let val = $('#blue').val()
+        //let val = $('#red').val()
         for (let i = 0; i < data.length; i += 4) {
             data[i] = data[i]; // red
             data[i + 1] = data[i + 1]; // green
             data[i + 2] = data[i + 2] + difference; // blue
         }
         $ctx.putImageData(a, 0, 0)
-        undofn(e)
+
+    }).on('mouseup touchend', e => {
+        undofn(e, {
+            red: $('#red').val(),
+            green: $('#green').val(),
+            blue: $('#blue').val(),
+            light: $('#lightness').val()
+        })
     })
 
 
+    // $('#blue').on('mousedown touchstart', (e) => {
+    //     $(this).data('prevValue', $('#blue').val())
+
+    // }).on('mouseup touchend', (e) => {
+    //     let prevValue = $(this).data('prevValue')
+    //     let difference = $('#blue').val() - prevValue
+
+    //     let a = $ctx.getImageData(0, 0, $c.width(), $c.height())
+    //     const data = a.data;
+    //     //let val = $('#blue').val()
+    //     for (let i = 0; i < data.length; i += 4) {
+    //         data[i] = data[i]; // red
+    //         data[i + 1] = data[i + 1]; // green
+    //         data[i + 2] = data[i + 2] + difference; // blue
+    //     }
+    //     $ctx.putImageData(a, 0, 0)
+    //     undofn(e, {
+    //         red: $('#red').val(),
+    //         green: $('#green').val(),
+    //         blue: $('#blue').val(),
+    //         light: $('#lightness').val()
+    //     })
+    // })
 
 
 
 
 
-    $('#lightness').on('mousedown', (e) => {
+
+
+    // $('#lightness').on('mousedown touchstart', (e) => {
+    //     $(this).data('prevValue', $('#lightness').val())
+    // }).on('mouseup touchend', (e) => {
+    //     let prevValue = $(this).data('prevValue')
+    //     let difference = $('#lightness').val() - prevValue
+    //     let a = $ctx.getImageData(0, 0, $c.width(), $c.height())
+    //     const data = a.data;
+    //     for (let i = 0; i < data.length; i += 4) {
+    //         data[i] = data[i] + difference; // red
+    //         data[i + 1] = data[i + 1] + difference; // green
+    //         data[i + 2] = data[i + 2] + difference; // blue
+    //     }
+    //     $ctx.putImageData(a, 0, 0)
+    //     undofn(e, {
+    //         red: $('#red').val(),
+    //         green: $('#green').val(),
+    //         blue: $('#blue').val(),
+    //         light: $('#lightness').val()
+    //     })
+    // })
+
+    $('#lightness').on('mousedown touchstart', (e) => {
         $(this).data('prevValue', $('#lightness').val())
-    }).on('mouseup', (e) => {
+        $(this).data('a', $ctx.getImageData(0, 0, $c.width(), $c.height()))
+        console.log('a', restore_array[index]);
+
+        // console.log('redddd', $('#red').val())
+    }).on('input change', (e) => {
         let prevValue = $(this).data('prevValue')
         let difference = $('#lightness').val() - prevValue
-        let a = $ctx.getImageData(0, 0, $c.width(), $c.height())
+        let a = $(this).data('a')
+
+
+
+
         const data = a.data;
+        //let val = $('#red').val()
         for (let i = 0; i < data.length; i += 4) {
             data[i] = data[i] + difference; // red
             data[i + 1] = data[i + 1] + difference; // green
             data[i + 2] = data[i + 2] + difference; // blue
         }
         $ctx.putImageData(a, 0, 0)
-        undofn(e)
+
+    }).on('mouseup touchend', e => {
+        undofn(e, {
+            red: $('#red').val(),
+            green: $('#green').val(),
+            blue: $('#blue').val(),
+            light: $('#lightness').val()
+        })
     })
 
 
-    $('#contrast').on('mousedown', (e) => {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    $('#contrast').on('mousedown touchend', (e) => {
         $(this).data('prevValue', $('#contrast').val())
     }).on('mouseup', (e) => {
         let prevValue = $(this).data('prevValue')
@@ -429,8 +689,8 @@ $(document).ready(function () {
         // 
 
 
-        let x = e.clientX - $c.offset().left
-        let y = e.clientY - $c.offset().top
+        let x = e.offsetX
+        let y = e.offsetY
         let width = window.imagee.width
         let height = window.imagee.height
 
@@ -459,7 +719,7 @@ $(document).ready(function () {
         // let before = $ctx.getImageData(0, 0, $c.width(), $c.height())
 
 
-        if (whichBtn == 'images' && document.body.scrollTop == 0 && document.documentElement.scrollTop == 0) {
+        if (whichBtn == 'images') {
 
 
 
@@ -475,13 +735,14 @@ $(document).ready(function () {
     })
 
     $c.on('mouseout', (e) => {
-        if (whichBtn == 'images' && document.body.scrollTop == 0 && document.documentElement.scrollTop == 0)
+        if (whichBtn == 'images')
             $ctx.putImageData(restore_array[index], 0, 0);
     })
 
     let isImage
     $c.on('mousedown', (e) => {
-        if (whichBtn == 'images' && document.body.scrollTop == 0 && document.documentElement.scrollTop == 0) {
+
+        if (whichBtn == 'images' && e.button !== 1 && e.button !== 2) {
             isImage = true
             imageFn(e)
             undofn(e)
@@ -546,42 +807,57 @@ $(document).ready(function () {
     // }
 
 
+
+
     $('#pencil').on('click', () => {
 
-        whichBtn = 'pencil'
         for (let i = 0; i < $('.Options').length; i++) {
             $('.Options').css('display', 'none')
         }
-        $('#pencilOptions').slideDown(200)
+        if (whichBtn !== 'pencil')
+            $('#pencilOptions').slideDown(200)
         $('#pencilOptions').css('display', 'flex')
+        whichBtn = 'pencil'
+
+
 
     })
+
+
     $('#line').on('click', () => {
 
-        whichBtn = 'line'
         for (let i = 0; i < $('.Options').length; i++) {
             $('.Options').css('display', 'none')
         }
-        $('#lineOptions').slideDown(200)
+        if (whichBtn !== 'line')
+            $('#lineOptions').slideDown(200)
 
         $('#lineOptions').css('display', 'flex')
+        whichBtn = 'line'
+
+
 
     })
     $('#shape').on('click', () => {
-        whichBtn = 'shape'
+
         for (let i = 0; i < $('.Options').length; i++) {
             $('.Options').css('display', 'none')
         }
-        $('#shapeOptions').slideDown(200)
+        if (whichBtn !== 'shape')
+            $('#shapeOptions').slideDown(200)
 
         $('#shapeOptions').css('display', 'flex')
+        whichBtn = 'shape'
+
+
     })
     $('#text').on('click', () => {
-        whichBtn = 'text'
+
         for (let i = 0; i < $('.Options').length; i++) {
             $('.Options').css('display', 'none')
         }
-        $('#textOptions').slideDown(200)
+        if (whichBtn !== 'text')
+            $('#textOptions').slideDown(300)
 
         $('#textOptions').css('display', 'flex')
         //e.preventDefault()
@@ -589,42 +865,62 @@ $(document).ready(function () {
         $('#textContent').get(0).focus()
 
         $('#textOptions').get(0).scrollTop = 0
+        whichBtn = 'text'
+
+
 
     })
 
 
     $('#colors').on('click', () => {
-        whichBtn = 'colors'
+
         for (let i = 0; i < $('.Options').length; i++) {
             $('.Options').css('display', 'none')
         }
-        $('#colorsOptions').slideDown(200)
+        if (whichBtn !== 'colors')
+            $('#colorsOptions').slideDown(200)
         $('#colorsOptions').css('display', 'flex')
+        whichBtn = 'colors'
+
 
     })
     $('#select').on('click', () => {
-        whichBtn = 'select'
+
         for (let i = 0; i < $('.Options').length; i++) {
             $('.Options').css('display', 'none')
         }
-        $('#selectOptions').slideDown(200)
+        if (whichBtn !== 'select')
+            $('#selectOptions').slideDown(200)
         $('#selectOptions').css('display', 'flex')
+        whichBtn = 'select'
+    })
 
-    })
-    $('#backColor').on('change', (e) => {
-        $ctx.fillStyle = $('#backColor').val()
-        $ctx.fillRect(0, 0, $c.width(), $c.height())
-        undofn(e)
-    })
 
     $('#images').on('click', () => {
-        whichBtn = 'images'
+
         for (let i = 0; i < $('.Options').length; i++) {
             $('.Options').css('display', 'none')
         }
-        $('#imagesOptions').slideDown(200)
+        if (whichBtn !== 'images')
+            $('#imagesOptions').slideDown(200)
         $('#imagesOptions').css('display', 'flex')
+        whichBtn = 'images'
+
     })
+
+
+
+
+    $('#backColor').on('input change', (e) => {
+        $ctx.fillStyle = $('#backColor').val()
+        $ctx.fillRect(0, 0, $c.width(), $c.height())
+    })
+    $('#backColor').on('change', (e) => {
+        undofn(e)
+        console.log('a')
+    })
+
+
     // $('#uploaderbtn').on('change', (e)=>{
     //     let image = $('#output')
     //     image.src = URL.createObjectURL(e.target.files[0])
@@ -650,6 +946,48 @@ $(document).ready(function () {
 
     const ua = navigator.userAgent;
 
+    //true if on mobile
+    window.mobile = false
+    if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua) ||
+        /Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
+        document.querySelector('#joinDiv').style.display = "none"
+        document.querySelector('#hr').style.display = "none"
+        // document.querySelectorAll('.btn').style.color='rgba(255, 0, 0, 1)'
+        window.mobile = true
+
+        $('#middle span').html('')
+        $('#middle span').css('color', 'white')
+
+        let nrofchange = 0
+      
+
+        //chyba nie działa na safari i na pewno na ie :(
+        screen.orientation.addEventListener("change", e => {
+            e.returnValue = 'You have unsaved changes.';
+            // alert(navigator.userAgent)
+
+            nrofchange++
+         
+            if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(navigator.userAgent) ||
+        /Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(navigator.userAgent))
+            {
+            if (nrofchange % 2 == 1) {
+                document.querySelector('#orientation').style.display = 'block'
+                document.querySelector('#wholecontainer').style.display = 'none'
+            }
+            else{
+                document.querySelector('#orientation').style.display = 'none'
+                document.querySelector('#wholecontainer').style.display = 'block'
+            }}else{
+                document.querySelector('#orientation').style.display = 'none'
+                document.querySelector('#wholecontainer').style.display = 'block'
+            }
+        
+
+        });
+
+    } //nowe
+
     // let lineWidthPencil;
     // $('#lineWidthPencil').on('change', (e) => {
 
@@ -673,13 +1011,6 @@ $(document).ready(function () {
     //     //$('#pencilOptions > .lineWidth').val() = lineWidth
     // })
 
-    function undofn(e) {
-        if (e.type != 'mouseout') {
-            restore_array.push($ctx.getImageData(0, 0, $c.width(), $c.height()))
-            index += 1
-        }
-        // console.log(index, restore_array)
-    }
 
 
 
@@ -759,11 +1090,10 @@ $(document).ready(function () {
     $c.on('mousedown touchstart', (e) => {
         // console.log('down');
         // console.log('join lines', isJoin);
-        if (whichBtn == 'line' && document.body.scrollTop == 0 && document.documentElement.scrollTop == 0) {
+        if (whichBtn == 'line' && e.button !== 1 && e.button !== 2) {
             isLine = true
             //isJoin = true
-            if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua) ||
-                /Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
+            if (window.mobile) {
                 let touch = e.originalEvent.touches[0]
                 var x = touch.pageX;
                 var y = touch.pageY;
@@ -774,8 +1104,8 @@ $(document).ready(function () {
 
             } else {
                 mouseDownPos = {
-                    x: e.clientX - $c.offset().left,
-                    y: e.clientY - $c.offset().top
+                    x: e.offsetX,
+                    y: e.offsetY
                 }
             }
 
@@ -800,8 +1130,7 @@ $(document).ready(function () {
             let imgData = $(this).data('imgData')
             //console.log('imgdata', imgData);
 
-            if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua) ||
-                /Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
+            if (window.mobile) {
 
 
                 let touch = e.originalEvent.touches[0]
@@ -814,8 +1143,8 @@ $(document).ready(function () {
 
             } else {
                 currentPos = {
-                    x: e.clientX - $c.offset().left,
-                    y: e.clientY - $c.offset().top
+                    x: e.offsetX,
+                    y: e.offsetY
                 }
             }
 
@@ -846,7 +1175,7 @@ $(document).ready(function () {
 
 
 
- 
+
     $(document).on('mouseup', (e) => {
         if (whichBtn == 'line' && e.target.id !== 'canvas') {
             //undofn(e)
@@ -875,8 +1204,8 @@ $(document).ready(function () {
 
 
             let currentPos = {
-                x: e.clientX - $c.offset().left,
-                y: e.clientY - $c.offset().top
+                x: e.offsetX,
+                y: e.offsetY
             }
 
             // let mouseDownPos = {
@@ -978,13 +1307,12 @@ $(document).ready(function () {
         // console.log('down');
 
 
-        if (whichBtn == 'select' && document.body.scrollTop == 0 && document.documentElement.scrollTop == 0) {
+        if (whichBtn == 'select' && e.button !== 1 && e.button !== 2) {
             isSelect = true
 
 
 
-            if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua) ||
-                /Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
+            if (window.mobile) {
                 let touch = e.originalEvent.touches[0]
                 var x = touch.pageX;
                 var y = touch.pageY;
@@ -996,8 +1324,8 @@ $(document).ready(function () {
 
             } else {
                 mouseDownPosSel = {
-                    x: e.clientX - $c.offset().left,
-                    y: e.clientY - $c.offset().top
+                    x: e.offsetX,
+                    y: e.offsetY
                 }
             }
             //console.log('mousedownpos', mouseDownPos);
@@ -1020,8 +1348,7 @@ $(document).ready(function () {
         if (isSelect && whichBtn == 'select') {
             let imgData = $(this).data('imgData')
 
-            if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua) ||
-                /Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
+            if (window.mobile) {
                 let touch = e.originalEvent.touches[0]
                 var x = touch.pageX;
                 var y = touch.pageY;
@@ -1032,8 +1359,8 @@ $(document).ready(function () {
 
             } else {
                 currentPosSel = {
-                    x: e.clientX - $c.offset().left,
-                    y: e.clientY - $c.offset().top
+                    x: e.offsetX,
+                    y: e.offsetY
                 }
             }
 
@@ -1061,21 +1388,25 @@ $(document).ready(function () {
 
             $("#radioCut").prop("checked", false);
             $("#labelCut").css('color', 'grey')
+            $("#labelCut").css('textShadow', 'none')
 
             $("#radioDelete").prop("checked", false);
             $("#labelDelete").css('color', 'grey')
+            $("#labelDelete").css('textShadow', 'none')
 
             //alert('copy')
         }
         if (id == 'labelCut') {
             $("#radioCopy").prop("checked", false);
             $("#labelCopy").css('color', 'grey')
+            $("#labelCopy").css('textShadow', 'none')
 
             $("#radioCut").prop("checked", true);
             $("#labelCut").css('color', 'white')
 
             $("#radioDelete").prop("checked", false);
             $("#labelDelete").css('color', 'grey')
+            $("#labelDelete").css('textShadow', 'none')
 
             //alert('cut')
 
@@ -1086,9 +1417,11 @@ $(document).ready(function () {
 
             $("#radioCut").prop("checked", false);
             $("#labelCut").css('color', 'grey')
+            $("#labelCut").css('textShadow', 'none')
 
             $("#radioCopy").prop("checked", false);
             $("#labelDelete").css('color', 'white')
+            $("#labelDelete").css('textShadow', 'none')
 
             // alert('delete')
 
@@ -1126,13 +1459,18 @@ $(document).ready(function () {
                 $ctx.fillRect(x, y, width, height)
                 $ctx.closePath()
                 //console.log('delete');
+                $('#middle span').html('You deleted part of your canvas. You can undo it by pressing ctrl + Z.')
+                $('#middle span').css('color', 'white')
+
+                $('#swiper').html('You deleted part of your canvas. You can undo it by clicking the undo button.')
+                $('#swiper').css('color', 'white')
 
             } else if ($('#radioCut').is(':checked') || $('#radioCopy').is(':checked')) {
                 if ($('#radioCut').is(':checked')) {
                     $ctx.beginPath()
-                $ctx.fillStyle = 'white'
-                $ctx.fillRect(x, y, width, height)
-                $ctx.closePath()
+                    $ctx.fillStyle = 'white'
+                    $ctx.fillRect(x, y, width, height)
+                    $ctx.closePath()
                     //console.log('cut');
                     //alert('cut')
                 }
@@ -1158,7 +1496,12 @@ $(document).ready(function () {
                 // $('body').append(canvas2)
                 $('#selected').prepend(clippedimg[k])
                 // window.imagee=clippedimg[k]
-                $('#middle span').html('Visit images > gallery > selected to use the selected area')
+                $('#middle span').html('Visit images > gallery > selected to use the selected area.')
+                $('#middle span').css('color', 'white')
+
+
+                $('#swiper').html('Visit images > gallery > selected to use the selected area.')
+                $('#swiper').css('color', 'white')
                 k++
                 // $('#images').click()
             }
@@ -1279,13 +1622,12 @@ $(document).ready(function () {
         // console.log('down');
 
 
-        if (whichBtn == 'shape' && document.body.scrollTop == 0 && document.documentElement.scrollTop == 0) {
+        if (whichBtn == 'shape' && e.button !== 1 && e.button !== 2) {
             isShape = true
 
 
 
-            if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua) ||
-                /Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
+            if (window.mobile) {
                 let touch = e.originalEvent.touches[0]
                 var x = touch.pageX;
                 var y = touch.pageY;
@@ -1297,8 +1639,8 @@ $(document).ready(function () {
 
             } else {
                 mouseDownPosS = {
-                    x: e.clientX - $c.offset().left,
-                    y: e.clientY - $c.offset().top
+                    x: e.offsetX,
+                    y: e.offsetY
                 }
             }
             //console.log('mousedownpos', mouseDownPos);
@@ -1321,8 +1663,7 @@ $(document).ready(function () {
         if (isShape && whichBtn == 'shape') {
             let imgData = $(this).data('imgData')
 
-            if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua) ||
-                /Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
+            if (window.mobile) {
                 let touch = e.originalEvent.touches[0]
                 var x = touch.pageX;
                 var y = touch.pageY;
@@ -1333,8 +1674,8 @@ $(document).ready(function () {
 
             } else {
                 currentPosS = {
-                    x: e.clientX - $c.offset().left,
-                    y: e.clientY - $c.offset().top
+                    x: e.offsetX,
+                    y: e.offsetY
                 }
             }
 
@@ -1388,6 +1729,10 @@ $(document).ready(function () {
 
             if (e.type !== 'mousemove') {
                 $('#middle > span').html('You have to type some text firstly.')
+                $('#middle span').css('color', 'white')
+
+                $('#swiper').html('You have to type some text firstly.')
+                $('#swiper').css('color', 'white')
             }
 
         } else $('#middle > span').html('&nbsp;')
@@ -1405,19 +1750,19 @@ $(document).ready(function () {
         if (isChecked1) {
             $ctx.lineWidth = $('#textStrokeWidth').val()
             $ctx.strokeStyle = $('#colorStrokeText').val()
-            $ctx.strokeText(`${$('#textContent').val()}`, e.clientX - $c.offset().left, e.clientY - $c.offset().top);
+            $ctx.strokeText(`${$('#textContent').val()}`, e.offsetX, e.offsetY);
         }
         if (isChecked2) {
             $ctx.fillStyle = $('#colorFillText').val()
             // console.log($('#colorFillText').val());
 
-            $ctx.fillText(`${$('#textContent').val()}`, e.clientX - $c.offset().left, e.clientY - $c.offset().top);
+            $ctx.fillText(`${$('#textContent').val()}`, e.offsetX, e.offsetY);
         }
     }
 
     $c.on('mousemove', (e) => {
         // let before = $ctx.getImageData(0, 0, $c.width(), $c.height())
-        if (whichBtn == 'text' && document.body.scrollTop == 0 && document.documentElement.scrollTop == 0) {
+        if (whichBtn == 'text') {
             isText = true
             $ctx.putImageData(restore_array[index], 0, 0);
             textFn(e)
@@ -1427,13 +1772,13 @@ $(document).ready(function () {
     })
 
     $c.on('mouseout', (e) => {
-        if (whichBtn == 'text' && document.body.scrollTop == 0 && document.documentElement.scrollTop == 0)
+        if (whichBtn == 'text')
             $ctx.putImageData(restore_array[index], 0, 0);
     })
 
     let isText
     $c.on('mousedown', (e) => {
-        if (whichBtn == 'text' && document.body.scrollTop == 0 && document.documentElement.scrollTop == 0) {
+        if (whichBtn == 'text' && e.button !== 1 && e.button !== 2) {
             isText = true
 
             textFn(e)
@@ -1501,20 +1846,22 @@ $(document).ready(function () {
     // });
 
 
+
+
+
     let isPencil
     $c.on('mousedown touchstart', (e) => {
         //tyuf
         // console.log(e.type)
 
 
-        if (whichBtn == 'pencil' && document.documentElement.scrollTop == 0 && document.body.scrollTop == 0) {
+        if (whichBtn == 'pencil' && e.button !== 1 && e.button !== 2) {
             isPencil = true
 
             $ctx.beginPath();
 
 
-            if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua) ||
-                /Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
+            if (window.mobile) {
                 let touch = e.originalEvent.touches[0]
 
                 var x = touch.pageX;
@@ -1523,32 +1870,31 @@ $(document).ready(function () {
                 $ctx.moveTo(x - $c.offset().left, y - $c.offset().top);
 
             } else {
-                $ctx.moveTo(e.clientX - $c.offset().left, e.clientY - $c.offset().top);
+                $ctx.moveTo(e.offsetX, e.offsetY);
             }
 
             e.preventDefault()
         }
     })
 
-    $c.on('mouseup touchend', (e) => {
-        if (document.documentElement.scrollTop > 0 || document.body.scrollTop > 0)
-            document.documentElement.scrollTop = 0
-        document.body.scrollTop = 0
+    // $c.on('mouseup touchend', (e) => {
+    //     if (document.documentElement.scrollTop > 0 || document.body.scrollTop > 0)
+    //         document.documentElement.scrollTop = 0
+    //     document.body.scrollTop = 0
 
-    })
+    // })
 
     $c.on('mousemove touchmove', (e) => {
 
         //  $('body').css('cursor', `url('ja.jpg')`)
 
 
-        if (isPencil && whichBtn == 'pencil' && document.documentElement.scrollTop == 0 && document.body.scrollTop == 0) {
+        if (isPencil && whichBtn == 'pencil') {
             // console.log(e.type)
 
 
 
-            if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua) ||
-                /Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
+            if (window.mobile) {
                 let touch = e.originalEvent.touches[0]
                 var x = touch.pageX;
                 var y = touch.pageY;
@@ -1558,7 +1904,7 @@ $(document).ready(function () {
 
 
             } else {
-                $ctx.lineTo(e.clientX - $c.offset().left, e.clientY - $c.offset().top);
+                $ctx.lineTo(e.offsetX, e.offsetY);
             }
 
             //$ctx.stroke(); // Draw it
@@ -1593,7 +1939,7 @@ $(document).ready(function () {
     $c.on('mouseup touchend', (e) => {
 
 
-        if (whichBtn == 'pencil') {
+        if (whichBtn == 'pencil' && e.button !== 1 && e.button !== 2) {
             undofn(e)
             isPencil = false
             $ctx.closePath()
@@ -1602,10 +1948,194 @@ $(document).ready(function () {
 
     })
 
+    // const H = window.innerHeight
+    // console.log('H', H);
 
+
+    // $('#handle').on('click', (e) => {
+
+
+    //     if ($("#options").hasClass("show")) {
+    //         console.log('raz');
+    //         $('#options').toggleClass('show')
+    //         $('#options').animate({
+    //             top: `${H-109}`
+    //         }, 200) //closing
+    //     } else if (!$("#options").hasClass("show")) {
+    //         $('#options').animate({
+    //             top: `${H*.4}`
+    //         }, 200) //opening
+    //         console.log('dwa');
+    //         $('#options').toggleClass('show')
+    //     }
+
+    //     console.log('sprawdzam');
+
+    // })
+
+    // $('.btn').on('click', (e) => {
+    //     if (!$("#options").hasClass("show")) {
+    //         if (window.mobile)
+    //             $('#options').animate({
+    //                 top: `${H*.4}`
+    //             }, 200)
+    //         $('#options').addClass('show')
+    //     }
+
+
+    // })
+
+    // $('#leftar').on('click', e=>{
+    //     $('#textOptions').animate({
+    //         scrollLeft: 70
+    //     })
+    // })
+
+
+
+
+
+    /////keyboard shortcuts
+    $(document).on('keyup', e => {
+        if (!e.ctrlKey && $('input[name=join]').is(':checked')) {
+            $('#ljoin').click()
+        }
+    })
+    // let g=0
+    $(document).on('keydown', e => {
+
+        if (e.target.id !== 'textContent' && e.target.id !== 'uploadImage') {
+            if ((e.key === 'g' || e.key === 'G') && !e.ctrlKey) {
+                if ($('.modal').css('display') === 'none') {
+                    $('#images').click()
+                    $('#showImgBtn').click()
+                } else {
+                    $('#close').click()
+                }
+                g++
+            }
+
+            if ((e.key === 's' || e.key === 'S') && e.shiftKey)
+                $('#save').click()
+
+            if ((e.key === 'z' || e.key === 'Z') && e.ctrlKey)
+                $('#undo').click()
+
+            if ((e.key === 'p' || e.key === 'P') && !e.shiftKey)
+                $('#pencil').click()
+
+            if ((e.key === 'l' || e.key === 'L') && !e.shiftKey)
+                $('#line').click()
+
+            if ((e.key === 'l' || e.key === 'L') && !e.shiftKey)
+                $('#line').click()
+
+            if (e.ctrlKey && !$('input[name=join]').is(':checked'))
+                $('#ljoin').click()
+
+            // else $('#ljoin').click()
+            if ((e.key === 'h' || e.key === 'H') && !e.shiftKey)
+                $('#shape').click()
+
+            if ((e.key === 't' || e.key === 'T') && !e.shiftKey)
+                $('#text').click()
+
+            if ((e.key === 'i' || e.key === 'I') && !e.shiftKey)
+                $('#images').click()
+
+            if ((e.key === 's' || e.key === 'S') && !e.shiftKey)
+                $('#select').click()
+            // alert(ctrl)
+
+            if ((e.key === 'c' || e.key === 'C') && !e.shiftKey)
+                $('#colors').click()
+
+            if ((e.key === 'Delete') && !e.shiftKey && !e.ctrlKey)
+                $('#clear').click()
+
+            if ((e.key === 'Escape') && !e.ctrlKey)
+                $('#close').click()
+
+            if ((e.key === 'r' || e.key === 'R') && !e.ctrlKey) {
+                $('#shape').click()
+                $('#labelShapeSquare').click()
+                //don't know why but thid needs to be doubled, otherwise it won't work
+                $('#labelShapeSquare').click()
+            }
+            if ((e.key === 'e' || e.key === 'E') && !e.ctrlKey) {
+                $('#shape').click()
+                $('#labelShapeCircle').click()
+                //don't know why but thid needs to be doubled, otherwise it won't work
+                $('#labelShapeCircle').click()
+            }
+            if ((e.key === 'c' || e.key === 'C') && e.ctrlKey && !e.shiftKey) {
+                $('#select').click()
+                //dont'know why but the select Option jumps every time 
+                $('#labelCopy').click()
+            }
+            if ((e.key === 'x' || e.key === 'X') && e.ctrlKey) {
+                $('#select').click()
+                $('#labelCut').click()
+            }
+            if ((e.key === 'f' || e.key === 'F') && e.ctrlKey) {
+                $('#colors').click()
+                $('#backColor').click()
+                e.preventDefault()
+            }
+            if ((e.key === 'Delete') && e.ctrlKey) {
+                $('#select').click()
+                $('#labelDelete').click()
+            }
+
+
+        }
+    })
+
+    // $('#showImgBtn').on('click', e=>{
+
+    //     function showLoader(){
+    //         $('#imagesDiv').LoadingOverlay("show", {
+    //             background: "rgba(0, 0, 0, 0)",
+    //             imageColor: 'white',
+    //             text: 'Loading...',
+    //             textClass: 'test',
+    //             textResizeFactor: '.25',
+    //         });                                        
+    //     }
+    //     setTimeout(()=>{
+    //         showLoader()
+
+    //     }, 50)
+
+    // })
+
+
+    $("#img1").load(function () {
+        console.log('loaded');
+        $('#imagesDiv').LoadingOverlay("hide", true)
+    });
+
+
+
+    $("#obj1").load(function () {
+        console.log('loaded');
+        $('#objectsDiv').LoadingOverlay("hide", true)
+    });
 
 
 });
+
+
+//and the depreciated version:
+// $(window).on("orientationchange", function( event ) {
+
+//     // $("#orientation").text( "This device is in " + event.orientation + " mode!");
+//      nrofchange++
+//      if(nrofchange%2==1)
+//      $('#orientation').css('display', 'block')
+//      else
+//      $('#orientation').css('display', 'none')
+//    });
 
 
 

@@ -55,7 +55,7 @@
     cursor: pointer;
     padding: auto;
     font-size: 2vw;
-    width: 20%;
+    width: 25%;
 
     -webkit-box-shadow: 0px 0px 46px 9px rgba(32, 32, 32, 1);
     -moz-box-shadow: 0px 0px 46px 9px rgba(32, 32, 32, 1);
@@ -89,7 +89,7 @@
     /* background-color: brown; */
 }
 
-.tablink:nth-child(5) {
+.tablink:nth-child(4) {
     border-radius: 0 7px 0 0;
     /* background-color: brown; */
 }
@@ -98,8 +98,8 @@
 #close {
     /* Position it in the top right corner outside of the modal */
     position: absolute;
-    right: 25px;
-    top: 0;
+    right:40px;
+    top: 15px;
     color: red;
     font-size: 35px;
     font-weight: bold;
@@ -119,7 +119,7 @@
 /* Add Zoom Animation */
 .animate {
     -webkit-animation: animatezoom 0.4s;
-    animation: animatezoom 0.4s
+    animation: animatezoom .4s
 }
 
 @-webkit-keyframes animatezoom {
@@ -183,6 +183,9 @@
 
 /* Set default styles for tab content */
 .tabcontent {
+    backdrop-filter: blur(5px);
+
+    height: calc(70vh + 70px);
     background-color: rgba(100, 100, 100, .8);
     display: none;
     padding: 10px;
@@ -218,11 +221,14 @@
     overflow-x: visible;
     height: 70vh;
     width: 100%;
-    z-index: -1
+    z-index: -1;
+
 }
 
 .galleryDiv_ {
     -ms-overflow-style: 10px;
+
+
     /* IE and Edge */
     scrollbar-width: 10px;
     /* scrollbar-height: 0; */
@@ -241,6 +247,7 @@
     overflow-x: visible;
     height: 70vh;
     width: 100%
+    
 }
 
 .img {
@@ -314,5 +321,22 @@
     .tablink {
         height: 40px;
         font-size: 3.5vw;
+    }
+
+    .tabcontent {
+   
+        height: calc(70vh + 50px);
+     
+    }
+    #close{
+        top: 10px;
+
+    }
+
+}
+
+@media only screen and (max-width: 499px) {
+    .galleryDiv::-webkit-scrollbar, .galleryDiv_::-webkit-scrollbar{
+        display: none
     }
 }
