@@ -422,13 +422,14 @@ const zoom = document.querySelector("#zoomable");
 
 const content = document.getElementById('canvas');
 
-
+if (!(/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(navigator.userAgent)) &&
+!(/Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(navigator.userAgent))){  // return(e.offsetX, e.offsetY)
 content.addEventListener('mousemove', e => {
     // console.log('scroll', e.offsetY);
 
-    // return(e.offsetX, e.offsetY)
-    window.xPos = e.offsetX*1;
-    window.yPos = e.offsetY*1
+        window.xPos = e.offsetX*1;
+        window.yPos = e.offsetY*1
+  
 })
 
 // const contentInitialHeight=getComputedStyle(content).height.replace('px','');
@@ -465,7 +466,7 @@ document.querySelector('#zoomable').addEventListener('wheel', function (e) {
     }
     return;
 });
-
+}
 
 ///prevent zooming while pressing ctrl
 document.querySelector('#wholecontainer').addEventListener('wheel', function (e) {

@@ -28,7 +28,10 @@
     margin-left: 0;
     margin-right: 0;
     max-height: none;
-    text-shadow: 0px 0 3px  black;
+    /* text-shadow: 0px 0 3px  black; */
+}
+.labelColors{
+    text-shadow: 0 0 0 rgba(0, 0, 0, 0) !important
 }
 
 .brp4 #options {
@@ -48,8 +51,11 @@
     padding-right: 25px !important;
     padding-left: 25px;
     position: absolute;
-    bottom: 0 !important;
+    bottom: 30px !important;
     /* background: linear-gradient(0deg, rgba(33, 33, 33, 0.3) 60%, rgba(255, 0, 0, 0) 99.71%); */
+}
+.brp4 .labelSelect{
+    text-shadow: 0 0 0px black
 }
 
 .brp4 .Options::-webkit-scrollbar {
