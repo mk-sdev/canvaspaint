@@ -8,12 +8,6 @@
     background: rgba(32, 32, 32, 1)
 }
 
-/* .brp1 .tools {
-    -webkit-box-shadow: 0px 10px 20px 10px rgba(32, 32, 32, .75);
-    -moz-box-shadow: 0px 10px 20px 10px rgba(32, 32, 32, .75);
-    box-shadow: 0px 10px 20px 10px rgba(32, 32, 32, .75);
-} */
-
 .brp2 .tools {
     justify-content: left;
     overflow-x: auto;
@@ -44,9 +38,6 @@
     display: none;
 }
 
-
-
-
 .brp4 #wrapper {
     position: fixed;
     bottom: 0px;
@@ -69,10 +60,10 @@
 i {
     font-size: 30px;
 }
+
 .brp3 i {
     font-size: 5vw
 }
-
 
 .btn {
     height: 85%;
@@ -88,11 +79,13 @@ i {
     flex-shrink: 1;
     position: relative;
 }
+
 .btn:hover {
     cursor: pointer;
     background: rgb(0, 0, 0);
     background: radial-gradient(circle, rgba(255, 255, 255, .2) 0%, rgba(255, 255, 255, .2) 20%, rgba(255, 255, 255, 0) 60%);
 }
+
 .btn::before {
     position: absolute;
     font-family: 'Verdana', 'Arial Narrow', Arial, sans-serif;
@@ -107,9 +100,11 @@ i {
     border-radius: 40%;
     transition: transform 200ms ease-in-out;
 }
+
 .btn:hover::before {
     transform: scaleX(1)
 }
+
 .brp2 .btn {
     height: 100%;
     width: 9vw !important;
@@ -122,12 +117,15 @@ i {
     flex-shrink: 1;
     margin-top: 5px;
 }
+
 .brp2 .btn::before {
     content: none !important;
 }
+
 .brp3 .btn {
     height: 70% !important;
 }
+
 .brp4 .btn {
     position: relative;
     border-radius: 0 !important;
@@ -141,6 +139,7 @@ i {
     text-transform: uppercase;
     font-weight: bold;
 }
+
 .brp4 .btn::before {
     content: '';
     position: absolute;
@@ -154,12 +153,10 @@ i {
     transition: transform 200ms ease-in-out;
     z-index: -1
 }
+
 .brp5 .btn {
     min-width: 18vw
 }
-
-
-
 
 #save::before {
     content: 'SAVE'
@@ -200,8 +197,6 @@ i {
 #clear::before {
     content: 'CLEAR'
 }
-
-
 
 #download2 {
     display: none;
@@ -258,13 +253,12 @@ i {
     min-width: 9vw;
     margin-right: 7.5px;
     margin-right: auto !important;
-
 }
-
 
 .brp3 #download2 {
     margin-right: 0 !important
 }
+
 .brp4 #download2 {
     margin-left: 10px !important;
     margin-right: 13px !important;

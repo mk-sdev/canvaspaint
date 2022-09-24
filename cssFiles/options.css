@@ -6,13 +6,7 @@
     z-index: 10;
     overflow: hidden;
 }
-/* .brp1 #options::-webkit-scrollbar{
-    width: 10px;
-    direction: rtl;
-}
-#options:hover #options::-webkit-scrollbar{
-    width: 10px !important
-} */
+
 .brp4 #options {
     box-shadow: none;
     position: fixed;
@@ -28,8 +22,8 @@
     margin-left: 0;
     margin-right: 0;
     max-height: none;
-    /* text-shadow: 0px 0 3px  black; */
 }
+
 .labelColors{
     text-shadow: 0 0 0 rgba(0, 0, 0, 0) !important
 }
@@ -52,7 +46,6 @@
     padding-left: 25px;
     position: absolute;
     bottom: 30px !important;
-    /* background: linear-gradient(0deg, rgba(33, 33, 33, 0.3) 60%, rgba(255, 0, 0, 0) 99.71%); */
 }
 .brp4 .labelSelect{
     text-shadow: 0 0 0px black
@@ -87,6 +80,7 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     transition: display 2s !important
 }
+
 #options:hover #handle-left{
     display: none
 }
@@ -95,21 +89,6 @@
 .brp4 #handle-left {
     display: none;
 }
-
-
-
-
-
-
-
-/* .brp3 #lineOptions {
-    width: 100%;
-    padding-right: 0
-} */
-
-
-
-
 
 .brp6 #lineColor {
     width: 400px !important;
@@ -128,22 +107,13 @@
     width: 100%
 }
 
-
 .brp6 #pencilOptions {
     width: 100%;
 }
 
-
-
-/* .brp3 #pencilOptions {
-    width: auto
-} */
-
 .brp2 #download1 {
     display: none;
 }
-
-
 
 /* MOBILE//////////////////////////////////////////////// */
 
@@ -154,10 +124,6 @@
 .brp4 #textOptions {
     height: fit-content
 }
-
-
-
-
 
 .brp4 #handle {
     display: block;
@@ -172,50 +138,23 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-
-
 .brp4 #wholecontainer {
     margin-bottom: 0px !important;
     position: fixed;
     height: calc(100vh - 65px) !important;
 }
 
-/* .brp4 #pencilOptions{
-    display: flex;
-    flex-flow: column-reverse;
-} */
-
-
-
-
-/* .show {
-    top: 40vh !important;
-} */
-
-
-
-
-
-
-
-
 .brp4 input[type=range] {
     width: 100%
 }
+
 .brp4 input[type=number] {
     text-shadow: 0 0 3px black
 }
-/* .brp4 input[type=radio]:not(:checked){
-    color: red
-} */
-/* .brp4 #radiosShape {
-    width: fit-content
-} */
 
 .brp4 #styleText,
 .brp4 #styleShape {
     display: inline-grid;
-    /* flex-direction: row; */
     grid-template-columns: 20% 20%;
     justify-content: center;
 }
@@ -227,15 +166,12 @@
 
 .brp4 #styleText>div:first-of-type label,
 .brp4 #styleShape>div:first-of-type label {
-    /* margin-left: 50px !important; */
     float: right;
-    /* background-color: blue; */
 }
 
 .brp4 #styleText>div:last-of-type label,
 .brp4 #styleShape>div:last-of-type label {
     float: left;
-    /* background-color: blue; */
 }
 
 .brp4 input[type="range"] {
@@ -243,37 +179,26 @@
     appearance: none;
     background: transparent;
     cursor: pointer;
-    /* width: 90%; */
 }
 
-
-/***** Track Styles *****/
-/***** Chrome, Safari, Opera, and Edge Chromium *****/
 .brp4 input[type="range"]::-webkit-slider-runnable-track {
     background: rgb(85,85,85);
     background: radial-gradient(circle, rgba(85,85,85,1) 50%, rgba(70,70,70,1) 100%);
     border-radius: 2px;
-    /* border: .1px solid black; */
     height: 0.3rem;
 }
 
-/******** Firefox ********/
 .brp4 input[type="range"]::-moz-range-track {
     background: rgb(85,85,85);
     background: radial-gradient(circle, rgba(85,85,85,1) 50%, rgba(70,70,70,1) 100%);
     border-radius: 2px;
-
     height: 0.3rem;
 }
 
-/***** Thumb Styles *****/
-/***** Chrome, Safari, Opera, and Edge Chromium *****/
 .brp4 input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
-    /* Override default look */
     appearance: none;
     margin-top: -10px;
-    /* Centers thumb on the track */
     background-color: black;
     border: 1px solid white;
     border-radius: 10px;
@@ -281,18 +206,12 @@
     width: .4rem;
 }
 
-/***** Thumb Styles *****/
-/***** Firefox *****/
 .brp4 input[type="range"]::-moz-range-thumb {
     border: none;
-    /*Removes extra border that FF applies*/
     border: 1px solid white;
     margin-top: -5px;
-
     border-radius: 10px;
-    /*Removes default border-radius that FF applies*/
     margin-top: -10px;
-    /* Centers thumb on the track */
     background-color: black;
     border: 1px solid white;
     border-radius: 10px;

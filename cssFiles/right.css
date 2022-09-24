@@ -1,15 +1,14 @@
 #right {
     width: 270px;
-    /* background-color: red; */
     border-radius: 0px 0px 0px 15px;
     background-color: rgb(49, 49, 49);
     height: fit-content;
     overflow-y: hidden;
     right: 0;
     transition: right .7s;
-    /* display: none; */
     position: fixed
 }
+
 .brp1 #right,
 .brp2 #right {
     position: fixed;
@@ -17,6 +16,7 @@
     right: -240px;
     
 }
+
 .brp4 #right {
     transition: none;
     top: 0;
@@ -31,9 +31,6 @@
     max-height: none;
 }
 
-
-
-
 #savedImages {
     width: 100%;
     overflow-x: hidden;
@@ -45,15 +42,14 @@
     -moz-box-shadow: inset 0px 13px 80px 52px rgba(32, 32, 32, 1);
     box-shadow: inset 0px 13px 80px 52px rgba(32, 32, 32, 1);
 }
+
 .brp1 #savedImages {
     border: none;
     -webkit-box-shadow: inset 0px 0px 50px 42px rgba(32, 32, 32, 1);
     -moz-box-shadow: inset 0px 0px 50px 42px rgba(32, 32, 32, 1);
     box-shadow: inset 0px 0px 50px 42px rgba(32, 32, 32, 1);
 }
-/* .brp3 #savedImages {
-    right: auto;
-} */
+
 .brp4 #savedImages {
     height: 150%;
     position: relative;
@@ -75,6 +71,7 @@
 .brp4 #savedImages::-webkit-scrollbar {
     width: 0px;
 }
+
 #savedImages span {
     color: grey;
     font-size: 20px;
@@ -85,9 +82,7 @@
     width: 90%;
     text-align: center;
 }
-/* .brp3 #savedImages span {
-    font-size: 90% !important;
-} */
+
 .brp4 #savedImages span {
     display: inline-block;
     width: 90%;
@@ -97,18 +92,18 @@
     overflow-wrap: break-word !important;
     color: black;
     white-space: pre-line !important;
-
 }
-
 
 .savedImage {
     width: 100%;
     display: inline-block;
 }
+
 .savedImage:hover {
     opacity: .5 !important;
     cursor: pointer;
 }
+
 .brp4 .savedImage {
     width: 90%;
     margin-left: auto;
@@ -117,9 +112,6 @@
     height: auto;
     display: block
 }
-
-
-
 
 #closeright {
     display: none;
@@ -141,7 +133,6 @@
 .brp1 #handle-right {
     position: absolute;
     display: block;
-    /* display: inline-block; */
     left: 0px;
     top: 0px;
     width: 30px;
@@ -153,15 +144,12 @@
     line-height: 30px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
 #handle-right,
 .brp4 #handle-right {
     display: none
 }
+
 #right:hover #handle-right{
     display: none
 }
-
-
-
-
-

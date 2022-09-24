@@ -1,17 +1,11 @@
 #wholecontainer {
-    /* background-color: yellow; */
     height: 100vh;
-    /* max-width: 1400px */
-    /* overflow-x: hidden !important ; */
-
 }
 
 .brp4 #wholecontainer {
     right: 0;
     left: 0;
 }
-
-
 
 #q {
     width: 100%;
@@ -20,24 +14,16 @@
 }
 
 .brp1 #q {
-    /* display: block; */
     margin-bottom: 15px;
-    /* margin-top: 17px */
 }
 
 .brp2 #q {
     margin-top: 0;
 }
 
-/* .brp3 #q>div {
-    margin-top: 0;
-} */
 .brp4 #q {
     margin-bottom: 0
 }
-
-
-
 
 #middle {
     margin: 0;
@@ -54,7 +40,6 @@
 }
 
 #middle span {
-    /* color: red; */
     text-align: justify;
     text-justify: inter-word;
 }
@@ -72,9 +57,6 @@
 .brp4 #middle span {
     display: none !important
 }
-
-
-
 
 #zoomable::-webkit-scrollbar {
     width: 10px;
@@ -102,22 +84,10 @@
     justify-content: space-around;
 }
 
-/* .brp1 #zoomable {
-    padding-left: 7vw
-}
-
-.brp2 #zoomable {
-    padding-left: 0
-} */
-
 .brp4 #zoomable::-webkit-scrollbar {
     width: 0;
     height: 0
 }
-
-
-
-
 
 canvas {
     border: 5px solid black;
@@ -142,10 +112,6 @@ canvas:hover {
     width: 100%;
 }
 
-
-
-
-
 #swiper>div {
     margin-top: 10px;
     color: silver
@@ -166,7 +132,6 @@ canvas:hover {
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
     color: silver;
-    /* background-color: brown; */
 }
 
 .brp5 #swiper {
