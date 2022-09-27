@@ -95,6 +95,7 @@ x2.addListener(myFunction2)
 ///////////
 function myFunction3(x) {
     if (x.matches) {
+        alert('dd')
         document.querySelector('html').classList.add("brp4")
     } else {
         document.querySelector('html').classList.remove("brp4")
