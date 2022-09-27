@@ -4,6 +4,7 @@ window.screen.orientation
         success => console.log(success),
         failure => console.log(failure)
     )
+    alert('ee')
 //changing the tabicon depending on the browser theme
 const faviconTag = document.getElementById("faviconTag");
 const isDark = window.matchMedia("(prefers-color-scheme: dark)");
