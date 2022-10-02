@@ -1,20 +1,9 @@
-window.screen.orientation
-    .lock("portrait")
-    .then(
-        success => console.log(success),
-        failure => console.log(failure)
-    )
-
-//changing the tabicon depending on the browser theme
-const faviconTag = document.getElementById("faviconTag");
-const isDark = window.matchMedia("(prefers-color-scheme: dark)");
-
-const changeFavicon = () => {
-    if (isDark.matches) faviconTag.setAttribute("href", "./images/pencil-white.png")
-    else faviconTag.setAttribute("./images/pencil-white.png")
-};
-
-changeFavicon()
+// window.screen.orientation
+//     .lock("portrait")
+//     .then(
+//         success => console.log(success),
+//         failure => console.log(failure)
+//     )
 
 const con = document.querySelector('#wholecontainer')
 let conw = window.getComputedStyle(con).width.replace('px', '')
@@ -52,6 +41,73 @@ addEventListener('beforeunload', function (event) {
 });
 
 //media queries in js
+// let w = window.innerWidth
+
+// function myFunction(x) {
+//     if (x.matches) {
+//         document.querySelector('html').classList.add("brp1")
+//     } else {
+//         document.querySelector('html').classList.remove("brp1")
+//     }
+// }
+
+// let x
+//     x = window.matchMedia(`(max-width: 1200px) `)
+
+// myFunction(x)
+// x.addListener(myFunction)
+// ////////////////////
+// function myFunction1(x) {
+//     if (x.matches) {
+//         document.querySelector('html').classList.add("brp2")
+//     } else {
+//         document.querySelector('html').classList.remove("brp2")
+//     }
+// }
+
+// let x1
+//  x1 = window.matchMedia(`(max-width: 900px) `)
+// myFunction1(x1)
+// x1.addListener(myFunction1)
+
+// //////////
+// function myFunction2(x) {
+//     if (x.matches) {
+//         document.querySelector('html').classList.add("brp3")
+//     } else {
+//         document.querySelector('html').classList.remove("brp3")
+//     }
+// }
+
+// let x2 = window.matchMedia(`(max-width: 555px)`)
+// myFunction2(x2)
+// x2.addListener(myFunction2)
+// ///////////
+// function myFunction3(x) {
+//     if (x.matches) {
+//         document.querySelector('html').classList.add("brp4")
+//     } else {
+//         document.querySelector('html').classList.remove("brp4")
+//     }
+// }
+
+// let x3 = window.matchMedia(`(max-width: 499px)`)
+// myFunction3(x3)
+// x3.addListener(myFunction3)
+
+// //////////////////////////
+
+// function myFunction4(x) {
+//     if (x.matches) {
+//         document.querySelector('html').classList.add("brp5")
+//     } else {
+//         document.querySelector('html').classList.remove("brp5")
+//     }
+// }
+
+// let x4 = window.matchMedia(`(max-width: 360px)`)
+// myFunction4(x4)
+// x4.addListener(myFunction4)
 if (window.innerWidth<=1200){
     document.querySelector('html').classList.add("brp1")
 } else {
@@ -214,7 +270,6 @@ function opt(a) {
             $('#options').css('left', `0%`)
         }
         if ((-touchendX + touchstartX) / w >= 0.3 && a) {
-            // alert('a')
             $('#options').css('transition', '.5s ease-out')
             $('#options').css('left', `-100%`)
         }
@@ -357,7 +412,7 @@ var invalidChars = [
 
 for(let i=0; i<numbers.length; i++){
 numbers[i].addEventListener('input', e=>{
-// alert(pencilNr.max)
+
 if(numbers[i].value>Number(numbers[i].max))
 numbers[i].value=Number(numbers[i].max)
 if(numbers[i].value<Number(numbers[i].min))
@@ -367,7 +422,6 @@ numbers[i].value=Number(numbers[i].min)
 
     if(numbers[i].value=='')
     ranges[i].value=Number(numbers[i].min)
-    // alert(e.target.value)
 })
 }
 
@@ -409,3 +463,19 @@ window.addEventListener("resize", e=>{
         $('#right').css('right','-240px')
     }
 });
+//changing the tabicon depending on the browser theme
+const ua = navigator.userAgent;
+
+if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua) ||
+    /Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
+
+        const faviconTag = document.getElementById("faviconTag");
+const isDark = window.matchMedia("(prefers-color-scheme: dark)");
+
+const changeFavicon = () => {
+    if (isDark.matches) faviconTag.setAttribute("href", "./images/pencil-white.png")
+    else faviconTag.setAttribute("./images/pencil-white.png")
+};
+
+changeFavicon()
+}
