@@ -463,11 +463,7 @@ window.addEventListener("resize", e=>{
         $('#right').css('right','-240px')
     }
 });
-//changing the tabicon depending on the browser theme
-const ua = navigator.userAgent;
-
-if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua) ||
-    /Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
+//changing the tabicon depending on the browser hteme
 
         const faviconTag = document.getElementById("faviconTag");
 const isDark = window.matchMedia("(prefers-color-scheme: dark)");
@@ -478,4 +474,3 @@ const changeFavicon = () => {
 };
 
 changeFavicon()
-}
