@@ -41,7 +41,7 @@ addEventListener('beforeunload', function (event) {
 });
 
 //media queries in js
-// let w = window.innerWidth
+ let w = window.innerWidth
 
 // function myFunction(x) {
 //     if (x.matches) {
