@@ -1,10 +1,3 @@
-// window.screen.orientation
-//     .lock("portrait")
-//     .then(
-//         success => console.log(success),
-//         failure => console.log(failure)
-//     )
-
 const con = document.querySelector('#wholecontainer')
 let conw = window.getComputedStyle(con).width.replace('px', '')
 let conh = window.getComputedStyle(con).height.replace('px', '')
@@ -41,73 +34,6 @@ addEventListener('beforeunload', function (event) {
 });
 
 //media queries in js
- let w = window.innerWidth
-
-// function myFunction(x) {
-//     if (x.matches) {
-//         document.querySelector('html').classList.add("brp1")
-//     } else {
-//         document.querySelector('html').classList.remove("brp1")
-//     }
-// }
-
-// let x
-//     x = window.matchMedia(`(max-width: 1200px) `)
-
-// myFunction(x)
-// x.addListener(myFunction)
-// ////////////////////
-// function myFunction1(x) {
-//     if (x.matches) {
-//         document.querySelector('html').classList.add("brp2")
-//     } else {
-//         document.querySelector('html').classList.remove("brp2")
-//     }
-// }
-
-// let x1
-//  x1 = window.matchMedia(`(max-width: 900px) `)
-// myFunction1(x1)
-// x1.addListener(myFunction1)
-
-// //////////
-// function myFunction2(x) {
-//     if (x.matches) {
-//         document.querySelector('html').classList.add("brp3")
-//     } else {
-//         document.querySelector('html').classList.remove("brp3")
-//     }
-// }
-
-// let x2 = window.matchMedia(`(max-width: 555px)`)
-// myFunction2(x2)
-// x2.addListener(myFunction2)
-// ///////////
-// function myFunction3(x) {
-//     if (x.matches) {
-//         document.querySelector('html').classList.add("brp4")
-//     } else {
-//         document.querySelector('html').classList.remove("brp4")
-//     }
-// }
-
-// let x3 = window.matchMedia(`(max-width: 499px)`)
-// myFunction3(x3)
-// x3.addListener(myFunction3)
-
-// //////////////////////////
-
-// function myFunction4(x) {
-//     if (x.matches) {
-//         document.querySelector('html').classList.add("brp5")
-//     } else {
-//         document.querySelector('html').classList.remove("brp5")
-//     }
-// }
-
-// let x4 = window.matchMedia(`(max-width: 360px)`)
-// myFunction4(x4)
-// x4.addListener(myFunction4)
 if (window.innerWidth<=1200){
     document.querySelector('html').classList.add("brp1")
 } else {
@@ -175,6 +101,7 @@ let touchstartX = 0
 let touchendX = 0
 $("#right").data("closed", true); //true if #right is fully closed
 $("#right").data("opened", false); //true if #right is fully opened
+let w = window.innerWidth
 
 function checkDirection(a) {
 
@@ -426,7 +353,6 @@ numbers[i].value=Number(numbers[i].min)
 }
 
 /////////////// opening navs
-
 document.querySelector('#options').addEventListener('mouseenter', e=>{
     if(document.querySelector('html').classList.contains('brp1')){
     e.target.style.left='0px'
