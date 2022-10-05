@@ -311,15 +311,17 @@ document.querySelector('#wholecontainer').addEventListener('wheel', function (e)
 
 //////inputs type number
 
-const numbers  = document.querySelectorAll('input[type=number]')
-let ranges=[]
-for(let i=0; i<numbers.length; i++){
- ranges[i] = numbers[i].parentElement.nextElementSibling
-}
+window.numbers  = document.querySelectorAll('input[type=number]')
+window.ranges=[]
 
-for(let i=0; i<ranges.length; i++){
-ranges[i].addEventListener('input', (e)=>{
-    numbers[i].value=ranges[i].value
+window.fn=()=>{
+    for(let i=0; i<window.numbers.length; i++){
+     window.ranges[i] = window.numbers[i].parentElement.nextElementSibling
+    }
+
+for(let i=0; i<window.ranges.length; i++){
+window.ranges[i].addEventListener('input', (e)=>{
+    window.numbers[i].value=window.ranges[i].value
 })
 }
 
@@ -329,39 +331,41 @@ var invalidChars = [
     "e",
   ];
 
-  for(let i=0; i<numbers.length; i++){
-  numbers[i].addEventListener("keydown", function(e) {
+  for(let i=0; i<window.numbers.length; i++){
+  window.numbers[i].addEventListener("keydown", function(e) {
     if (invalidChars.includes(e.key)) {
       e.preventDefault();
     }
   });
 }
 
-for(let i=0; i<numbers.length; i++){
-numbers[i].addEventListener('input', e=>{
+for(let i=0; i<window.numbers.length; i++){
+window.numbers[i].addEventListener('input', e=>{
 
-if(numbers[i].value>Number(numbers[i].max))
-numbers[i].value=Number(numbers[i].max)
-if(numbers[i].value<Number(numbers[i].min))
-numbers[i].value=Number(numbers[i].min)
+if(window.numbers[i].value>Number(window.numbers[i].max))
+window.numbers[i].value=Number(window.numbers[i].max)
+if(window.numbers[i].value<Number(window.numbers[i].min))
+window.numbers[i].value=Number(window.numbers[i].min)
 
-    ranges[i].value=numbers[i].value
+    window.ranges[i].value=window.numbers[i].value
 
-    if(numbers[i].value=='')
-    ranges[i].value=Number(numbers[i].min)
+    if(window.numbers[i].value=='')
+    window.ranges[i].value=Number(window.numbers[i].min)
 })
 }
+}
 
+window.fn()
 /////////////// opening navs
 document.querySelector('#options').addEventListener('mouseenter', e=>{
-    if(document.querySelector('html').classList.contains('brp1')){
+    if(document.querySelector('html').classList.contains('brp1') && window.innerWidth>499){
     e.target.style.left='0px'
     e.target.style.overflow='auto'
     }
 })
 
 document.querySelector('#options').addEventListener('mouseleave', e=>{
-    if(document.querySelector('html').classList.contains('brp1')){
+    if(document.querySelector('html').classList.contains('brp1') && window.innerWidth>499){
     e.target.style.left='-240px'
     e.target.style.overflow='hidden'
 e.target.scrollTop=0
@@ -389,7 +393,7 @@ window.addEventListener("resize", e=>{
         $('#right').css('right','-240px')
     }
 });
-//changing the tabicon depending on the browser hteme
+//changing the tabicon depending on the browser theme
 
         const faviconTag = document.getElementById("faviconTag");
 const isDark = window.matchMedia("(prefers-color-scheme: dark)");

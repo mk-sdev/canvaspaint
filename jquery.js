@@ -454,6 +454,19 @@ $(document).ready(function () {
 
         } else if (ratio == 0 && window.imagee !== undefined) $ctx.drawImage(window.imagee, x - width / 2, y - height / 2, width, height)
 
+
+
+        // if (ratio >= 0 && window.imagee !== undefined) {
+        //     $ctx.drawImage(window.imagee, x - width + (width * ratio) / 2, y - height + (height * ratio) / 2, width + width * ratio, height + height * ratio)
+        // }
+        //  else if (ratio < 0 && window.imagee !== undefined) {
+
+        //     $ctx.drawImage(window.imagee, x - width * size / 2, y - height * size / 2, width + width * ratio/10, height + height * ratio/10)
+
+        // }
+        //  else if (ratio == 0 && window.imagee !== undefined) $ctx.drawImage(window.imagee, x - width / 2, y - height / 2, width, height)
+
+
         $ctx.restore()
     }
 
@@ -535,6 +548,8 @@ $(document).ready(function () {
             if(this.status===200){
                 $('#options').LoadingOverlay("hide", 0)
                 container.innerHTML=xhr.responseText
+                window.numbers  = document.querySelectorAll('input[type=number]')
+                window.fn()
             }
         }
 
@@ -576,6 +591,8 @@ $(document).ready(function () {
                     if(this.status===200){
                         $('#options').LoadingOverlay("hide", 0)
                         container.innerHTML=xhr.responseText
+                        window.numbers  = document.querySelectorAll('input[type=number]')
+                        window.fn()
                     }
                 }
         
@@ -623,9 +640,10 @@ $(document).ready(function () {
                 const container = document.querySelector('#textOptions')
                 xhr.onload=function(){
                     if(this.status===200){
-                        
                         $('#options').LoadingOverlay("hide", 0)
                         container.innerHTML=xhr.responseText
+                        window.numbers  = document.querySelectorAll('input[type=number]')
+                        window.fn()
                     }
                 }
         
@@ -666,9 +684,10 @@ $(document).ready(function () {
                 const container = document.querySelector('#colorsOptions')
                 xhr.onload=function(){
                     if(this.status===200){
-                        
                         $('#options').LoadingOverlay("hide", 0)
                         container.innerHTML=xhr.responseText
+                        window.numbers  = document.querySelectorAll('input[type=number]')
+                        window.fn()
                     }
                 }
         
