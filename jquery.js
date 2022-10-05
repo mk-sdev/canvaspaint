@@ -32,12 +32,7 @@ $(document).ready(function () {
     let ranges_array = []
     let index = -1
     restore_array.push($ctx.getImageData(0, 0, $c.width(), $c.height()))
-    ranges_array.push({
-        red: $('#red').val(),
-        green: $('#green').val(),
-        blue: $('#blue').val(),
-        light: $('#lightness').val()
-    })
+
     index++
 
     $('#undo').on('click', () => {
@@ -259,157 +254,6 @@ $(document).ready(function () {
                 closebtn.css('display', 'block');
             }, 200)
         }
-    })
-
-    $('#labelInverted').on('mousedown touch', (e) => {
-        let a = $ctx.getImageData(0, 0, $c.width(), $c.height())
-        const data = a.data;
-        for (let i = 0; i < data.length; i += 4) {
-            data[i] = 255 - data[i]; // red
-            data[i + 1] = 255 - data[i + 1]; // green
-            data[i + 2] = 255 - data[i + 2]; // blue
-        }
-        $ctx.putImageData(a, 0, 0)
-        undofn(e)
-    })
-
-    $('#labelGrayScale').on('mousedown touch', (e) => {
-        let a = $ctx.getImageData(0, 0, $c.width(), $c.height())
-        const data = a.data;
-        for (let i = 0; i < data.length; i += 4) {
-            const avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
-            data[i] = avg; // red
-            data[i + 1] = avg; // green
-            data[i + 2] = avg; // blue
-        }
-        $ctx.putImageData(a, 0, 0)
-        undofn(e)
-    })
-
-    $('#labelSepia').on('mousedown touch', (e) => {
-        let a = $ctx.getImageData(0, 0, $c.width(), $c.height())
-        const dataArray = a.data;
-        for (var i = 0; i < dataArray.length; i += 4) {
-            var red = dataArray[i];
-            var green = dataArray[i + 1];
-            var blue = dataArray[i + 2];
-            var alpha = dataArray[i + 3];
-
-            var outRed = (red * .393) + (green * .769) + (blue * .189); // calculate value for red channel in pixel
-            var outGreen = (red * .349) + (green * .686) + (blue * .168);
-            var outBlue = (red * .272) + (green * .534) + (blue * .131);
-
-            dataArray[i] = outRed < 255 ? outRed : 255; // check if the value is less than 255, if more set it to 255
-            dataArray[i + 1] = outGreen < 255 ? outGreen : 255;
-            dataArray[i + 2] = outBlue < 255 ? outBlue : 255
-            dataArray[i + 3] = alpha;
-        }
-        $ctx.putImageData(a, 0, 0)
-        undofn(e)
-    })
-
-    $('#red').on('mousedown touchstart', (e) => {
-        $(this).data('prevValue', $('#red').val())
-        // console.log('redddd', $('#red').val())
-    }).on('input change', (e) => {
-        let prevValue = $(this).data('prevValue')
-        let difference = $('#red').val() - prevValue
-
-        let a = $ctx.getImageData(0, 0, $c.width(), $c.height())
-        const data = a.data;
-        //let val = $('#red').val()
-        for (let i = 0; i < data.length; i += 4) {
-            data[i] = data[i] + difference; // red
-            data[i + 1] = data[i + 1]; // green
-            data[i + 2] = data[i + 2]; // blue
-        }
-        $ctx.putImageData(a, 0, 0)
-
-    }).on('mouseup touchend', e => {
-        undofn(e, {
-            red: $('#red').val(),
-            green: $('#green').val(),
-            blue: $('#blue').val(),
-            light: $('#lightness').val()
-        })
-    })
-
-    $('#green').on('mousedown touchstart', (e) => {
-        $(this).data('prevValue', $('#green').val())
-        // console.log('redddd', $('#red').val())
-    }).on('input change', (e) => {
-        let prevValue = $(this).data('prevValue')
-        let difference = $('#green').val() - prevValue
-
-        let a = $ctx.getImageData(0, 0, $c.width(), $c.height())
-        const data = a.data;
-        //let val = $('#red').val()
-        for (let i = 0; i < data.length; i += 4) {
-            data[i] = data[i]; // red
-            data[i + 1] = data[i + 1] + difference; // green
-            data[i + 2] = data[i + 2]; // blue
-        }
-        $ctx.putImageData(a, 0, 0)
-
-    }).on('mouseup touchend', e => {
-        undofn(e, {
-            red: $('#red').val(),
-            green: $('#green').val(),
-            blue: $('#blue').val(),
-            light: $('#lightness').val()
-        })
-    })
-
-    $('#blue').on('mousedown touchstart', (e) => {
-        $(this).data('prevValue', $('#blue').val())
-        // console.log('redddd', $('#red').val())
-    }).on('input change', (e) => {
-        let prevValue = $(this).data('prevValue')
-        let difference = $('#blue').val() - prevValue
-
-        let a = $ctx.getImageData(0, 0, $c.width(), $c.height())
-        const data = a.data;
-
-        for (let i = 0; i < data.length; i += 4) {
-            data[i] = data[i]; // red
-            data[i + 1] = data[i + 1]; // green
-            data[i + 2] = data[i + 2] + difference; // blue
-        }
-        $ctx.putImageData(a, 0, 0)
-
-    }).on('mouseup touchend', e => {
-        undofn(e, {
-            red: $('#red').val(),
-            green: $('#green').val(),
-            blue: $('#blue').val(),
-            light: $('#lightness').val()
-        })
-    })
-
-    $('#lightness').on('mousedown touchstart', (e) => {
-        $(this).data('prevValue', $('#lightness').val())
-        $(this).data('a', $ctx.getImageData(0, 0, $c.width(), $c.height()))
-
-    }).on('input change', (e) => {
-        let prevValue = $(this).data('prevValue')
-        let difference = $('#lightness').val() - prevValue
-        let a = $(this).data('a')
-
-        const data = a.data;
-        for (let i = 0; i < data.length; i += 4) {
-            data[i] = data[i] + difference; // red
-            data[i + 1] = data[i + 1] + difference; // green
-            data[i + 2] = data[i + 2] + difference; // blue
-        }
-        $ctx.putImageData(a, 0, 0)
-
-    }).on('mouseup touchend', e => {
-        undofn(e, {
-            red: $('#red').val(),
-            green: $('#green').val(),
-            blue: $('#blue').val(),
-            light: $('#lightness').val()
-        })
     })
 
     $('#contrast').on('mousedown touchend', (e) => {
@@ -688,6 +532,165 @@ $(document).ready(function () {
                         container.innerHTML=xhr.responseText
                         window.numbers  = document.querySelectorAll('input[type=number]')
                         window.fn()
+
+                        $('#labelInverted').on('mousedown touch', (e) => {
+                            let a = $ctx.getImageData(0, 0, $c.width(), $c.height())
+                            const data = a.data;
+                            for (let i = 0; i < data.length; i += 4) {
+                                data[i] = 255 - data[i]; // red
+                                data[i + 1] = 255 - data[i + 1]; // green
+                                data[i + 2] = 255 - data[i + 2]; // blue
+                            }
+                            $ctx.putImageData(a, 0, 0)
+                            undofn(e)
+                        })
+                    
+                        $('#labelGrayScale').on('mousedown touch', (e) => {
+                            let a = $ctx.getImageData(0, 0, $c.width(), $c.height())
+                            const data = a.data;
+                            for (let i = 0; i < data.length; i += 4) {
+                                const avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
+                                data[i] = avg; // red
+                                data[i + 1] = avg; // green
+                                data[i + 2] = avg; // blue
+                            }
+                            $ctx.putImageData(a, 0, 0)
+                            undofn(e)
+                        })
+                    
+                        $('#labelSepia').on('mousedown touch', (e) => {
+                            let a = $ctx.getImageData(0, 0, $c.width(), $c.height())
+                            const dataArray = a.data;
+                            for (var i = 0; i < dataArray.length; i += 4) {
+                                var red = dataArray[i];
+                                var green = dataArray[i + 1];
+                                var blue = dataArray[i + 2];
+                                var alpha = dataArray[i + 3];
+                    
+                                var outRed = (red * .393) + (green * .769) + (blue * .189); // calculate value for red channel in pixel
+                                var outGreen = (red * .349) + (green * .686) + (blue * .168);
+                                var outBlue = (red * .272) + (green * .534) + (blue * .131);
+                    
+                                dataArray[i] = outRed < 255 ? outRed : 255; // check if the value is less than 255, if more set it to 255
+                                dataArray[i + 1] = outGreen < 255 ? outGreen : 255;
+                                dataArray[i + 2] = outBlue < 255 ? outBlue : 255
+                                dataArray[i + 3] = alpha;
+                            }
+                            $ctx.putImageData(a, 0, 0)
+                            undofn(e)
+                        })
+                    
+                        $('#red').on('mousedown touchstart', (e) => {
+                            $(this).data('prevValue', $('#red').val())
+                            // console.log('redddd', $('#red').val())
+                        }).on('input change', (e) => {
+                            let prevValue = $(this).data('prevValue')
+                            let difference = $('#red').val() - prevValue
+                    
+                            let a = $ctx.getImageData(0, 0, $c.width(), $c.height())
+                            const data = a.data;
+                            //let val = $('#red').val()
+                            for (let i = 0; i < data.length; i += 4) {
+                                data[i] = data[i] + difference; // red
+                                data[i + 1] = data[i + 1]; // green
+                                data[i + 2] = data[i + 2]; // blue
+                            }
+                            $ctx.putImageData(a, 0, 0)
+                    
+                        }).on('mouseup touchend', e => {
+                            undofn(e, {
+                                red: $('#red').val(),
+                                green: $('#green').val(),
+                                blue: $('#blue').val(),
+                                light: $('#lightness').val()
+                            })
+                        })
+                    
+                        $('#green').on('mousedown touchstart', (e) => {
+                            $(this).data('prevValue', $('#green').val())
+                            // console.log('redddd', $('#red').val())
+                        }).on('input change', (e) => {
+                            let prevValue = $(this).data('prevValue')
+                            let difference = $('#green').val() - prevValue
+                    
+                            let a = $ctx.getImageData(0, 0, $c.width(), $c.height())
+                            const data = a.data;
+                            //let val = $('#red').val()
+                            for (let i = 0; i < data.length; i += 4) {
+                                data[i] = data[i]; // red
+                                data[i + 1] = data[i + 1] + difference; // green
+                                data[i + 2] = data[i + 2]; // blue
+                            }
+                            $ctx.putImageData(a, 0, 0)
+                    
+                        }).on('mouseup touchend', e => {
+                            undofn(e, {
+                                red: $('#red').val(),
+                                green: $('#green').val(),
+                                blue: $('#blue').val(),
+                                light: $('#lightness').val()
+                            })
+                        })
+                    
+                        $('#blue').on('mousedown touchstart', (e) => {
+                            $(this).data('prevValue', $('#blue').val())
+                            // console.log('redddd', $('#red').val())
+                        }).on('input change', (e) => {
+                            let prevValue = $(this).data('prevValue')
+                            let difference = $('#blue').val() - prevValue
+                    
+                            let a = $ctx.getImageData(0, 0, $c.width(), $c.height())
+                            const data = a.data;
+                    
+                            for (let i = 0; i < data.length; i += 4) {
+                                data[i] = data[i]; // red
+                                data[i + 1] = data[i + 1]; // green
+                                data[i + 2] = data[i + 2] + difference; // blue
+                            }
+                            $ctx.putImageData(a, 0, 0)
+                    
+                        }).on('mouseup touchend', e => {
+                            undofn(e, {
+                                red: $('#red').val(),
+                                green: $('#green').val(),
+                                blue: $('#blue').val(),
+                                light: $('#lightness').val()
+                            })
+                        })
+                    
+                        $('#lightness').on('mousedown touchstart', (e) => {
+                            $(this).data('prevValue', $('#lightness').val())
+                            $(this).data('a', $ctx.getImageData(0, 0, $c.width(), $c.height()))
+                    
+                        }).on('input change', (e) => {
+                            let prevValue = $(this).data('prevValue')
+                            let difference = $('#lightness').val() - prevValue
+                            let a = $(this).data('a')
+                    
+                            const data = a.data;
+                            for (let i = 0; i < data.length; i += 4) {
+                                data[i] = data[i] + difference; // red
+                                data[i + 1] = data[i + 1] + difference; // green
+                                data[i + 2] = data[i + 2] + difference; // blue
+                            }
+                            $ctx.putImageData(a, 0, 0)
+                    
+                        }).on('mouseup touchend', e => {
+                            undofn(e, {
+                                red: $('#red').val(),
+                                green: $('#green').val(),
+                                blue: $('#blue').val(),
+                                light: $('#lightness').val()
+                            })
+                        })
+                        ranges_array.push({
+                            red: $('#red').val(),
+                            green: $('#green').val(),
+                            blue: $('#blue').val(),
+                            light: $('#lightness').val()
+                        })
+
+
                     }
                 }
         
