@@ -717,7 +717,9 @@ $(document).ready(function () {
     window.mobile = false
     if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua) ||
         /Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
+            if(document.querySelector('#joinDiv'))
         document.querySelector('#joinDiv').style.display = "none"
+        if(document.querySelector('#hr'))
         document.querySelector('#hr').style.display = "none"
         window.mobile = true
 
@@ -1276,6 +1278,7 @@ $(document).ready(function () {
 
         if (whichBtn == 'pencil' && e.button !== 1 && e.button !== 2) {
             isPencil = true
+
 
             $ctx.beginPath();
 
