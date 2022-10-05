@@ -523,7 +523,7 @@ $(document).ready(function () {
             imageColor: 'white',
             textClass: 'test',
             textResizeFactor: '.25',
-            fade: 0
+            fade: [0, 100]
         });                                        
     }
         showLoader()
@@ -538,7 +538,7 @@ $(document).ready(function () {
             }
         }
 
-        xhr.open('get', './options/lineopt.html')
+        xhr.open('get', './html/lineopt.html')
         xhr.send()
         }
 
@@ -565,7 +565,7 @@ $(document).ready(function () {
                     imageColor: 'white',
                     textClass: 'test',
                     textResizeFactor: '.25',
-                    fade: 0
+                    fade: [0, 100]
                 });                                        
             }
                 showLoader()
@@ -579,7 +579,7 @@ $(document).ready(function () {
                     }
                 }
         
-                xhr.open('get', './options/shapeopt.html')
+                xhr.open('get', './html/shapeopt.html')
                 xhr.send()
                 }
         
@@ -614,7 +614,7 @@ $(document).ready(function () {
                     imageColor: 'white',
                     textClass: 'test',
                     textResizeFactor: '.25',
-                    fade: 0
+                    fade: [0, 100]
                 });                                        
             }
                 showLoader()
@@ -629,7 +629,7 @@ $(document).ready(function () {
                     }
                 }
         
-                xhr.open('get', './options/textopt.html')
+                xhr.open('get', './html/textopt.html')
                 xhr.send()
                 }
         
@@ -657,7 +657,7 @@ $(document).ready(function () {
                     imageColor: 'white',
                     textClass: 'test',
                     textResizeFactor: '.25',
-                    fade: 0
+                    fade: [0, 100]
                 });                                        
             }
                 showLoader()
@@ -672,7 +672,7 @@ $(document).ready(function () {
                     }
                 }
         
-                xhr.open('get', './options/colorsopt.html')
+                xhr.open('get', './html/colorsopt.html')
                 xhr.send()
                 }
         
