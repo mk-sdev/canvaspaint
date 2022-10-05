@@ -1,0 +1,40 @@
+<div class="shape">
+    <span><b>Shape</b></span>
+
+    <div id="radiosShape">
+        <label id="labelShapeSquare" title="ctrl + R" class="labelShape">rectangle&nbsp;
+            <input type="radio" name="shape" id="square" class="radioShape" value="square"
+                checked></label>
+        <label id="labelShapeCircle" title="ctrl + E" class="labelShape">&nbsp;circle
+            <input type="radio" name="shape" id="circle" class="radioShape" value="circle"></label>
+    </div>
+</div>
+<hr>
+<div id="styleShape">
+
+    <div>
+        <label><span id="spanFill"><b>Fill</b></span>
+            <input type="checkbox" name="style" id="fill" value="circle" checked></label></div>
+    <div>
+        <label><span id="spanStroke"><b>Stroke</b></span>
+            <input type="checkbox" name="style" id="stroke" value="square"></label></div>
+</div>
+<hr>
+<div>
+    <span><b>Fill color</b></span>
+    <div><input type="color" id="colorFill"></div>
+</div>
+<hr>
+
+<div>
+    <span><b>Stroke color</b></span>
+    <div><input type="color" id="colorStroke"></div>
+</div>
+<hr>
+<div>
+    <span><b>Stroke width: </b>
+        <input type="number" value="5" min="1" max="50" id="lineWidthShapeNr">
+    </span>
+
+    <input type="range" id="lineWidthShape" value="5" min='1' max="50">
+</div>

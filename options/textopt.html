@@ -1,0 +1,65 @@
+<div>
+    <span><b>Text content</b></span>
+    <textarea id="textContent" maxlength="60"></textarea>
+</div>
+<hr>
+
+<div id="fontFamily">
+    <span><b>Font family</b></span>
+    <select name="fontSelect" id="fontSelect">
+        <option value="Arial" style="font-family: Arial">Arial</option>
+        <option value="Courier New" style="font-family: Courier New">Courier New</option>
+        <option value="Lucida Console" style="font-family: Lucida Console">Lucida Console</option>
+        <option value="Georgia" style="font-family: Georgia">Georgia</option>
+        <option value="Verdana" style="font-family: Verdana">Verdana</option>
+    </select>
+</div>
+
+<hr>
+
+<div><span><b>Font size: </b>
+    <input type="number" value="50" min="1" max="200" id="textSizeNr">
+</span>
+    <input type="range" id="textSize" value="50" min='1' max="200"></div>
+<hr>
+<div id="styleText">
+
+    <div><label><span><b>Fill</b></span>
+            <input type="checkbox" id='fillText' class="textStyle" name="textStyle" value="fill"
+                checked></label></div>
+    <div> <label><span><b>Stroke</b></span>
+            <input type="checkbox" id='strokeText' class="textStyle" name="textStyle"
+                value="stroke"></label></div>
+</div>
+
+<hr>
+
+<div><span><b>Fill color</b></span>
+    <div><input type="color" id="colorFillText"></div>
+</div>
+<hr>
+<div><span><b>Stroke color</b></span>
+    <div> <input type="color" id="colorStrokeText"></div>
+</div>
+<hr>
+<div><span><b>Stroke width: </b>
+    <input type="number" value="5" min="1" max="10"  style="width: 40px; font-size: 17px" id="textStrokeWidthNr">
+</span>
+    <input type="range" id="textStrokeWidth" value="1" min='1' max="10"></div>
+<hr>
+<div><span><b>Style</b></span>
+    <div id="radiosText">
+
+        <label id="labelTextNormal" class="labelText">normal
+            <input type="radio" id='normalText' class='radioText' name="radiosText" value="normal"
+                checked></label>
+
+        <label id="labelTextBold" class="labelText">&nbsp;bold&nbsp;
+            <input type="radio" id='boldText' class='radioText' name="radiosText"
+                value="bold"></label>
+
+        <label id="labelTextItalic" class="labelText">italic
+            <input type="radio" id='italicxt' class='radioText' name="radiosText"
+                value="italic"></label>
+    </div>
+</div>

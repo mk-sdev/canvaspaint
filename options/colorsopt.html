@@ -1,0 +1,44 @@
+<div>
+    <span><b>Fill canvas</b></span>
+    <div><input type="color" id="backColor" title="ctrl + F"></div>
+</div>
+
+<hr>
+
+<div>
+    <span><b>Filter</b></span>
+    <div id="radiosColors">
+
+        <label id="labelGrayScale" class="labelColors">gray
+            <input type="radio" class="radioColors" name="colors" value="grayScale">
+        </label>
+        <label id="labelInverted" class="labelColors">&nbsp;invert&nbsp;
+            <input type="radio" class="radioColors" name="colors" value="inverted"></label>
+        <label id="labelSepia" class="labelColors">sepia
+            <input type="radio" class="radioColors" name="colors" value="sepia"></label>
+    </div>
+</div>
+
+<hr>
+
+<div id="reddiv"><span><b>Red: </b> <input type="number" style="width: 60px" value="127" min="0" max="255" id="redNr">
+</span>
+    <input type="range" id="red" value="127" max="255" min="0"
+        style="margin-left: auto; margin-right: auto"></div>
+
+<div id="greendiv"><span><b>Green: </b> <input type="number" style="width: 60px"  value="127" min="0" max="255" id="greenNr">
+</span>
+    <input type="range" id="green" value="127" max="255" min="0"
+        style="margin-left: auto; margin-right: auto"></div>
+
+<div id="bluediv"><span><b>Blue: </b>
+    <input type="number" style="width: 60px"  value="127" min="0" max="255" id="blueNr">
+</span>
+    <input type="range" id="blue" value="127" max="255" min="0"
+        style="margin-left: auto; margin-right: auto"></div>
+<hr>
+<div id="lightdiv"><span><b>Lightness: </b>
+    <input type="number" style="width: 60px"  value="127" min="0" max="255" id="lightnessNr">
+</span>
+    <input type="range" id="lightness" value="127" max="255" min="0"
+        style="margin-left: auto; margin-right: auto"></div>

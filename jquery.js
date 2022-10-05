@@ -112,7 +112,6 @@ $(document).ready(function () {
         }, 10)
 
         j++
-
     })
 
     $('#clear').on('click', (e) => {
@@ -258,7 +257,7 @@ $(document).ready(function () {
                 modal.css('background-color', 'rgb(0,0,0,0.4)')
                 modalC.removeClass('closeanim')
                 closebtn.css('display', 'block');
-            }, 400)
+            }, 200)
         }
     })
 
@@ -504,6 +503,7 @@ $(document).ready(function () {
         whichBtn = 'pencil'
     })
 
+    let isLineClicked = false
     $('#line').on('click', () => {
 
         for (let i = 0; i < $('.Options').length; i++) {
@@ -513,8 +513,39 @@ $(document).ready(function () {
             $('#lineOptions').slideDown(200)
         $('#lineOptions').css('display', 'flex')
         whichBtn = 'line'
+
+        if(!isLineClicked){
+
+            
+    function showLoader(){
+        $('#options').LoadingOverlay("show", {
+            background: "rgba(0, 0, 0, 0)",
+            imageColor: 'white',
+            textClass: 'test',
+            textResizeFactor: '.25',
+            fade: 0
+        });                                        
+    }
+        showLoader()
+
+        const xhr = new XMLHttpRequest();
+        const container = document.querySelector('#lineOptions')
+
+        xhr.onload=function(){
+            if(this.status===200){
+                $('#options').LoadingOverlay("hide", 0)
+                container.innerHTML=xhr.responseText
+            }
+        }
+
+        xhr.open('get', './options/lineopt.html')
+        xhr.send()
+        }
+
+        isLineClicked = true
     })
 
+    isShapeClicked = false
     $('#shape').on('click', () => {
 
         for (let i = 0; i < $('.Options').length; i++) {
@@ -524,8 +555,38 @@ $(document).ready(function () {
             $('#shapeOptions').slideDown(200)
         $('#shapeOptions').css('display', 'flex')
         whichBtn = 'shape'
+
+        if(!isShapeClicked){
+
+            
+            function showLoader(){
+                $('#options').LoadingOverlay("show", {
+                    background: "rgba(0, 0, 0, 0)",
+                    imageColor: 'white',
+                    textClass: 'test',
+                    textResizeFactor: '.25',
+                    fade: 0
+                });                                        
+            }
+                showLoader()
+        
+                const xhr = new XMLHttpRequest();
+                const container = document.querySelector('#shapeOptions')
+                xhr.onload=function(){
+                    if(this.status===200){
+                        $('#options').LoadingOverlay("hide", 0)
+                        container.innerHTML=xhr.responseText
+                    }
+                }
+        
+                xhr.open('get', './options/shapeopt.html')
+                xhr.send()
+                }
+        
+                isShapeClicked = true
     })
 
+    let isTextClicked=false
     $('#text').on('click', () => {
 
         for (let i = 0; i < $('.Options').length; i++) {
@@ -537,13 +598,46 @@ $(document).ready(function () {
         $('#textOptions').css('display', 'flex')
         //e.preventDefault()
         $('#text').get(0).blur()
+
+        if($('#textContent').get(0))
         $('#textContent').get(0).focus()
 
         $('#textOptions').get(0).scrollTop = 0
         whichBtn = 'text'
+
+        if(!isTextClicked){
+
+            
+            function showLoader(){
+                $('#options').LoadingOverlay("show", {
+                    background: "rgba(0, 0, 0, 0)",
+                    imageColor: 'white',
+                    textClass: 'test',
+                    textResizeFactor: '.25',
+                    fade: 0
+                });                                        
+            }
+                showLoader()
+        
+                const xhr = new XMLHttpRequest();
+                const container = document.querySelector('#textOptions')
+                xhr.onload=function(){
+                    if(this.status===200){
+                        
+                        $('#options').LoadingOverlay("hide", 0)
+                        container.innerHTML=xhr.responseText
+                    }
+                }
+        
+                xhr.open('get', './options/textopt.html')
+                xhr.send()
+                }
+        
+                isTextClicked = true
     })
 
 
+    let isColorsClicked = false
     $('#colors').on('click', () => {
 
         for (let i = 0; i < $('.Options').length; i++) {
@@ -553,6 +647,36 @@ $(document).ready(function () {
             $('#colorsOptions').slideDown(200)
         $('#colorsOptions').css('display', 'flex')
         whichBtn = 'colors'
+
+        if(!isColorsClicked){
+
+            
+            function showLoader(){
+                $('#options').LoadingOverlay("show", {
+                    background: "rgba(0, 0, 0, 0)",
+                    imageColor: 'white',
+                    textClass: 'test',
+                    textResizeFactor: '.25',
+                    fade: 0
+                });                                        
+            }
+                showLoader()
+        
+                const xhr = new XMLHttpRequest();
+                const container = document.querySelector('#colorsOptions')
+                xhr.onload=function(){
+                    if(this.status===200){
+                        
+                        $('#options').LoadingOverlay("hide", 0)
+                        container.innerHTML=xhr.responseText
+                    }
+                }
+        
+                xhr.open('get', './options/colorsopt.html')
+                xhr.send()
+                }
+        
+                isColorsClicked = true
     })
 
     $('#select').on('click', () => {
@@ -1295,6 +1419,12 @@ $(document).ready(function () {
             }
         }
     })
+
+
+
+
+
+
 
     $("#img1").load(function () {
         $('#imagesDiv').LoadingOverlay("hide", true)
