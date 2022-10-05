@@ -1420,12 +1420,6 @@ $(document).ready(function () {
         }
     })
 
-
-
-
-
-
-
     $("#img1").load(function () {
         $('#imagesDiv').LoadingOverlay("hide", true)
     });
