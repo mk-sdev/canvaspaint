@@ -228,10 +228,19 @@ $(document).ready(function () {
     $('#showImgBtn').on('click', (e) => {
         $('#id01').css('display', 'block');
 
-        if (isFirst)
+        if (isFirst){
+            $("#img1").load(function () {
+                $('#imagesDiv').LoadingOverlay("hide", true)
+            });
+        
+            $("#obj1").load(function () {
+                $('#objectsDiv').LoadingOverlay("hide", true)
+            });
+
             setTimeout(() => {
                 $("#tablink1").click();
             }, 100)
+        }
         else
             $("#tablink1").click();
         isFirst = false
@@ -1445,11 +1454,11 @@ $(document).ready(function () {
         }
     })
 
-    $("#img1").load(function () {
-        $('#imagesDiv').LoadingOverlay("hide", true)
-    });
+    // $("#img1").load(function () {
+    //     $('#imagesDiv').LoadingOverlay("hide", true)
+    // });
 
-    $("#obj1").load(function () {
-        $('#objectsDiv').LoadingOverlay("hide", true)
-    });
+    // $("#obj1").load(function () {
+    //     $('#objectsDiv').LoadingOverlay("hide", true)
+    // });
 });
