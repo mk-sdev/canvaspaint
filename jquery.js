@@ -533,6 +533,14 @@ $(document).ready(function () {
                         window.numbers  = document.querySelectorAll('input[type=number]')
                         window.fn()
 
+                        $('#backColor').on('input change', (e) => {
+                            $ctx.fillStyle = $('#backColor').val()
+                            $ctx.fillRect(0, 0, $c.width(), $c.height())
+                        })
+                        $('#backColor').on('change', (e) => {
+                            undofn(e)
+                        })
+                        
                         $('#labelInverted').on('mousedown touch', (e) => {
                             let a = $ctx.getImageData(0, 0, $c.width(), $c.height())
                             const data = a.data;
@@ -725,13 +733,6 @@ $(document).ready(function () {
 
     })
 
-    $('#backColor').on('input change', (e) => {
-        $ctx.fillStyle = $('#backColor').val()
-        $ctx.fillRect(0, 0, $c.width(), $c.height())
-    })
-    $('#backColor').on('change', (e) => {
-        undofn(e)
-    })
 
     const ua = navigator.userAgent;
 
