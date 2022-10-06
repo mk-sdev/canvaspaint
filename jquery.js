@@ -344,10 +344,6 @@ $(document).ready(function () {
 
     //default:
     $('.labelPencil').eq(0).css('color', 'white')
-    $('.labelLine').eq(0).css('color', 'white')
-    $('.labelShape').eq(0).css('color', 'white')
-    $('.labelText').eq(0).css('color', 'white')
-
 
     $('#pencil').on('click', () => {
 
@@ -394,6 +390,7 @@ $(document).ready(function () {
                 container.innerHTML=xhr.responseText
                 window.numbers  = document.querySelectorAll('input[type=number]')
                 window.fn()
+                 $('.labelLine').eq(0).css('color', 'white')
             }
         }
 
@@ -437,6 +434,7 @@ $(document).ready(function () {
                         container.innerHTML=xhr.responseText
                         window.numbers  = document.querySelectorAll('input[type=number]')
                         window.fn()
+                        $('.labelShape').eq(0).css('color', 'white')
                     }
                 }
         
@@ -488,6 +486,7 @@ $(document).ready(function () {
                         container.innerHTML=xhr.responseText
                         window.numbers  = document.querySelectorAll('input[type=number]')
                         window.fn()
+                        $('.labelText').eq(0).css('color', 'white')
                     }
                 }
         
@@ -540,7 +539,7 @@ $(document).ready(function () {
                         $('#backColor').on('change', (e) => {
                             undofn(e)
                         })
-                        
+
                         $('#labelInverted').on('mousedown touch', (e) => {
                             let a = $ctx.getImageData(0, 0, $c.width(), $c.height())
                             const data = a.data;
