@@ -218,3 +218,11 @@
     height: 1.5rem;
     width: .4rem;
 }
+
+.brp4 #joinDiv {
+    display: none
+}
+
+.brp4 #lineOptions hr:last-of-type {
+    display: none
+}
